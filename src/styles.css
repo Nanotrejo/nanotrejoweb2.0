@@ -1,0 +1,15 @@
+@import "./assets/themes/palette-default-colors.css";
+@import "./assets/themes/palette-white-colors.css";
+@import "./assets/css/component.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-family: system-ui, sans-serif;
+}
+
+* {
+  scroll-behavior: smooth;
+}

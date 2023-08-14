@@ -1,0 +1,23 @@
+:root.default {
+  --color-primary: #f5f5f5;
+  --color-secondary: #ffffff4d;
+  --color-tertiary: #121120;
+  --color-quaternary: #373646;
+  --color-quinary: #22212f;
+  --color-senary: #3f3d641a;
+  --color-septenary: #3f3d641a;
+  --color-octonary: #9e9e9e;
+  --color-nonary: #ffffff;
+  --color-denary: #4728d3;
+  --color-eleventh: #9a85dc;
+  --color-twelfth: #663bc2;
+  --color-thirteenth: #6d4bc1;
+  --color-fourteenth: #616161;
+  --color-fifteenth: rgba(130, 129, 146, 0.2);
+
+  --gradient-1: #ff9c5466;
+  --gradient-2: #ffffff38;
+  --gradient-3: #00000000;
+  --gradient-4: #621abe;
+  --gradient-5: #24214b00;
+}
