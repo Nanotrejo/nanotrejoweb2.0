@@ -20,9 +20,18 @@
   color: var(--color-secondary);
 }
 
-.filter-primary-color {
+.color-quinary-color {
+  color: var(--color-quinary);
+}
+
+.filter-primary-color.default {
   filter: invert(100%) sepia(25%) saturate(0%) hue-rotate(172deg)
     brightness(110%) contrast(92%);
+}
+
+.filter-primary-color.white {
+  filter: invert(18%) sepia(0%) saturate(44%) hue-rotate(138deg) brightness(88%)
+    contrast(87%);
 }
 
 .gradient {
@@ -88,4 +97,13 @@
     );
   filter: blur(100px);
   animation: gradient-animation 6s ease infinite;
+}
+
+.rectangle {
+  border-radius: 9px;
+  background: var(--color-quinary);
+  backdrop-filter: blur(20px);
+  width: 267px;
+  height: 38px;
+  box-shadow: 0 0 2px var(--color-primary);
 }

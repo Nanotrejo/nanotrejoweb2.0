@@ -5,6 +5,10 @@ import {
   translateIn,
   translateOut,
 } from "@assets/css/animation";
+import { ThemeService } from "@core/service/theme.service";
+import { Themes } from "@core/interface/theme";
+import { MenuService } from "@core/service/menu.service";
+import { iMenu } from "@core/interface/menu";
 
 @Component({
   selector: "app-header",
@@ -17,10 +21,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   isMenuOpen = false;
   isSlideOver = false;
   isMenu = false;
+  isThemeDefault: boolean = false;
+  menuItems: iMenu[] = [];
+  constructor(
+    private themeService: ThemeService,
+    private menuService: MenuService,
+  ) {}
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.menuItems = this.menuService.getMenu();
+    this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
+  }
 
   ngAfterViewInit(): void {
     this.eventMouseBackdrop();
@@ -50,5 +61,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         menuBackDrop.style.visibility = "hidden";
       });
     });
+  }
+
+  changeTheme() {
+    this.isThemeDefault = !this.isThemeDefault;
+    this.themeService.setTheme(
+      this.isThemeDefault ? Themes.DEFAULT : Themes.WHITE,
+    );
   }
 }

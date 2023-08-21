@@ -14,6 +14,10 @@
   --color-thirteenth: #6d4bc1;
   --color-fourteenth: #616161;
   --color-fifteenth: rgba(130, 129, 146, 0.2);
+  --color-sixteenth: rgba(255, 255, 255, 0.1);
+  --color-seventeenth: rgba(0, 255, 176, 0.45);
+  --color-eighteenth: rgba(255, 0, 0, 0.46);
+  --color-nineteenth: #ff9c5466;
 
   --gradient-1: #ff9c5466;
   --gradient-2: #ffffff38;

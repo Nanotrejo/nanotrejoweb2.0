@@ -5,9 +5,17 @@ import { ProjectComponent } from "@screens/project/project.component";
 import { MainComponent } from "./main/main.component";
 import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
+import { ExperienceComponent } from "./experience/experience.component";
+import { ContactComponent } from "./contact/contact.component";
 
 @NgModule({
-  declarations: [HomeComponent, ProjectComponent, MainComponent],
+  declarations: [
+    HomeComponent,
+    ProjectComponent,
+    MainComponent,
+    ExperienceComponent,
+    ContactComponent,
+  ],
   imports: [CommonModule, RouterModule, SharedModule],
 })
 export class ScreenModule {}

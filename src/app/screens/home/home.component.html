@@ -1,6 +1,6 @@
 <section id="home">
   <div class="w-screen h-screen center-content bg-layout p-4">
-    <div class="w-full flex flex-col gap-3">
+    <div class="w-full flex flex-col gap-3 mt-[4rem]">
       <header class="center-content">
         <h1 class="color-primary-color text-center text-3xl">
           David Trejo Fernández
@@ -8,7 +8,7 @@
       </header>
       <div class="center-content">
         <img
-          class="h-[200px] rounded-full"
+          class="h-[35vw] rounded-full md:h-[200px]"
           src="assets/images/nano-img-400.png"
           alt="Nano trejo image"
         />
@@ -34,10 +34,12 @@
           class="flex flex-wrap justify-around gap-6 w-full auto-cols-max md:w-[75vw]"
         >
           <div
+            @fadeInFast
             class="center-content gap-2 basis-1/5"
             *ngFor="let stack of stackData"
           >
             <img
+              @fadeInFast
               class="w-[20px] h-[20px]"
               src="{{ stack?.img }}"
               alt="{{ stack?.name }}"
@@ -58,5 +60,43 @@
       </div>
       <app-project></app-project>
     </body>
+  </div>
+</section>
+<section id="experiencia">
+  <div class="w-screen center-content bg-layout p-4">
+    <body class="center-content flex flex-col">
+      <div class="relative w-screen center-content h-[15vh]">
+        <div class="gradient"></div>
+        <h2 class="text-header">{{ timeExperience }}+ años Exp.</h2>
+      </div>
+      <app-experience class="w-screen"></app-experience>
+    </body>
+  </div>
+</section>
+<section id="contacto">
+  <div class="w-screen center-content bg-layout p-4">
+    <body class="center-content flex flex-col">
+      <div class="relative w-screen center-content h-[15vh]">
+        <div class="gradient"></div>
+        <h2 class="text-header">Contacto</h2>
+      </div>
+      <app-contact class="w-screen"></app-contact>
+    </body>
+  </div>
+</section>
+<section id="footer">
+  <div class="center-content w-screen gap-4 bg-layout flex-col mb-4">
+    <img
+      class="w-[100px] h-[100px]"
+      [src]="
+        isThemeDefault
+          ? 'assets/logo/1-removebg.png'
+          : 'assets/logo/2-removebg.png'
+      "
+      alt="Nanotrejo Logo"
+    />
+    <div class="rectangle center-content">
+      <label class="color-primary-color">@nanotrejo {{ yearPresent }}</label>
+    </div>
   </div>
 </section>

@@ -1,10 +1,11 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { Themes } from "@core/interface/theme";
 
 @Injectable({
   providedIn: "root",
 })
 export class ThemeService {
+  observableTheme: EventEmitter<void> = new EventEmitter<void>();
   constructor() {}
 
   /**
@@ -14,6 +15,7 @@ export class ThemeService {
   setTheme(theme: string) {
     document.documentElement.className = theme;
     localStorage.setItem("theme", theme);
+    this.observableTheme.emit();
   }
 
   /**
@@ -25,5 +27,12 @@ export class ThemeService {
       JSON.parse(JSON.stringify(localStorage.getItem("theme"))) ??
       Themes.DEFAULT
     );
+  }
+
+  /**
+   * Observable theme
+   */
+  getObservableTheme() {
+    return this.observableTheme;
   }
 }

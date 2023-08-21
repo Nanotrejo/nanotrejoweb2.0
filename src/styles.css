@@ -1,6 +1,7 @@
 @import "./assets/themes/palette-default-colors.css";
 @import "./assets/themes/palette-white-colors.css";
 @import "./assets/css/component.css";
+@import "material-icons/iconfont/material-icons.css";
 
 @tailwind base;
 @tailwind components;
@@ -12,4 +13,10 @@
 
 * {
   scroll-behavior: smooth;
+  transition: all 0.5s ease-in-out;
+}
+
+html,
+body {
+  background-color: var(--color-tertiary);
 }

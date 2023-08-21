@@ -16,4 +16,7 @@ export class NotionService {
   async getProject(): Promise<any> {
     return await this.http.get(`${this.url}/project`).toPromise();
   }
+  async getExperience(): Promise<any> {
+    return await this.http.get(`${this.url}/experience`).toPromise();
+  }
 }
