@@ -16,9 +16,7 @@ import { ThemeService } from "@core/service/theme.service";
 export class HomeComponent implements OnInit, OnDestroy {
   stackData: iStack[] = [];
   timeExperience: number = new Date().getFullYear() - 2021;
-  yearPresent: number = new Date().getFullYear();
   isThemeDefault: boolean = false;
-  observableTheme: any;
 
   constructor(
     private notionService: NotionService,
@@ -30,12 +28,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.stackData = this.storageService.getItem(Storage.STACK);
     this.checkTheme();
     this.getStackData();
-    this.getObservableTheme();
   }
 
-  ngOnDestroy(): void {
-    this.observableTheme?.unsubscribe();
-  }
+  ngOnDestroy(): void {}
 
   async getStackData() {
     this.stackData = await this.notionService.getStacks();
@@ -45,14 +40,5 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   checkTheme() {
     this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
-  }
-
-  getObservableTheme() {
-    this.observableTheme?.unsubscribe();
-    this.observableTheme = this.themeService
-      .getObservableTheme()
-      .subscribe(() => {
-        this.checkTheme();
-      });
   }
 }

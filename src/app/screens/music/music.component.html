@@ -1,0 +1,56 @@
+<app-loading @fadeInFast *ngIf="!loading"></app-loading>
+<div
+  *ngIf="loading"
+  class="center-content flex-col w-screen h-auto lg:h-[97vh] lg:items-start lg:flex-row gap-3"
+>
+  <div
+    @translateLeftIn
+    class="flex w-screen lg:h-[90vh] flex-col p-3 gap-3 lg:w-[50vw] mt-[4rem] lg:mt-[4rem]"
+  >
+    <iframe
+      class="h-[315px] lg:h-[70vh] w-full rounded-2xl m-left object-contain"
+      [src]="urlSelected"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+    <!--        <img-->
+    <!--                class="lg:h-[70vh] rounded-2xl m-left object-contain"-->
+    <!--                [src]="videoSelected?.thumbnails?.high?.url"-->
+    <!--                [alt]="videoSelected?.title"-->
+    <!--                loading="lazy"-->
+    <!--        />-->
+    <h1 class="color-primary-color font-bold text-xl lg:text-3xl">
+      {{ videoSelected?.title }}
+    </h1>
+    <p class="color-secondary-color">{{ videoSelected?.publishedAt | date }}</p>
+    <label class="color-secondary-color">{{
+      videoSelected?.description
+    }}</label>
+  </div>
+  <div
+    @translateRightIn
+    class="flex w-screen h-auto p-3 flex-col gap-5 lg:w-[40vw] lg:h-[70vh] lg:mt-[5rem] lg:overflow-y-scroll card-music"
+  >
+    <div
+      *ngFor="let video of videos"
+      (click)="selectVideo(video)"
+      [class.bg-layout]="
+        video?.thumbnails?.high?.url === videoSelected?.thumbnails?.high?.url
+      "
+      class="center-content gap-5 justify-start hover:opacity-60 cursor-pointer rounded"
+    >
+      <img
+        class="w-[70px] h-auto rounded-2xl object-contain"
+        [src]="video?.thumbnails?.high?.url"
+        [alt]="video?.title"
+        loading="lazy"
+      />
+      <div class="center-content flex-col">
+        <h1 class="color-primary-color font-bold text-lg">
+          {{ video?.title }}
+        </h1>
+        <!--            <p class="color-secondary-color">{{ video?.publishedAt | date }}</p>-->
+      </div>
+    </div>
+  </div>
+</div>

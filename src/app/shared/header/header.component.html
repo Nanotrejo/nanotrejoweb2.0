@@ -1,10 +1,10 @@
-<header class="bg-layout fixed w-screen z-10">
+<header class="bg-layout fixed w-screen z-20">
   <nav
     class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
     aria-label="Global"
   >
     <div class="flex gap-4 lg:flex-1">
-      <a href="#" class="-m-1.5 p-1.5">
+      <a routerLink="/" class="-m-1.5 p-1.5">
         <span class="sr-only">Nanotrejo</span>
         <img
           class="h-8 w-auto"
@@ -92,7 +92,8 @@
       <a *ngFor="let item of menuItems">
         <a
           *ngIf="!item?.more"
-          [href]="item?.url"
+          [routerLink]="item?.url"
+          fragment="{{ item?.fragment }}"
           class="text-sm font-semibold leading-6 color-primary-color"
           >{{ item?.name }}</a
         >
@@ -111,7 +112,7 @@
             @translateOut
             *ngIf="isFlyoutMenu"
             (mouseleave)="isFlyoutMenu = false"
-            class="absolute right-0 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
+            class="absolute right-0 top-full z-20 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
           >
             <div class="p-4">
               <div
@@ -124,7 +125,10 @@
                   <span class="material-icons">{{ it?.icon }}</span>
                 </div>
                 <div class="flex-auto">
-                  <a [href]="it.url" class="block font-semibold text-gray-900">
+                  <a
+                    [routerLink]="it?.url"
+                    class="block font-semibold text-gray-900"
+                  >
                     {{ it?.name }}
                     <span class="absolute inset-0"></span>
                   </a>
@@ -136,21 +140,21 @@
               <div
                 class="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50"
               >
-                <a
-                  href="#"
-                  class="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-                >
-                  <span class="material-icons">play_circle</span>
-                  Watch demo
-                </a>
-                <a
-                  href="#"
-                  class="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-                >
-                  <span class="material-icons">call</span>
+                <!--                <a-->
+                <!--                  href="#"-->
+                <!--                  class="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"-->
+                <!--                >-->
+                <!--                  <span class="material-icons">play_circle</span>-->
+                <!--                  Watch demo-->
+                <!--                </a>-->
+                <!--                <a-->
+                <!--                  href="#"-->
+                <!--                  class="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"-->
+                <!--                >-->
+                <!--                  <span class="material-icons">call</span>-->
 
-                  Contact sales
-                </a>
+                <!--                  Contact sales-->
+                <!--                </a>-->
               </div>
             </div>
           </div>
@@ -181,15 +185,15 @@
       class="fixed inset-0 z-10"
     ></div>
     <div
-      class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+      class="fixed inset-y-0 right-0 z-20 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
     >
       <div class="flex items-center justify-between">
-        <a href="#" class="-m-1.5 p-1.5">
+        <a routerLink="/" class="-m-1.5 p-1.5">
           <span class="sr-only">Nanotrejo</span>
           <img
             class="h-8 w-auto"
             src="assets/logo/2-removebg.png"
-            alt="Logo Nanotrejo"
+            alt="Nanotrejo logo"
           />
         </a>
         <button
@@ -220,7 +224,9 @@
             <div *ngFor="let item of menuItems">
               <a
                 *ngIf="!item?.more"
-                [href]="item?.url"
+                [routerLink]="item?.url"
+                (click)="isMenuOpen = false"
+                fragment="{{ item?.fragment }}"
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
                 >{{ item?.name }}</a
               >
@@ -244,24 +250,25 @@
                 <div *ngIf="isMenu" class="mt-2 space-y-2" id="disclosure-1">
                   <a
                     *ngFor="let it of item?.more"
-                    [href]="it?.url"
+                    [routerLink]="it?.url"
+                    (click)="isMenuOpen = false"
                     class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"
                     ><span class="material-icons">{{ it?.icon }}</span
                     >{{ it?.name }}</a
                   >
-                  <a
-                    href="#"
-                    class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"
-                  >
-                    <span class="material-icons">play_circle</span> Watch
-                    demo</a
-                  >
-                  <a
-                    href="#"
-                    class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"
-                  >
-                    <span class="material-icons">call</span> Contact sales</a
-                  >
+                  <!--                  <a-->
+                  <!--                    href="#"-->
+                  <!--                    class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"-->
+                  <!--                  >-->
+                  <!--                    <span class="material-icons">play_circle</span> Watch-->
+                  <!--                    demo</a-->
+                  <!--                  >-->
+                  <!--                  <a-->
+                  <!--                    href="#"-->
+                  <!--                    class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"-->
+                  <!--                  >-->
+                  <!--                    <span class="material-icons">call</span> Contact sales</a-->
+                  <!--                  >-->
                 </div>
               </div>
             </div>

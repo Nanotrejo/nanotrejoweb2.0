@@ -8,16 +8,19 @@ export class MenuService {
   menu: iMenu[] = [
     {
       name: "Proyectos",
-      url: "#proyectos",
+      url: "/",
+      fragment: "proyectos",
     },
     {
       name: "Experiencia",
-      url: "#experiencia",
+      url: "/",
+      fragment: "experiencia",
     },
-    {
-      name: "Contacto",
-      url: "#contacto",
-    },
+    // {
+    //   name: "Contacto",
+    //   url: "/",
+    //     fragment: "contacto",
+    // },
     {
       name: "Más",
       more: [
@@ -34,8 +37,8 @@ export class MenuService {
           icon: "piano",
         },
         {
-          name: "Gastronomía",
-          url: "/gastronomía",
+          name: "Gastronomía (proximamente)",
+          url: "/gastronomia",
           description: "Blog donde comparto mis impresiones sobre restaurantes",
           icon: "restaurant",
         },

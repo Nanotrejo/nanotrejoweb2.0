@@ -24,6 +24,13 @@
   color: var(--color-quinary);
 }
 
+.color-denary-color {
+  color: var(--color-denary);
+}
+.color-eleventh-color {
+  color: var(--color-eleventh);
+}
+
 .filter-primary-color.default {
   filter: invert(100%) sepia(25%) saturate(0%) hue-rotate(172deg)
     brightness(110%) contrast(92%);
@@ -52,18 +59,18 @@
   background-size: 180% 180%;
   opacity: 0.84;
   filter: blur(60px);
-  animation: gradient-animation 6s ease infinite;
+  animation: gradient-animation-layout 6s ease infinite;
 }
 
-@keyframes gradient-animation {
+@keyframes gradient-animation-layout {
   0% {
-    background-position: 0% 50%;
+    background-position: 0 50%;
   }
   50% {
-    background-position: 100% 50%;
+    background-position: 200% 50%;
   }
   100% {
-    background-position: 0% 50%;
+    background-position: 0 50%;
   }
 }
 
@@ -106,4 +113,118 @@
   width: 267px;
   height: 38px;
   box-shadow: 0 0 2px var(--color-primary);
+}
+
+.m-0-auto {
+  margin: 0 auto;
+}
+
+.m-left {
+  margin: 0 auto 0 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  grid-auto-rows: minmax(80px, auto);
+  grid-auto-flow: dense;
+  width: 100vw;
+}
+
+.card {
+  min-height: 200px;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.span-2 {
+  grid-column-end: span 2;
+  grid-row-end: span 2;
+  min-height: 250px;
+}
+
+.span-3 {
+  grid-column-end: span 3;
+  grid-row-end: span 3;
+  min-height: 500px;
+}
+
+@media (max-width: 768px) {
+  .span-2,
+  .span-3 {
+    grid-column-end: auto;
+  }
+}
+
+.button-filter {
+  width: auto;
+  height: 40px;
+  flex-shrink: 0;
+  padding: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.button-filter-color {
+  border-radius: 30px;
+  color: var(--color-primary);
+  border: 1px solid transparent;
+}
+
+.button-filter-color:hover {
+  border: 1px solid var(--color-primary);
+}
+
+.button-filter-selected {
+  border: 1px solid var(--color-quaternary);
+}
+
+.bg-loading {
+  background: linear-gradient(
+    110deg,
+    var(--color-secondary) 8%,
+    var(--color-octonary) 18%,
+    var(--color-secondary) 33%
+  );
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1s gradient-animation linear infinite;
+}
+
+@keyframes gradient-animation {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+markdown {
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 0 1.25rem 1.25rem;
+}
+
+markdown h1,
+markdown h2,
+markdown h3 {
+  margin: 2rem 1rem 0 1rem;
+  font-weight: bold;
+  color: var(--color-eleventh);
+}
+
+markdown p,
+markdown ul {
+  margin: 0.5rem 0;
+  color: var(--color-primary);
+}
+
+markdown a {
+  color: var(--color-denary);
+  text-decoration: none;
+}
+
+markdown pre {
+  background: var(--color-sixteenth) !important;
 }

@@ -1,4 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Themes } from "@core/interface/theme";
+import { ThemeService } from "@core/service/theme.service";
 
 @Component({
   selector: "app-footer",
@@ -9,18 +11,25 @@ export class FooterComponent implements OnInit, OnDestroy {
   timeNow = new Date();
   intervalTime: any;
   private scrollListener!: EventListener;
+  yearPresent: number = new Date().getFullYear();
+  observableTheme: any;
+  isThemeDefault: boolean = false;
 
-  constructor() {}
+  constructor(private themeService: ThemeService) {}
 
   ngOnInit(): void {
-    this.updateInterval();
-    this.scrollListener = this.removeFooter.bind(this);
-    setTimeout(() => {
-      window.addEventListener("scroll", this.scrollListener);
-    }, 2000);
+    this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
+    this.getObservableTheme();
+
+    // this.updateInterval();
+    // this.scrollListener = this.removeFooter.bind(this);
+    // setTimeout(() => {
+    //   window.addEventListener("scroll", this.scrollListener);
+    // }, 2000);
   }
 
   ngOnDestroy(): void {
+    this.observableTheme?.unsubscribe();
     clearInterval(this.intervalTime);
     window.removeEventListener("scroll", this.scrollListener);
   }
@@ -49,5 +58,18 @@ export class FooterComponent implements OnInit, OnDestroy {
     if (scrollPosition === maxScroll) {
       footer?.classList.remove("fixed");
     }
+  }
+
+  getObservableTheme() {
+    this.observableTheme?.unsubscribe();
+    this.observableTheme = this.themeService
+      .getObservableTheme()
+      .subscribe(() => {
+        this.checkTheme();
+      });
+  }
+
+  checkTheme() {
+    this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
   }
 }

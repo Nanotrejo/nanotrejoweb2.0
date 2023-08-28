@@ -7,6 +7,11 @@ import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
 import { ExperienceComponent } from "./experience/experience.component";
 import { ContactComponent } from "./contact/contact.component";
+import { MusicComponent } from "./music/music.component";
+import { CheatsheetComponent } from "./cheatsheet/cheatsheet.component";
+import { TricksComponent } from "./cheatsheet/tricks/tricks.component";
+import { MarkdownModule } from "ngx-markdown";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -15,7 +20,16 @@ import { ContactComponent } from "./contact/contact.component";
     MainComponent,
     ExperienceComponent,
     ContactComponent,
+    MusicComponent,
+    CheatsheetComponent,
+    TricksComponent,
   ],
-  imports: [CommonModule, RouterModule, SharedModule],
+  imports: [
+    CommonModule,
+    BrowserAnimationsModule,
+    RouterModule,
+    SharedModule,
+    MarkdownModule.forRoot(),
+  ],
 })
 export class ScreenModule {}

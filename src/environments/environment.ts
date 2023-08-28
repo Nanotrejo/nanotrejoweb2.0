@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  notion_api: "localhost:3000",
+  notion_api: "http://localhost:3000",
+  // notion_api: "https://notion-api-tz0d-dev.fl0.io"
 };
 
 /*

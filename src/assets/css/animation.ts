@@ -33,3 +33,46 @@ const translateOutAnimation = transition(":leave", [
 ]);
 
 export const translateOut = trigger("translateOut", [translateOutAnimation]);
+
+const translateRightInAnimation = transition(":enter", [
+  style({ opacity: 0, transform: "translateX(50%)" }),
+  animate("200ms ease-out", style({ opacity: 1, transform: "translateX(0)" })),
+]);
+
+export const translateRightIn = trigger("translateRightIn", [
+  translateRightInAnimation,
+]);
+
+const translateRightOutAnimation = transition(":leave", [
+  style({ opacity: 1, transform: "translateX(0)" }),
+  animate(
+    "150ms ease-in",
+    style({ opacity: 0, transform: "translateX(-50%)" }),
+  ),
+]);
+
+export const translateRightOut = trigger("translateRightOut", [
+  translateRightOutAnimation,
+]);
+
+const translateLeftInAnimation = transition(":enter", [
+  style({ opacity: 0, transform: "translateX(-50%)" }),
+  animate("200ms ease-out", style({ opacity: 1, transform: "translateX(0)" })),
+]);
+
+export const translateLeftIn = trigger("translateLeftIn", [
+  translateLeftInAnimation,
+]);
+
+const translateLeftOutAnimation = transition(":leave", [
+  style({ opacity: 1, transform: "translateX(0)" }),
+  animate(
+    "150ms ease-in",
+
+    style({ opacity: 0, transform: "translateX(50%)" }),
+  ),
+]);
+
+export const translateLeftOut = trigger("translateLeftOut", [
+  translateLeftOutAnimation,
+]);
