@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   isFlyoutMenu = false;
   isMenuOpen = false;
   isSlideOver = false;
-  isMenu = false;
+  isMenu = true;
   isThemeDefault: boolean = false;
   menuItems: iMenu[] = [];
   constructor(

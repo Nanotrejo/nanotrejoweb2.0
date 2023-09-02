@@ -27,6 +27,7 @@
 .color-denary-color {
   color: var(--color-denary);
 }
+
 .color-eleventh-color {
   color: var(--color-eleventh);
 }
@@ -44,7 +45,7 @@
 .gradient {
   position: absolute;
   width: 100vw;
-  height: 167px;
+  height: 175px;
   background: linear-gradient(
       278deg,
       var(--gradient-1) 0%,
@@ -59,6 +60,7 @@
   background-size: 180% 180%;
   opacity: 0.84;
   filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
   animation: gradient-animation-layout 6s ease infinite;
 }
 
@@ -77,17 +79,17 @@
 .text-header {
   color: var(--color-nonary);
   text-align: center;
-  /*text-shadow: 0px 0px 16px rgba(0, 0, 0, 1);*/
   font-size: clamp(2rem, 5vw, 4rem);
   font-style: normal;
   font-weight: 900;
   line-height: 110%; /* 58.29px */
   letter-spacing: 5px;
-  /*mix-blend-mode: multiply;*/
   mix-blend-mode: overlay;
-  /*opacity: 0.5;*/
-  backdrop-filter: blur(3px);
+  -webkit-mix-blend-mode: overlay; /* Para Safari y antiguos navegadores webkit */
+  -moz-mix-blend-mode: overlay; /* Para navegadores basados en Gecko (Firefox) */
+  -o-mix-blend-mode: overlay; /* Para Opera */
   text-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  background: transparent;
 }
 
 .text-header-animation {
@@ -127,7 +129,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 1rem;
-  grid-auto-rows: minmax(80px, auto);
+  grid-auto-rows: auto;
   grid-auto-flow: dense;
   width: 100vw;
 }
@@ -154,6 +156,9 @@
   .span-2,
   .span-3 {
     grid-column-end: auto;
+  }
+  .gallery-grid {
+    grid-auto-rows: auto;
   }
 }
 

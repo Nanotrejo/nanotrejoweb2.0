@@ -22,7 +22,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.experienceData = this.storageService.getItem(Storage.EXPERIENCE);
     this.scrollListener = this.animationCard.bind(this);
-    // this.getExperience();
+    this.getExperience();
     setTimeout(() => {
       window.addEventListener("scroll", this.scrollListener);
     }, 2000);

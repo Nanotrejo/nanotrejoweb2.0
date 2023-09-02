@@ -4,11 +4,23 @@
     class="bg-color-fifteenth h-[315px] w-[335px] block rounded center-content p-3"
     *ngFor="let project of projectData"
   >
-    <img
-      class="w-[300px] h-[200px] rounded m-auto"
-      [src]="project?.img"
-      [alt]="project?.name"
-    />
+    <a
+      [href]="
+        project?.web
+          ? project?.web
+          : project?.github
+          ? project?.github
+          : project?.drive
+      "
+      target="_blank"
+      class="w-[300px] h-[200px] rounded m-auto cursor-pointer hover:opacity-60"
+    >
+      <img
+        class="w-[300px] h-[200px] rounded m-auto cursor-pointer hover:opacity-60"
+        [src]="project?.img"
+        [alt]="project?.name"
+      />
+    </a>
     <div class="flex-col center-content items-start w-[300px] m-auto mt-3">
       <h3 class="color-primary-color font-bold">{{ project?.name }}</h3>
       <h4 class="color-secondary-color">{{ project?.subtitle }}</h4>
@@ -16,7 +28,7 @@
     <div class="center-content w-[300px] m-auto mt-3 justify-end gap-4">
       <a
         *ngIf="project?.drive"
-        class="color-primary-color hover:opacity-60"
+        class="hover:opacity-60"
         [href]="project?.drive"
         target="_blank"
       >
@@ -28,24 +40,26 @@
       </a>
       <a
         *ngIf="project?.github"
-        class="filter-primary-color hover:opacity-60"
+        class="hover:opacity-60"
         [href]="project?.github"
         target="_blank"
       >
         <img
           class="w-[25px] h-[25px]"
+          [class.invert]="isThemeDefault"
           src="assets/images/github.svg"
           alt="GitHub"
         />
       </a>
       <a
         *ngIf="project?.web"
-        class="filter-primary-color hover:opacity-60"
+        class="hover:opacity-60"
         [href]="project?.web"
         target="_blank"
       >
         <img
-          class="w-[25px] h-[25px]"
+          class="w-[25px] h-[25px] filter-primary-color"
+          [class.invert]="isThemeDefault"
           src="assets/images/web.svg"
           alt="Website"
         />

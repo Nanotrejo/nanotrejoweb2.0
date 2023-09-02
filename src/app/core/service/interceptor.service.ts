@@ -19,7 +19,6 @@ export class InterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     let newHeaders = req.headers;
     newHeaders = newHeaders.set("Access-Control-Allow-Origin", "*");
-    console.log(req);
     const xhr = req.clone({
       headers: newHeaders,
     });

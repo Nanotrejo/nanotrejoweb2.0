@@ -4,7 +4,6 @@ import { iCheatsheet } from "@core/interface/cheatsheet";
 import { StorageService } from "@core/service/storage.service";
 import { Storage } from "@core/interface/storage";
 import { fadeInFast } from "@assets/css/animation";
-import { Router } from "@angular/router";
 
 @Component({
   selector: "app-cheatsheet",
@@ -30,12 +29,12 @@ export class CheatsheetComponent implements OnInit {
   constructor(
     private notionService: NotionService,
     private storageService: StorageService,
-    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.cheatsheetData = this.storageService.getItem(Storage.CHEATSHEET) || [];
     this.cheatsheetDataAux = [...this.cheatsheetData];
+    this.cheatsheetData.length !== 0 && (this.loading = true);
     this.getCheatsheetData();
   }
 
@@ -52,12 +51,8 @@ export class CheatsheetComponent implements OnInit {
         "img",
       ])
     ) {
-      console.warn("Cheatsheet data changed");
-      this.cheatsheetData = await this.notionService.getCheatsheet();
-      this.cheatsheetData.sort(
-        (a: iCheatsheet, b: iCheatsheet) =>
-          new Date(b?.date)?.getTime() - new Date(a?.date)?.getTime(),
-      );
+      this.cheatsheetData = [...newData];
+
       this.cheatsheetData.forEach((cheatsheet: iCheatsheet, index: number) => {
         cheatsheet.bento = Math.floor(Math.random() * 4) + 1;
         cheatsheet.span = Math.floor(Math.random() * 2) + 1;
@@ -107,7 +102,10 @@ export class CheatsheetComponent implements OnInit {
     ) as HTMLElement;
 
     listItem.forEach((item) => {
-      if (item.textContent === this.filterSelected) {
+      if (
+        String(item.textContent).trim().toLowerCase() ===
+        this.filterSelected.toLowerCase()
+      ) {
         const { left, top, width, height } = item.getBoundingClientRect();
 
         filterBackdrop.style.setProperty("--left", `${left - 10}px`);

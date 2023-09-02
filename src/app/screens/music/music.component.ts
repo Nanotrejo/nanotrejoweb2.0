@@ -56,5 +56,6 @@ export class MusicComponent implements OnInit {
     this.urlSelected = this.sanitizer.bypassSecurityTrustResourceUrl(
       this.YOUTUBE_URL + this.videoSelected?.resourceId?.videoId,
     );
+    window.scrollTo(0, 0);
   }
 }

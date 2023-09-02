@@ -23,7 +23,18 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/robots.txt",
+              {
+                "glob": "_redirects",
+                "input": "src",
+                "output": "/"
+              },
+              "src/manifest.webmanifest",
+              "src/manifest.webmanifest"
+            ],
             "styles": [
               "src/styles.css",
               "./node_modules/prismjs/themes/prism-okaidia.css",
@@ -36,7 +47,9 @@
               "./node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
               "./node_modules/prismjs/components/prism-typescript.min.js",
               "./node_modules/prismjs/components/prism-python.min.js"
-            ]
+            ],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -45,11 +58,6 @@
                   "type": "initial",
                   "maximumWarning": "500kb",
                   "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
                 }
               ],
               "fileReplacements": [
@@ -58,7 +66,15 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "optimization": true,
+              "aot": true
             },
             "development": {
               "buildOptimizer": false,
@@ -96,7 +112,12 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest",
+              "src/manifest.webmanifest"
+            ],
             "styles": ["src/styles.css"],
             "scripts": []
           }

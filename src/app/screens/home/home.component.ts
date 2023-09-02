@@ -6,6 +6,7 @@ import { Storage } from "@core/interface/storage";
 import { fadeInFast } from "@assets/css/animation";
 import { Themes } from "@core/interface/theme";
 import { ThemeService } from "@core/service/theme.service";
+import { iCheatsheet } from "@core/interface/cheatsheet";
 
 @Component({
   selector: "app-home",
@@ -33,8 +34,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {}
 
   async getStackData() {
-    this.stackData = await this.notionService.getStacks();
-    this.stackData.sort((a: iStack, b: iStack) => a.name.localeCompare(b.name));
+    const newData = await this.notionService.getStacks();
+    newData.sort((a: iStack, b: iStack) => a.name.localeCompare(b.name));
+    if (
+      !this.storageService.checkObjectsAreEqual(this.stackData, newData, [
+        "img",
+      ])
+    ) {
+      this.stackData = [...newData];
+    }
+
+    this.stackData.forEach((stack: iStack, index: number) => {
+      stack.img = newData[index].img;
+    });
     this.storageService.setItem(Storage.STACK, this.stackData);
   }
 
