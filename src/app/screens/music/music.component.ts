@@ -22,6 +22,7 @@ export class MusicComponent implements OnInit {
   loading = false;
   urlSelected: SafeResourceUrl = "";
   YOUTUBE_URL = "https://www.youtube.com/embed/";
+  autoplay: boolean = true;
 
   constructor(
     private youtubeService: YoutubeService,
@@ -39,10 +40,14 @@ export class MusicComponent implements OnInit {
 
   getVideos() {
     this.youtubeService.getVideos().subscribe((res) => {
+      this.videos = [];
       this.videos.push(...res);
       this.videoSelected = this.videos[0];
       this.urlSelected = this.sanitizer.bypassSecurityTrustResourceUrl(
-        this.YOUTUBE_URL + this.videoSelected?.resourceId?.videoId,
+        this.YOUTUBE_URL +
+          this.videoSelected?.resourceId?.videoId +
+          "?autoplay=" +
+          (this.autoplay ? "1" : "0"),
       );
       this.storageService.setItem(Storage.VIDEOS, this.videos);
       this.storageService.setItem(Storage.VIDEO_SELECTED, this.videoSelected);
@@ -54,7 +59,10 @@ export class MusicComponent implements OnInit {
   selectVideo(video: Video) {
     this.videoSelected = video;
     this.urlSelected = this.sanitizer.bypassSecurityTrustResourceUrl(
-      this.YOUTUBE_URL + this.videoSelected?.resourceId?.videoId,
+      this.YOUTUBE_URL +
+        this.videoSelected?.resourceId?.videoId +
+        "?autoplay=" +
+        (this.autoplay ? "1" : "0"),
     );
     window.scrollTo(0, 0);
   }

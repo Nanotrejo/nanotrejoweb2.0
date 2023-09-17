@@ -19,6 +19,8 @@
         class="w-[300px] h-[200px] rounded m-auto cursor-pointer hover:opacity-60"
         [src]="project?.img"
         [alt]="project?.name"
+        onerror="this.style.visibility='hidden'"
+        onload="this.style.visibility='visible'"
       />
     </a>
     <div class="flex-col center-content items-start w-[300px] m-auto mt-3">

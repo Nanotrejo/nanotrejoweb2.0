@@ -3,6 +3,7 @@
   *ngIf="loading"
   class="center-content flex-col w-screen h-auto lg:h-[97vh] lg:items-start lg:flex-row gap-3"
 >
+  <!--    <button class="button-filter button-filter-color  mt-[4rem]" (click)="autoplay = !autoplay">Autoplay</button>-->
   <div
     @translateLeftIn
     class="flex w-screen lg:h-[90vh] flex-col p-3 gap-3 lg:w-[50vw] mt-[4rem] lg:mt-[4rem]"
@@ -11,14 +12,9 @@
       class="h-[315px] lg:h-[70vh] w-full rounded-2xl m-left object-contain"
       [src]="urlSelected"
       frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen
     ></iframe>
-    <!--        <img-->
-    <!--                class="lg:h-[70vh] rounded-2xl m-left object-contain"-->
-    <!--                [src]="videoSelected?.thumbnails?.high?.url"-->
-    <!--                [alt]="videoSelected?.title"-->
-    <!--                loading="lazy"-->
-    <!--        />-->
     <h1 class="color-primary-color font-bold text-xl lg:text-3xl">
       {{ videoSelected?.title }}
     </h1>

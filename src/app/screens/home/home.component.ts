@@ -3,14 +3,13 @@ import { NotionService } from "@core/service/notion.service";
 import { iStack } from "@core/interface/stack";
 import { StorageService } from "@core/service/storage.service";
 import { Storage } from "@core/interface/storage";
-import { fadeInFast } from "@assets/css/animation";
+import { fadeInFast, translateLeftIn } from "@assets/css/animation";
 import { Themes } from "@core/interface/theme";
 import { ThemeService } from "@core/service/theme.service";
-import { iCheatsheet } from "@core/interface/cheatsheet";
 
 @Component({
   selector: "app-home",
-  animations: [fadeInFast],
+  animations: [fadeInFast, translateLeftIn],
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.css"],
 })

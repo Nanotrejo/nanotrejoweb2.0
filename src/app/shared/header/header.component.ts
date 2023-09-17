@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnInit } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from "@angular/core";
 import {
   fadeInFast,
   fadeOutFast,
@@ -23,6 +29,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   isMenu = true;
   isThemeDefault: boolean = false;
   menuItems: iMenu[] = [];
+  @Output() kbarEmitter: EventEmitter<void> = new EventEmitter<void>();
+
   constructor(
     private themeService: ThemeService,
     private menuService: MenuService,
@@ -68,5 +76,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.themeService.setTheme(
       this.isThemeDefault ? Themes.DEFAULT : Themes.WHITE,
     );
+  }
+
+  openKbarDialog() {
+    this.kbarEmitter.emit();
   }
 }

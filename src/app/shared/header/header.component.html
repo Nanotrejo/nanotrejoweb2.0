@@ -65,6 +65,15 @@
           alt="Moon icon"
         />
       </button>
+      <button
+        class="center-content bg-layout rounded-full"
+        (click)="openKbarDialog()"
+      >
+        <span
+          class="h-auto w-[21px] filter-primary-color contrast-[0.2] material-icons"
+          >search</span
+        >
+      </button>
     </div>
     <div class="flex lg:hidden">
       <button
@@ -189,7 +198,11 @@
       class="fixed inset-y-0 right-0 z-20 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
     >
       <div class="flex items-center justify-between">
-        <a routerLink="/" class="-m-1.5 p-1.5">
+        <a
+          routerLink="/"
+          class="-m-1.5 p-1.5"
+          (click)="isMenuOpen = !isMenuOpen"
+        >
           <span class="sr-only">Nanotrejo</span>
           <img
             class="h-8 w-auto"
@@ -241,10 +254,10 @@
                 >
                   {{ item?.name }}
                   <!--
-                                                      Expand/collapse icon, toggle classes based on menu open state.
+                                                                        Expand/collapse icon, toggle classes based on menu open state.
 
-                                                      Open: "rotate-180", Closed: ""
-                                                    -->
+                                                                        Open: "rotate-180", Closed: ""
+                                                                      -->
                   <span class="material-icons">expand_more</span>
                 </button>
                 <!-- 'Product' sub-menu, show/hide based on menu state. -->

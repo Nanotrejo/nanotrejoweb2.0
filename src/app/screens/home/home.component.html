@@ -1,7 +1,7 @@
 <section id="home">
   <div class="w-screen md:h-screen center-content bg-layout p-4">
     <div class="w-full flex flex-col gap-3 mt-[6rem]">
-      <header class="center-content">
+      <header class="center-content" @translateLeftIn>
         <h1 class="color-primary-color text-center text-3xl">David Trejo</h1>
       </header>
       <div class="center-content">
@@ -41,6 +41,8 @@
               class="w-[20px] h-[20px]"
               src="{{ stack?.img }}"
               alt="{{ stack?.name }}"
+              onerror="this.style.visibility='hidden'"
+              onload="this.style.visibility='visible'"
             />
             <label class="color-primary-color">{{ stack?.name }}</label>
           </div>

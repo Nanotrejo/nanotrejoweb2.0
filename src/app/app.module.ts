@@ -13,7 +13,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
 import { MarkdownModule } from "ngx-markdown";
 import { ServiceWorkerModule } from "@angular/service-worker";
-import { environment } from "../environments/environment";
+import { environment } from "@env/environment";
+import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
+import { FormsModule } from "@angular/forms";
 
 registerLocaleData(localeES, "es");
 
@@ -29,6 +32,9 @@ registerLocaleData(localeES, "es");
     SharedModule,
     HttpClientModule,
     MarkdownModule.forRoot(),
+    MatDialogModule,
+    MatButtonModule,
+    FormsModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
