@@ -7,7 +7,7 @@ export interface iSection {
 export enum TYPE_ACTION {
   URL = "URL",
   ACTION = "ACTION",
-  DIALOG = "DIALOG",
+  BLOG = "BLOG",
 }
 
 export interface iAction {

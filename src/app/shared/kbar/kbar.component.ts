@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
-import { iAction, iSection, TYPE_ACTION } from "@core/interface/action";
+import { iAction, iSection } from "@core/interface/action";
 import { ActionService } from "@core/service/action.service";
 
 @Component({
@@ -10,7 +10,8 @@ import { ActionService } from "@core/service/action.service";
 })
 export class KbarComponent implements OnInit {
   section: iSection[] = this.actionService.sectionData;
-  TYPE_ACTION = TYPE_ACTION;
+  blog: iAction[] = this.actionService.blogData;
+  isBlogActive: boolean = false;
   activeElement: number = 0;
   sectionElement: number = 0;
 
@@ -28,15 +29,35 @@ export class KbarComponent implements OnInit {
   search(event: any) {
     if (event?.code.includes("Arrow")) return;
     const val = event.target.value.toLowerCase();
-    this.section = this.actionService.sectionData.map((sec: iSection) => {
-      sec.action = sec.action.filter((action: iAction) => {
-        return action.keywords.some((a) => a.toLowerCase().includes(val));
+    if (val.includes("#")) {
+      this.isBlogActive = true;
+      this.section = [{ id: "blog", name: "Blog", action: this.blog }].map(
+        (sec: iSection) => {
+          sec.action = sec.action.filter((action: iAction) => {
+            return action.keywords.some((a) =>
+              a
+                .toLowerCase()
+                .includes(val.indexOf("#") + 1 ? val.split("#")[1] : val),
+            );
+          });
+          return sec;
+        },
+      );
+      this.section = this.section.filter((sec: iSection) => {
+        return sec.action.length > 0;
       });
-      return sec;
-    });
-    this.section = this.section.filter((sec: iSection) => {
-      return sec.action.length > 0;
-    });
+    } else {
+      this.isBlogActive = false;
+      this.section = this.actionService.sectionData.map((sec: iSection) => {
+        sec.action = sec.action.filter((action: iAction) => {
+          return action.keywords.some((a) => a.toLowerCase().includes(val));
+        });
+        return sec;
+      });
+      this.section = this.section.filter((sec: iSection) => {
+        return sec.action.length > 0;
+      });
+    }
     this.actionService.setActionData();
     this.activeElement = 0;
   }

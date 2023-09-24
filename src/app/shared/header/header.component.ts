@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   isThemeDefault: boolean = false;
   menuItems: iMenu[] = [];
   @Output() kbarEmitter: EventEmitter<void> = new EventEmitter<void>();
+  observableTheme: any;
 
   constructor(
     private themeService: ThemeService,
@@ -39,6 +40,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.menuItems = this.menuService.getMenu();
     this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
+    this.getObservableTheme();
   }
 
   ngAfterViewInit(): void {
@@ -72,13 +74,23 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   changeTheme() {
-    this.isThemeDefault = !this.isThemeDefault;
-    this.themeService.setTheme(
-      this.isThemeDefault ? Themes.DEFAULT : Themes.WHITE,
-    );
+    this.themeService.changeTheme();
   }
 
   openKbarDialog() {
     this.kbarEmitter.emit();
+  }
+
+  getObservableTheme() {
+    this.observableTheme?.unsubscribe();
+    this.observableTheme = this.themeService
+      .getObservableTheme()
+      .subscribe(() => {
+        this.checkTheme();
+      });
+  }
+
+  checkTheme() {
+    this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
   }
 }

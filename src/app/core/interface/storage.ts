@@ -1,4 +1,5 @@
 export enum Storage {
+  THEME = "theme",
   STACK = "stack",
   PROJECT = "project",
   EXPERIENCE = "experience",

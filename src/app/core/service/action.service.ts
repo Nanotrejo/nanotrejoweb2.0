@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import {
-  actionData,
   iAction,
   iSection,
   sectionData,
@@ -8,20 +7,26 @@ import {
 } from "@core/interface/action";
 import { Router } from "@angular/router";
 import { ThemeService } from "@core/service/theme.service";
-import { Themes } from "@core/interface/theme";
+import { StorageService } from "@core/service/storage.service";
+import { NotionService } from "@core/service/notion.service";
+import { Storage } from "@core/interface/storage";
+import { iCheatsheet } from "@core/interface/cheatsheet";
 
 @Injectable({
   providedIn: "root",
 })
 export class ActionService {
-  actionData: iAction[] = actionData;
+  blogData: iAction[] = [];
   sectionData: iSection[] = sectionData;
 
   constructor(
     private router: Router,
     private themeService: ThemeService,
+    private storageService: StorageService,
+    private notionService: NotionService,
   ) {
     this.setActionData();
+    this.setBlogData();
   }
 
   setActionData(): void {
@@ -36,10 +41,29 @@ export class ActionService {
           };
         if (action.keywords.includes("theme"))
           action.perform = () => {
-            this.themeService.getTheme() === Themes.DEFAULT
-              ? this.themeService.setTheme(Themes.WHITE)
-              : this.themeService.setTheme(Themes.DEFAULT);
+            this.themeService.changeTheme();
           };
+      });
+    });
+  }
+
+  async setBlogData(): Promise<void> {
+    this.blogData = [];
+    let cheatsheetData: Array<iCheatsheet> =
+      this.storageService.getItem(Storage.CHEATSHEET) || [];
+    if (cheatsheetData.length === 0)
+      cheatsheetData = await this.notionService.getCheatsheet();
+    cheatsheetData.forEach((cheatsheet: iCheatsheet, index: number) => {
+      this.blogData.push({
+        id: cheatsheet.id,
+        name: cheatsheet.title,
+        keywords: cheatsheet.description.split(" "),
+        key: "",
+        perform: () => {
+          this.router.navigate(["../trucos", cheatsheet.id]);
+        },
+        icon: "article",
+        typeAction: TYPE_ACTION.BLOG,
       });
     });
   }
