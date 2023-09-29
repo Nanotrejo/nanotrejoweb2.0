@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   async getStackData() {
     const newData = await this.notionService.getStacks();
-    newData.sort((a: iStack, b: iStack) => a.name.localeCompare(b.name));
+    newData?.sort((a: iStack, b: iStack) => a.name.localeCompare(b.name));
     if (
       !this.storageService.checkObjectsAreEqual(this.stackData, newData, [
         "img",

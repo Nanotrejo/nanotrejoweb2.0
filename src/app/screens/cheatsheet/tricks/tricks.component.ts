@@ -8,6 +8,7 @@ import {
   translateLeftIn,
   translateRightIn,
 } from "@assets/css/animation";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: "app-tricks",
@@ -27,6 +28,7 @@ export class TricksComponent implements OnInit {
     private notionService: NotionService,
     private renderer: Renderer2,
     private activatedRouter: ActivatedRoute,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +42,7 @@ export class TricksComponent implements OnInit {
         this.notionService.cheatsheet.find(
           (cheatsheet: iCheatsheet) => cheatsheet.id === id,
         ) || ({} as iCheatsheet);
+      this.data.img = this.sanitizer.bypassSecurityTrustResourceUrl(this.data.img) as string;
       this.markdownUpdated();
       this.getCheatsheetById(id);
       this.loading = true;
@@ -48,19 +51,24 @@ export class TricksComponent implements OnInit {
 
   async getCheatsheetById(id: string): Promise<void> {
     this.data = await this.notionService.getCheatsheetById(id);
-    this.markdownUpdated();
+    if(this.data) this.markdownUpdated();
   }
 
   markdownUpdated() {
     this.markdown = this.mdService.compile(this.data?.markdown);
     this.markdown = this.addTargetBlank(this.markdown);
+this.markdown = this.addUrlSecurity(this.markdown);
   }
 
-  addTargetBlank(html: string) {
+  addTargetBlank(html: string): string {
     return html.replace(
       new RegExp("<a", "g"),
       '<a class="link-trick" target="_blank" rel="nofollow" ',
     );
+  }
+
+  addUrlSecurity(html: string): string{
+    return html
   }
 
   copyCurrentUrlToClipboard() {

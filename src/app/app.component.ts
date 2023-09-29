@@ -2,6 +2,7 @@ import { Component, HostListener } from "@angular/core";
 import { ThemeService } from "@core/service/theme.service";
 import { KbarComponent } from "./shared/kbar/kbar.component";
 import { MatDialog } from "@angular/material/dialog";
+import { ActionService } from "@core/service/action.service";
 
 @Component({
   selector: "app-root",
@@ -14,6 +15,7 @@ export class AppComponent {
   constructor(
     private themeService: ThemeService,
     private dialog: MatDialog,
+    private actionService: ActionService
   ) {
     this.themeService.setTheme(this.themeService.getTheme());
   }

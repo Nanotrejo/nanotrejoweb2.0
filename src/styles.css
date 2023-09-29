@@ -19,4 +19,10 @@
 html,
 body {
   background-color: var(--color-tertiary);
+  overflow-x: hidden;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 0px;
 }

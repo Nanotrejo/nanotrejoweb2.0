@@ -4,6 +4,7 @@ import { iCheatsheet } from "@core/interface/cheatsheet";
 import { StorageService } from "@core/service/storage.service";
 import { Storage } from "@core/interface/storage";
 import { fadeInFast } from "@assets/css/animation";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: "app-cheatsheet",
@@ -29,6 +30,7 @@ export class CheatsheetComponent implements OnInit {
   constructor(
     private notionService: NotionService,
     private storageService: StorageService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -63,7 +65,7 @@ export class CheatsheetComponent implements OnInit {
     } else this.loading = true;
 
     this.cheatsheetData.forEach((cheatsheet: iCheatsheet, index: number) => {
-      cheatsheet.img = newData[index].img;
+      cheatsheet.img = this.sanitizer.bypassSecurityTrustResourceUrl(newData[index].img) as string;
     });
     this.cheatsheetDataAux = [...this.cheatsheetData];
 

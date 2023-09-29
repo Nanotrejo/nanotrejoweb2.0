@@ -53,11 +53,11 @@ export class ActionService {
       this.storageService.getItem(Storage.CHEATSHEET) || [];
     if (cheatsheetData.length === 0)
       cheatsheetData = await this.notionService.getCheatsheet();
-    cheatsheetData.forEach((cheatsheet: iCheatsheet, index: number) => {
+    cheatsheetData?.forEach((cheatsheet: iCheatsheet, index: number) => {
       this.blogData.push({
         id: cheatsheet.id,
         name: cheatsheet.title,
-        keywords: cheatsheet.description.split(" "),
+        keywords: cheatsheet.title.split(" "),
         key: "",
         perform: () => {
           this.router.navigate(["../trucos", cheatsheet.id]);
