@@ -154,6 +154,30 @@ export const socialDialog: iAction[] = [
     typeAction: TYPE_ACTION.URL,
     url: "https://www.youtube.com/channel/UC9FeUeG4QLI99Ius1gsyKQg",
   },
+  {
+    id: "code_front",
+    name: "Código Frontend",
+    keywords: ["código", "code", "frontend"],
+    perform: () => {
+      console.log("CODE");
+    },
+    icon: "code",
+    key: "CF",
+    typeAction: TYPE_ACTION.URL,
+    url: "https://github.com/Nanotrejo/nanotrejoweb2.0",
+  },
+  {
+    id: "code_back",
+    name: "Código Backend",
+    keywords: ["código", "code", "backend"],
+    perform: () => {
+      console.log("CODE");
+    },
+    icon: "data_object",
+    key: "CB",
+    typeAction: TYPE_ACTION.URL,
+    url: "https://github.com/Nanotrejo/notion-api",
+  },
 ];
 
 export const sectionData: iSection[] = [

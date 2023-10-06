@@ -25,4 +25,10 @@
   --gradient-3: #00000000;
   --gradient-4: #621abe;
   --gradient-5: #24214b00;
+
+  /* infinite loop scroll */
+  --size: clamp(10rem, 1rem + 40vmin, 30rem);
+  --gap: calc(var(--size) / 14);
+  --scroll-start: 50%;
+  --scroll-end: calc(-25% - var(--gap));
 }

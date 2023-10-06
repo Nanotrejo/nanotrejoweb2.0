@@ -29,23 +29,118 @@
           </h3>
         </div>
         <div
-          class="flex flex-wrap justify-around gap-6 w-full auto-cols-max md:w-[75vw]"
+          class="flex flex-wrap justify-around gap-6 w-full auto-cols-max md:w-[75vw] overflow-hidden"
         >
-          <div
-            @fadeInFast
-            class="center-content gap-2 basis-1/5"
-            *ngFor="let stack of stackData"
-          >
-            <img
-              @fadeInFast
-              class="w-[20px] h-[20px]"
-              src="{{ stack?.img }}"
-              alt="{{ stack?.name }}"
-              onerror="this.style.visibility='hidden'"
-              onload="this.style.visibility='visible'"
-            />
-            <label class="color-primary-color">{{ stack?.name }}</label>
-          </div>
+          <article class="wrapper">
+            <div class="marquee">
+              <div class="marquee__group">
+                <div
+                  @fadeInFast
+                  class="center-content stack"
+                  *ngFor="let stack of stackData.slice(0, 5)"
+                >
+                  <img
+                    @fadeInFast
+                    class="w-[20px] h-[20px]"
+                    src="{{ stack?.img }}"
+                    alt="{{ stack?.name }}"
+                    onerror="this.style.visibility='hidden'"
+                    onload="this.style.visibility='visible'"
+                  />
+                  <label class="color-primary-color">{{ stack?.name }}</label>
+                </div>
+              </div>
+              <div aria-hidden="true" class="marquee__group">
+                <div
+                  @fadeInFast
+                  class="center-content stack"
+                  *ngFor="let stack of stackData.slice(0, 5)"
+                >
+                  <img
+                    @fadeInFast
+                    class="w-[20px] h-[20px]"
+                    src="{{ stack?.img }}"
+                    alt="{{ stack?.name }}"
+                    onerror="this.style.visibility='hidden'"
+                    onload="this.style.visibility='visible'"
+                  />
+                  <label class="color-primary-color">{{ stack?.name }}</label>
+                </div>
+              </div>
+            </div>
+            <div class="marquee marquee--reverse">
+              <div class="marquee__group">
+                <div
+                  @fadeInFast
+                  class="center-content stack"
+                  *ngFor="let stack of stackData.slice(5, 10)"
+                >
+                  <img
+                    @fadeInFast
+                    class="w-[20px] h-[20px]"
+                    src="{{ stack?.img }}"
+                    alt="{{ stack?.name }}"
+                    onerror="this.style.visibility='hidden'"
+                    onload="this.style.visibility='visible'"
+                  />
+                  <label class="color-primary-color">{{ stack?.name }}</label>
+                </div>
+              </div>
+              <div aria-hidden="true" class="marquee__group">
+                <div
+                  @fadeInFast
+                  class="center-content stack"
+                  *ngFor="let stack of stackData.slice(5, 10)"
+                >
+                  <img
+                    @fadeInFast
+                    class="w-[20px] h-[20px]"
+                    src="{{ stack?.img }}"
+                    alt="{{ stack?.name }}"
+                    onerror="this.style.visibility='hidden'"
+                    onload="this.style.visibility='visible'"
+                  />
+                  <label class="color-primary-color">{{ stack?.name }}</label>
+                </div>
+              </div>
+            </div>
+            <div class="marquee">
+              <div class="marquee__group">
+                <div
+                  @fadeInFast
+                  class="center-content stack"
+                  *ngFor="let stack of stackData.slice(10, 15)"
+                >
+                  <img
+                    @fadeInFast
+                    class="w-[20px] h-[20px]"
+                    src="{{ stack?.img }}"
+                    alt="{{ stack?.name }}"
+                    onerror="this.style.visibility='hidden'"
+                    onload="this.style.visibility='visible'"
+                  />
+                  <label class="color-primary-color">{{ stack?.name }}</label>
+                </div>
+              </div>
+              <div aria-hidden="true" class="marquee__group">
+                <div
+                  @fadeInFast
+                  class="center-content stack"
+                  *ngFor="let stack of stackData.slice(10, 15)"
+                >
+                  <img
+                    @fadeInFast
+                    class="w-[20px] h-[20px]"
+                    src="{{ stack?.img }}"
+                    alt="{{ stack?.name }}"
+                    onerror="this.style.visibility='hidden'"
+                    onload="this.style.visibility='visible'"
+                  />
+                  <label class="color-primary-color">{{ stack?.name }}</label>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </footer>
     </div>
