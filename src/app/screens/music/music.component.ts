@@ -9,6 +9,7 @@ import {
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { StorageService } from "@core/service/storage.service";
 import { Storage } from "@core/interface/storage";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-music",
@@ -28,18 +29,35 @@ export class MusicComponent implements OnInit {
     private youtubeService: YoutubeService,
     private sanitizer: DomSanitizer,
     private storageService: StorageService,
+    private activatedRouter: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
+    this.getParams();
+  }
+
+  getParams() {
     this.videos = this.storageService.getItem(Storage.VIDEOS) || [];
-    this.videoSelected =
-      this.storageService.getItem(Storage.VIDEO_SELECTED) || ({} as Video);
-    this.urlSelected = this.storageService.getItem(Storage.URL_SELECTED) || "";
-    this.getVideos();
+    this.activatedRouter.params.subscribe((params) => {
+      const id = params.id;
+      if (!id) return this.getVideos();
+      try {
+        this.videoSelected =
+          this.videos.find((video: Video) => video.resourceId.videoId === id) ||
+          ({} as Video);
+        this.selectVideo(this.videoSelected);
+      } catch (e) {
+        this.getVideos();
+      }
+      this.storageService.setItem(Storage.VIDEOS, this.videos);
+      this.storageService.setItem(Storage.VIDEO_SELECTED, this.videoSelected);
+      this.storageService.setItem(Storage.URL_SELECTED, this.urlSelected);
+      this.loading = true;
+    });
   }
 
   getVideos() {
-    this.youtubeService.getVideos().subscribe((res) => {
+    this.youtubeService.getVideos().subscribe((res: Video[]) => {
       this.videos = [];
       this.videos.push(...res);
       this.videoSelected = this.videos[0];

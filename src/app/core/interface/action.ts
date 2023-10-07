@@ -8,6 +8,7 @@ export enum TYPE_ACTION {
   URL = "URL",
   ACTION = "ACTION",
   BLOG = "BLOG",
+  MUSIC = "MUSIC",
 }
 
 export interface iAction {

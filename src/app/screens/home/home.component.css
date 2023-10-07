@@ -41,7 +41,6 @@
 
 .marquee--reverse .marquee__group {
   animation-direction: reverse;
-  /*animation-delay: -3s;*/
 }
 
 @keyframes scroll-x {

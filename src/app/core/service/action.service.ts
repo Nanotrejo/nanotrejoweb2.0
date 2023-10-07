@@ -11,6 +11,8 @@ import { StorageService } from "@core/service/storage.service";
 import { NotionService } from "@core/service/notion.service";
 import { Storage } from "@core/interface/storage";
 import { iCheatsheet } from "@core/interface/cheatsheet";
+import { Video } from "@core/interface/youtube";
+import { YoutubeService } from "@core/service/youtube.service";
 
 @Injectable({
   providedIn: "root",
@@ -18,15 +20,18 @@ import { iCheatsheet } from "@core/interface/cheatsheet";
 export class ActionService {
   blogData: iAction[] = [];
   sectionData: iSection[] = sectionData;
+  musicData: iAction[] = [];
 
   constructor(
     private router: Router,
     private themeService: ThemeService,
     private storageService: StorageService,
     private notionService: NotionService,
+    private youtubeService: YoutubeService,
   ) {
     this.setActionData();
     this.setBlogData();
+    this.setMusicData();
   }
 
   setActionData(): void {
@@ -64,6 +69,28 @@ export class ActionService {
         },
         icon: "article",
         typeAction: TYPE_ACTION.BLOG,
+      });
+    });
+  }
+
+  async setMusicData(): Promise<void> {
+    this.musicData = [];
+    let musicTemp: Array<Video> = [];
+    this.youtubeService.getVideos().subscribe((res: Video[]) => {
+      musicTemp.push(...res);
+      this.storageService.setItem(Storage.VIDEOS, musicTemp);
+      musicTemp?.forEach((video: Video, index: number) => {
+        this.musicData.push({
+          id: video.resourceId?.videoId || "",
+          name: video.title,
+          keywords: video.title.split(" "),
+          key: "",
+          perform: () => {
+            this.router.navigate(["../musica", video.resourceId?.videoId]);
+          },
+          icon: "music_note",
+          typeAction: TYPE_ACTION.MUSIC,
+        });
       });
     });
   }

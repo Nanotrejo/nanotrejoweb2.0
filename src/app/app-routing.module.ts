@@ -15,6 +15,7 @@ const routerOptions: ExtraOptions = {
 
 const routes: Routes = [
   { path: "musica", component: MusicComponent, data: { title: "Música" } },
+  { path: "musica/:id", component: MusicComponent, data: { title: "Música" } },
   { path: "trucos", component: CheatsheetComponent, data: { title: "Trucos" } },
   { path: "trucos/:id", component: TricksComponent, data: { title: "Trucos" } },
   {

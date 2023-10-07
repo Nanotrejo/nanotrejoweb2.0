@@ -12,6 +12,7 @@ export class KbarComponent implements OnInit {
   section: iSection[] = this.actionService.sectionData;
   blog: iAction[] = this.actionService.blogData;
   isBlogActive: boolean = false;
+  isMusicActive: boolean = false;
   activeElement: number = 0;
   sectionElement: number = 0;
 
@@ -31,6 +32,7 @@ export class KbarComponent implements OnInit {
     const val = event.target.value.toLowerCase();
     if (val.includes("#")) {
       this.isBlogActive = true;
+      this.isMusicActive = false;
       this.section = [{ id: "blog", name: "Blog", action: this.blog }].map(
         (sec: iSection) => {
           sec.action = sec.action.filter((action: iAction) => {
@@ -46,8 +48,27 @@ export class KbarComponent implements OnInit {
       this.section = this.section.filter((sec: iSection) => {
         return sec.action.length > 0;
       });
+    } else if (val.includes("&")) {
+      this.isMusicActive = true;
+      this.isBlogActive = false;
+      this.section = [
+        { id: "music", name: "Music", action: this.actionService.musicData },
+      ].map((sec: iSection) => {
+        sec.action = sec.action.filter((action: iAction) => {
+          return action.keywords.some((a) =>
+            a
+              .toLowerCase()
+              .includes(val.indexOf("&") + 1 ? val.split("&")[1] : val),
+          );
+        });
+        return sec;
+      });
+      this.section = this.section.filter((sec: iSection) => {
+        return sec.action.length > 0;
+      });
     } else {
       this.isBlogActive = false;
+      this.isMusicActive = false;
       this.section = this.actionService.sectionData.map((sec: iSection) => {
         sec.action = sec.action.filter((action: iAction) => {
           return action.keywords.some((a) => a.toLowerCase().includes(val));
