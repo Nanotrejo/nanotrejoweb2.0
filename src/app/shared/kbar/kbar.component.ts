@@ -15,6 +15,7 @@ export class KbarComponent implements OnInit {
   isMusicActive: boolean = false;
   activeElement: number = 0;
   sectionElement: number = 0;
+  searchValue: string = "";
 
   constructor(
     public dialogRef: MatDialogRef<KbarComponent>,
@@ -27,9 +28,10 @@ export class KbarComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  search(event: any) {
-    if (event?.code.includes("Arrow")) return;
-    const val = event.target.value.toLowerCase();
+  search(event: any | string) {
+    if (event?.code?.includes("Arrow")) return;
+    const val = event?.target?.value?.toLowerCase() ?? event;
+    this.searchValue = val;
     if (val.includes("#")) {
       this.isBlogActive = true;
       this.isMusicActive = false;

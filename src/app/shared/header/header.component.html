@@ -3,77 +3,122 @@
     class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
     aria-label="Global"
   >
-    <div class="flex gap-4 lg:flex-1">
-      <a routerLink="/" class="-m-1.5 p-1.5">
-        <span class="sr-only">Nanotrejo</span>
-        <img
-          class="h-8 w-auto"
-          [src]="
-            isThemeDefault
-              ? 'assets/logo/1-removebg.png'
-              : 'assets/logo/2-removebg.png'
-          "
-          alt="Nanotrejo logo"
-        />
-      </a>
-      <a
-        href="https://www.linkedin.com/in/david-trejo-fern%C3%A1ndez-191b95182/"
-        target="_blank"
-        title="Linkedin"
-        class="-m-1.5 p-1.5 hover:opacity-75"
-      >
-        <span class="sr-only">Linkedin</span>
-        <img
-          class="h-8 w-auto contrast-[0.2]"
-          src="assets/images/social-linkedin.svg"
-          alt="Linkedin logo"
-        />
-      </a>
-      <a
-        href="https://github.com/Nanotrejo"
-        target="_blank"
-        title="GitHub"
-        class="-m-1.5 p-1.5 hover:opacity-75"
-      >
-        <span class="sr-only">Github</span>
-        <img
-          class="h-8 w-auto contrast-[0.2]"
-          src="assets/images/github.svg"
-          alt="Github logo"
-        />
-      </a>
-      <a
-        href="https://www.youtube.com/channel/UC9FeUeG4QLI99Ius1gsyKQg"
-        target="_blank"
-        title="Youtube"
-        class="-m-1.5 p-1.5 hover:opacity-75"
-      >
-        <span class="sr-only">Youtube</span>
-        <img
-          class="h-8 w-auto contrast-[0.2]"
-          src="assets/images/youtube.svg"
-          alt="Youtube logo"
-        />
-      </a>
-      <button
-        class="center-content bg-layout rounded-full"
-        (click)="changeTheme()"
-      >
-        <img
-          class="h-auto w-[21px] filter-primary-color contrast-[0.2]"
-          src="assets/icons/moon.svg"
-          alt="Moon icon"
-        />
-      </button>
-      <button
-        class="center-content bg-layout rounded-full"
-        (click)="openKbarDialog()"
-      >
-        <span
-          class="h-auto w-[21px] filter-primary-color contrast-[0.2] material-icons"
-          >search</span
+    <div class="center-content relative">
+      <div class="flex gap-3 lg:gap-4 lg:flex-1">
+        <a routerLink="/" class="-m-1.5 p-1.5">
+          <span class="sr-only">Nanotrejo</span>
+          <img
+            class="h-8 w-auto"
+            [src]="
+              isThemeDefault
+                ? 'assets/logo/1-removebg.png'
+                : 'assets/logo/2-removebg.png'
+            "
+            alt="Nanotrejo logo"
+          />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/david-trejo-fern%C3%A1ndez-191b95182/"
+          target="_blank"
+          title="Linkedin"
+          class="-m-1.5 p-1.5 hover:opacity-75"
         >
-      </button>
+          <span class="sr-only">Linkedin</span>
+          <img
+            class="h-8 w-auto contrast-[0.2]"
+            src="assets/images/social-linkedin.svg"
+            alt="Linkedin logo"
+          />
+        </a>
+        <a
+          href="https://github.com/Nanotrejo"
+          target="_blank"
+          title="GitHub"
+          class="-m-1.5 p-1.5 hover:opacity-75"
+        >
+          <span class="sr-only">Github</span>
+          <img
+            class="h-8 w-auto contrast-[0.2]"
+            src="assets/images/github.svg"
+            alt="Github logo"
+          />
+        </a>
+        <a
+          href="https://www.youtube.com/channel/UC9FeUeG4QLI99Ius1gsyKQg"
+          target="_blank"
+          title="Youtube"
+          class="-m-1.5 p-1.5 hover:opacity-75"
+        >
+          <span class="sr-only">Youtube</span>
+          <img
+            class="h-8 w-auto contrast-[0.2]"
+            src="assets/images/youtube.svg"
+            alt="Youtube logo"
+          />
+        </a>
+        <a
+          href="https://open.spotify.com/intl-es/album/4iVXz4Iojxhl6SRdB7tNfU?si=ZipmAaT3TmyjNHbl8MwcmA"
+          target="_blank"
+          title="Spotify"
+          class="-m-1.5 p-1.5 hover:opacity-75"
+        >
+          <span class="sr-only">Spotify</span>
+          <img
+            class="h-8 w-auto contrast-[0.2]"
+            src="assets/images/spotify.svg"
+            alt="Spotify logo"
+          />
+        </a>
+        <a
+          href="https://music.youtube.com/playlist?list=OLAK5uy_k1pHVGElYlpAlunq68rPk5B8fr6v0adj0&si=PfAqdTwsNlktBqsP"
+          target="_blank"
+          title="Youtube Music"
+          class="-m-1.5 p-1.5 hover:opacity-75"
+        >
+          <span class="sr-only">Youtube Music</span>
+          <img
+            class="h-8 w-auto contrast-[0.2]"
+            src="assets/images/youtube-music.svg"
+            alt="Youtube Music logo"
+          />
+        </a>
+        <a
+          href="https://music.apple.com/es/album/nanotrejo-piano-instrumental-versions/1720856839"
+          target="_blank"
+          title="Apple Music"
+          class="-m-1.5 p-1.5 hover:opacity-75"
+        >
+          <span class="sr-only">Apple Music</span>
+          <img
+            class="h-8 w-auto contrast-[0.2]"
+            src="assets/images/apple-music.svg"
+            alt="Apple Music logo"
+          />
+        </a>
+      </div>
+      <div
+        class="center-content flex-col gap-3 absolute lg:static lg:flex-row lg:ml-3 left-0 top-10"
+      >
+        <button
+          class="center-content bg-layout rounded-full"
+          (click)="changeTheme()"
+        >
+          <img
+            class="h-auto w-[21px] filter-primary-color contrast-[0.2]"
+            src="assets/icons/moon.svg"
+            alt="Moon icon"
+          />
+        </button>
+        <button
+          class="center-content bg-layout rounded-full"
+          (click)="openKbarDialog()"
+        >
+          <span
+            class="h-auto w-[21px] filter-primary-color contrast-[0.2] material-icons"
+            >search</span
+          >
+        </button>
+      </div>
     </div>
     <div class="flex lg:hidden">
       <button
@@ -254,10 +299,10 @@
                 >
                   {{ item?.name }}
                   <!--
-                                                                        Expand/collapse icon, toggle classes based on menu open state.
+                                                                                          Expand/collapse icon, toggle classes based on menu open state.
 
-                                                                        Open: "rotate-180", Closed: ""
-                                                                      -->
+                                                                                          Open: "rotate-180", Closed: ""
+                                                                                        -->
                   <span class="material-icons">expand_more</span>
                 </button>
                 <!-- 'Product' sub-menu, show/hide based on menu state. -->

@@ -30,7 +30,7 @@ export class CheatsheetComponent implements OnInit {
   constructor(
     private notionService: NotionService,
     private storageService: StorageService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
   ) {}
 
   ngOnInit(): void {
@@ -65,7 +65,8 @@ export class CheatsheetComponent implements OnInit {
     } else this.loading = true;
 
     this.cheatsheetData.forEach((cheatsheet: iCheatsheet, index: number) => {
-      cheatsheet.img = this.sanitizer.bypassSecurityTrustResourceUrl(newData[index].img) as string;
+      // cheatsheet.img = this.sanitizer.bypassSecurityTrustResourceUrl(newData[index].img) as string;
+      cheatsheet.img = newData[index].img;
     });
     this.cheatsheetDataAux = [...this.cheatsheetData];
 

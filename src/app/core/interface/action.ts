@@ -156,6 +156,42 @@ export const socialDialog: iAction[] = [
     url: "https://www.youtube.com/channel/UC9FeUeG4QLI99Ius1gsyKQg",
   },
   {
+    id: "spotify",
+    name: "Spotify",
+    keywords: ["spotify"],
+    perform: () => {
+      console.log("spotify");
+    },
+    icon: "assets/images/spotify.svg",
+    key: "S",
+    typeAction: TYPE_ACTION.URL,
+    url: "https://open.spotify.com/intl-es/album/4iVXz4Iojxhl6SRdB7tNfU?si=ZipmAaT3TmyjNHbl8MwcmA",
+  },
+  {
+    id: "youtube-music",
+    name: "Youtube Music",
+    keywords: ["youtube", "music", "youtube-music"],
+    perform: () => {
+      console.log("youtube-music");
+    },
+    icon: "assets/images/youtube-music.svg",
+    key: "Y",
+    typeAction: TYPE_ACTION.URL,
+    url: "https://music.youtube.com/playlist?list=OLAK5uy_k1pHVGElYlpAlunq68rPk5B8fr6v0adj0&si=PfAqdTwsNlktBqsP",
+  },
+  {
+    id: "apple-music",
+    name: "Apple Music",
+    keywords: ["apple", "music", "apple music"],
+    perform: () => {
+      console.log("Apple Music");
+    },
+    icon: "assets/images/apple-music.svg",
+    key: "A",
+    typeAction: TYPE_ACTION.URL,
+    url: "https://music.apple.com/es/album/nanotrejo-piano-instrumental-versions/1720856839",
+  },
+  {
     id: "code_front",
     name: "Código Frontend",
     keywords: ["código", "code", "frontend"],

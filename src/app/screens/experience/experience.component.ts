@@ -25,7 +25,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     this.getExperience();
     setTimeout(() => {
       window.addEventListener("scroll", this.scrollListener);
-    }, 2000);
+    }, 1000);
   }
 
   ngOnDestroy(): void {
@@ -49,7 +49,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
 
   animationCard(event: Event) {
     const cards = document.querySelectorAll(".cd-timeline-content");
-    cards.forEach((card) => {
+    cards?.forEach((card) => {
       const cardTop = card.getBoundingClientRect().top;
       const cardBottom = card.getBoundingClientRect().bottom;
       if (cardTop < window.innerHeight && cardBottom > 0) {

@@ -234,6 +234,7 @@ markdown ul {
 markdown a {
   color: var(--color-denary);
   text-decoration: none;
+  font-weight: bold;
 }
 
 markdown pre {

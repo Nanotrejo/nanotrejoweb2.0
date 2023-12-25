@@ -34,7 +34,7 @@
           aria-expanded="true"
           aria-controls="kbar-listbox"
           placeholder="Buscar..."
-          value=""
+          [value]="searchValue"
           (keyup)="search($event)"
         />
       </div>
@@ -121,11 +121,13 @@
         Escribe
         <kbd
           [class.active-color-twentieth]="isBlogActive"
+          (click)="search('#')"
           class="mx-1 flex h-5 w-5 items-center justify-center rounded border bg-white font-semibold dark:bg-gray-900 sm:mx-2 text-white"
           >#</kbd
         >
         para blogs,
         <kbd
+          (click)="search('&')"
           [class.active-color-twentieth]="isMusicActive"
           class="mx-1 flex h-5 w-5 items-center justify-center rounded border bg-white font-semibold dark:bg-gray-900 sm:mx-2 text-white"
           >&</kbd
