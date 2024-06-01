@@ -12,6 +12,7 @@ import { CheatsheetComponent } from "./cheatsheet/cheatsheet.component";
 import { TricksComponent } from "./cheatsheet/tricks/tricks.component";
 import { MarkdownModule } from "ngx-markdown";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AboutComponent } from "./about/about.component";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MusicComponent,
     CheatsheetComponent,
     TricksComponent,
+    AboutComponent,
   ],
   imports: [
     CommonModule,

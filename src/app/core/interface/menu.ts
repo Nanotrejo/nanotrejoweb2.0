@@ -9,20 +9,20 @@ export interface iMenu {
 
 export const menuData: iMenu[] = [
   {
+    name: "Experiencia",
+    url: "/",
+    fragment: "experiencia",
+  },
+  {
     name: "Proyectos",
     url: "/",
     fragment: "proyectos",
   },
   {
-    name: "Experiencia",
+    name: "Sobre mi",
     url: "/",
-    fragment: "experiencia",
+    fragment: "sobre_mi",
   },
-  // {
-  //   name: "Contacto",
-  //   url: "/",
-  //     fragment: "contacto",
-  // },
   {
     name: "Más",
     more: [

@@ -181,7 +181,17 @@
                 </div>
                 <div class="flex-auto">
                   <a
+                    *ngIf="it?.url !== '/gastronomia'"
                     [routerLink]="it?.url"
+                    class="block font-semibold text-gray-900"
+                  >
+                    {{ it?.name }}
+                    <span class="absolute inset-0"></span>
+                  </a>
+                  <a
+                    *ngIf="it?.url === '/gastronomia'"
+                    href="https://nanotrejo.notion.site/29b4e6c900a04bd9aba095e60e9277ef?v=dfe0d94e9194485fabb2a1d2b8a097c8"
+                    target="_blank"
                     class="block font-semibold text-gray-900"
                   >
                     {{ it?.name }}
@@ -299,22 +309,34 @@
                 >
                   {{ item?.name }}
                   <!--
-                                                                                          Expand/collapse icon, toggle classes based on menu open state.
+                                                                                                            Expand/collapse icon, toggle classes based on menu open state.
 
-                                                                                          Open: "rotate-180", Closed: ""
-                                                                                        -->
+                                                                                                            Open: "rotate-180", Closed: ""
+                                                                                                          -->
                   <span class="material-icons">expand_more</span>
                 </button>
                 <!-- 'Product' sub-menu, show/hide based on menu state. -->
                 <div *ngIf="isMenu" class="mt-2 space-y-2" id="disclosure-1">
-                  <a
-                    *ngFor="let it of item?.more"
-                    [routerLink]="it?.url"
-                    (click)="isMenuOpen = false"
-                    class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"
-                    ><span class="material-icons">{{ it?.icon }}</span
-                    >{{ it?.name }}</a
-                  >
+                  <div *ngFor="let it of item?.more">
+                    <a
+                      [routerLink]="it?.url"
+                      (click)="isMenuOpen = false"
+                      *ngIf="it?.url !== '/gastronomia'"
+                      class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"
+                      ><span class="material-icons">{{ it?.icon }}</span
+                      >{{ it?.name }}</a
+                    >
+                    <!--                                                (click)="isMenuOpen = false"-->
+                    <a
+                      *ngIf="it?.url === '/gastronomia'"
+                      href="https://nanotrejo.notion.site/29b4e6c900a04bd9aba095e60e9277ef?v=dfe0d94e9194485fabb2a1d2b8a097c8"
+                      target="_blank"
+                      class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"
+                      ><span class="material-icons">{{ it?.icon }}</span
+                      >{{ it?.name }}</a
+                    >
+                  </div>
+                  <!--                                    >-->
                   <!--                  <a-->
                   <!--                    href="#"-->
                   <!--                    class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"-->

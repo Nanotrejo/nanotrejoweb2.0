@@ -1,0 +1,3 @@
+div > p > strong {
+  color: var(--color-twenty-first);
+}

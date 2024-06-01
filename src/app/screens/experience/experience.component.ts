@@ -53,7 +53,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       const cardTop = card.getBoundingClientRect().top;
       const cardBottom = card.getBoundingClientRect().bottom;
       if (cardTop < window.innerHeight && cardBottom > 0) {
-        card.classList.add("show");
+        // card.classList.add("show");
       } else {
         // card.classList.remove('show')
       }

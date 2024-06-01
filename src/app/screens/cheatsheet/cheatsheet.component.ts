@@ -26,6 +26,7 @@ export class CheatsheetComponent implements OnInit {
     "Linux",
   ];
   filterSelected: string = "Todo";
+  searchValue: string = "";
 
   constructor(
     private notionService: NotionService,
@@ -120,5 +121,16 @@ export class CheatsheetComponent implements OnInit {
         filterBackdrop.style.visibility = "visible";
       }
     });
+  }
+
+  search(event: string | any) {
+    if (event?.code?.includes("Arrow")) return;
+    const val = event?.target?.value?.toLowerCase() ?? event;
+    this.searchValue = val;
+    this.cheatsheetData = this.cheatsheetDataAux.filter(
+      (cheatsheet: iCheatsheet) =>
+        cheatsheet.title.toLowerCase().includes(val.toLowerCase()) ||
+        cheatsheet.description.toLowerCase().includes(val.toLowerCase()),
+    );
   }
 }

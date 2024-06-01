@@ -20,6 +20,21 @@
       class="fixed button-filter button-filter-color button-filter-selected translate-x-[var(--left)] translate-y-[var(--top)] left-0 top-0 w-[var(--width)] h-[var(--height)] transition-all duration-500 ease-in-out opacity-0"
     ></div>
   </div>
+  <div class="search-form">
+    <input
+      class="search-input"
+      type="text"
+      placeholder="Buscar..."
+      [value]="searchValue"
+      (keyup)="search($event)"
+    />
+    <div class="symbol">
+      <span
+        class="h-auto w-auto filter-primary-color contrast-[0.2] material-icons"
+        >search</span
+      >
+    </div>
+  </div>
 
   <div class="gallery-grid mt-3 p-[1.5rem]">
     <div

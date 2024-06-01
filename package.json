@@ -28,6 +28,7 @@
     "axios": "^1.4.0",
     "marked": "^4.3.0",
     "material-icons": "^1.13.10",
+    "netlify-cli": "^17.15.1",
     "ngx-markdown": "^12.1.0",
     "prismjs": "^1.29.0",
     "rxjs": "~6.6.0",
