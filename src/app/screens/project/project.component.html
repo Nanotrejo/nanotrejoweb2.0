@@ -1,7 +1,7 @@
 <div class="center-content w-screen flex-wrap mt-3 gap-4">
   <div
     @fadeInFast
-    class="bg-color-fifteenth h-[315px] w-[335px] block rounded center-content p-3"
+    class="bg-color-fifteenth relative h-[350px] w-[335px] block rounded center-content p-3"
     *ngFor="let project of projectData"
   >
     <a
@@ -23,11 +23,23 @@
         onload="this.style.visibility='visible'"
       />
     </a>
-    <div class="flex-col center-content items-start w-[300px] m-auto mt-3">
+    <div class="flex-col center-content items-start w-[300px] m-auto mt-2">
       <h3 class="color-primary-color font-bold">{{ project?.name }}</h3>
       <h4 class="color-secondary-color">{{ project?.subtitle }}</h4>
     </div>
-    <div class="center-content w-[300px] m-auto mt-3 justify-end gap-4">
+    <div class="center-content justify-start">
+      <ul class="center-content gap-2 mt-2 flex-wrap justify-start">
+        <li
+          class="text-nowrap color-primary-color stack-item"
+          *ngFor="let stack of project.stack"
+        >
+          {{ stack }}
+        </li>
+      </ul>
+    </div>
+    <div
+      class="absolute center-content right-2 bottom-2 m-auto justify-end gap-4"
+    >
       <a
         *ngIf="project?.drive"
         class="hover:opacity-60"

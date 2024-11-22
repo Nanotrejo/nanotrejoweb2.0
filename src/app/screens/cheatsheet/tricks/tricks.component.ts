@@ -42,7 +42,9 @@ export class TricksComponent implements OnInit {
         this.notionService.cheatsheet.find(
           (cheatsheet: iCheatsheet) => cheatsheet.id === id,
         ) || ({} as iCheatsheet);
-      // this.data.img = this.sanitizer.bypassSecurityTrustResourceUrl(this.data.img) as string;
+      this.data.img = this.sanitizer.bypassSecurityTrustResourceUrl(
+        this.data.img,
+      ) as string;
       this.markdownUpdated();
       this.getCheatsheetById(id);
       this.loading = true;
@@ -51,13 +53,19 @@ export class TricksComponent implements OnInit {
 
   async getCheatsheetById(id: string): Promise<void> {
     this.data = await this.notionService.getCheatsheetById(id);
-    if (this.data) this.markdownUpdated();
+    if (this.data) {
+      this.data.img = this.sanitizer.bypassSecurityTrustResourceUrl(
+        this.data.img,
+      ) as string;
+      this.markdownUpdated();
+    }
   }
 
   markdownUpdated() {
     this.markdown = this.mdService.compile(this.data?.markdown);
     this.markdown = this.addTargetBlank(this.markdown);
     this.markdown = this.addUrlSecurity(this.markdown);
+    setTimeout(() => this.onMarkdownReady(), 500);
   }
 
   addTargetBlank(html: string): string {
@@ -83,5 +91,37 @@ export class TricksComponent implements OnInit {
     setTimeout(() => {
       this.linkCopied = false;
     }, 3000);
+  }
+
+  onMarkdownReady() {
+    const codeBlocks = document.querySelectorAll("pre code");
+
+    codeBlocks?.forEach((block: Element) => {
+      const copyButton = document.createElement("button");
+      copyButton.classList.add("copy-button");
+      copyButton.innerHTML = '<span class="material-icons">content_copy</span>';
+      copyButton.addEventListener("click", () => {
+        const codeContent = block.textContent;
+        if (codeContent) {
+          navigator.clipboard
+            .writeText(codeContent)
+            .then(() => {
+              copyButton.innerHTML =
+                '<div class="center-content"><span class="material-icons">check</span> Código copiado </div>';
+
+              setTimeout(() => {
+                copyButton.innerHTML =
+                  '<span class="material-icons">content_copy</span>';
+              }, 2000);
+            })
+            .catch((error) => console.error("Error al copiar", error));
+        }
+      });
+      const container = document.createElement("div");
+      container.classList.add("code-container");
+      block.parentElement?.replaceWith(container);
+      container.appendChild(copyButton);
+      container.appendChild(block.parentElement as HTMLElement);
+    });
   }
 }

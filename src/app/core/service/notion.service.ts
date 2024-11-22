@@ -48,9 +48,12 @@ export class NotionService {
       id: id,
     });
     return await this.http
-      .get<iCheatsheet>(`${this.url}/cheatsheet-by-id`, {
-        headers: headers,
-      })
+      .get<iCheatsheet>(
+        `${this.url}/cheatsheet-by-id?timestamp=${new Date().getTime()}`,
+        {
+          headers: headers,
+        },
+      )
       .toPromise();
   }
 }

@@ -38,7 +38,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   async getProject() {
     const newData = await this.notionService.getProject();
-    newData.sort((a: iStack, b: iStack) => a.name.localeCompare(b.name));
+    // newData.sort((a: iStack, b: iStack) => a.name.localeCompare(b.name));
     if (
       !this.storeService.checkObjectsAreEqual(this.projectData, newData, [
         "img",
