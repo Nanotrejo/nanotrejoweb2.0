@@ -6,6 +6,7 @@
     "start": "ng serve -o",
     "build": "ng build",
     "build-prod": "ng build --prod --aot",
+    "deploy": "ng build --prod --aot && netlify deploy --prod --dir=dist/nanotrejoweb",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -28,7 +29,7 @@
     "axios": "^1.4.0",
     "marked": "^4.3.0",
     "material-icons": "^1.13.10",
-    "netlify-cli": "^17.15.1",
+    "netlify-cli": "^6.14.0",
     "ngx-markdown": "^12.1.0",
     "prismjs": "^1.29.0",
     "rxjs": "~6.6.0",
