@@ -62,7 +62,7 @@ export class TricksComponent implements OnInit {
   }
 
   markdownUpdated() {
-    this.markdown = this.mdService.compile(this.data?.markdown);
+    this.markdown = this.mdService.parse(this.data?.markdown);
     this.markdown = this.addTargetBlank(this.markdown);
     this.markdown = this.addUrlSecurity(this.markdown);
     setTimeout(() => this.onMarkdownReady(), 500);

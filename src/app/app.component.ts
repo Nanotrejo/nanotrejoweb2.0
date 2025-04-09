@@ -1,7 +1,7 @@
 import { Component, HostListener } from "@angular/core";
 import { ThemeService } from "@core/service/theme.service";
 import { KbarComponent } from "./shared/kbar/kbar.component";
-import { MatDialog } from "@angular/material/dialog";
+import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
 import { ActionService } from "@core/service/action.service";
 
 @Component({
