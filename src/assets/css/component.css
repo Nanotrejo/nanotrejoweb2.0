@@ -140,7 +140,7 @@
 }
 
 .card {
-  min-height: 200px;
+  min-height: 150px;
   background-size: cover;
   background-position: 50% 50%;
 }
@@ -165,6 +165,10 @@
 
   .gallery-grid {
     grid-auto-rows: auto;
+  }
+
+  .card {
+    min-height: 100px;
   }
 }
 
