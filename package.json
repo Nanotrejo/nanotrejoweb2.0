@@ -5,8 +5,8 @@
     "ng": "ng",
     "start": "ng serve -o",
     "build": "ng build",
-    "build-prod": "ng build --prod --aot",
-    "deploy": "ng build --prod --aot && netlify deploy --prod --dir=dist/nanotrejoweb",
+    "build-prod": "ng build --configuration production --aot",
+    "deploy": "ng build --configuration production --aot && netlify deploy --prod --dir=dist/nanotrejoweb/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
