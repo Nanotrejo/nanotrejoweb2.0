@@ -6,7 +6,7 @@ import { registerLocaleData } from "@angular/common";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ScreenModule } from "@screens/screen.module";
-import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { InterceptorService } from "@core/service/interceptor.service";
 import { SharedModule } from "./shared/shared.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -20,32 +20,26 @@ import { FormsModule } from "@angular/forms";
 
 registerLocaleData(localeES, "es");
 
-@NgModule({
-  bootstrap: [AppComponent],
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-    BrowserAnimationsModule,
-    ScreenModule,
-    SharedModule,
-    HttpClientModule,
-    MarkdownModule.forRoot(),
-    MatDialogModule,
-    MatButtonModule,
-    FormsModule,
-    ServiceWorkerModule.register("ngsw-worker.js", {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: "registerWhenStable:30000",
-    }),
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
-    { provide: LOCALE_ID, useValue: "es" },
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-})
+@NgModule({ bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA], imports: [BrowserModule,
+        AppRoutingModule,
+        RouterModule,
+        BrowserAnimationsModule,
+        ScreenModule,
+        SharedModule,
+        MarkdownModule.forRoot(),
+        MatDialogModule,
+        MatButtonModule,
+        FormsModule,
+        ServiceWorkerModule.register("ngsw-worker.js", {
+            enabled: environment.production,
+            // Register the ServiceWorker as soon as the app is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: "registerWhenStable:30000",
+        })], providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+        { provide: LOCALE_ID, useValue: "es" },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}

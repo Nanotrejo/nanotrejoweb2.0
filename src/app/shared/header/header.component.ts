@@ -17,10 +17,11 @@ import { MenuService } from "@core/service/menu.service";
 import { iMenu } from "@core/interface/menu";
 
 @Component({
-  selector: "app-header",
-  animations: [fadeInFast, fadeOutFast, translateIn, translateOut],
-  templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.css"],
+    selector: "app-header",
+    animations: [fadeInFast, fadeOutFast, translateIn, translateOut],
+    templateUrl: "./header.component.html",
+    styleUrls: ["./header.component.css"],
+    standalone: false
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
   isFlyoutMenu = false;

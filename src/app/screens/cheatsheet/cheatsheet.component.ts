@@ -7,10 +7,11 @@ import { fadeInFast } from "@assets/css/animation";
 import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
-  selector: "app-cheatsheet",
-  animations: [fadeInFast],
-  templateUrl: "./cheatsheet.component.html",
-  styleUrls: ["./cheatsheet.component.css"],
+    selector: "app-cheatsheet",
+    animations: [fadeInFast],
+    templateUrl: "./cheatsheet.component.html",
+    styleUrls: ["./cheatsheet.component.css"],
+    standalone: false
 })
 export class CheatsheetComponent implements OnInit {
   cheatsheetData: iCheatsheet[] = [];

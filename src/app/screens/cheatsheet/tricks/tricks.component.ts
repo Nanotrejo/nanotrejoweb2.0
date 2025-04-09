@@ -11,10 +11,11 @@ import {
 import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
-  selector: "app-tricks",
-  animations: [fadeInFast, translateRightIn, translateLeftIn],
-  templateUrl: "./tricks.component.html",
-  styleUrls: ["./tricks.component.css"],
+    selector: "app-tricks",
+    animations: [fadeInFast, translateRightIn, translateLeftIn],
+    templateUrl: "./tricks.component.html",
+    styleUrls: ["./tricks.component.css"],
+    standalone: false
 })
 export class TricksComponent implements OnInit {
   loading: boolean = false;
@@ -61,8 +62,8 @@ export class TricksComponent implements OnInit {
     }
   }
 
-  markdownUpdated() {
-    this.markdown = this.mdService.compile(this.data?.markdown);
+  async markdownUpdated() {
+    this.markdown = await this.mdService.parse(this.data?.markdown);
     this.markdown = this.addTargetBlank(this.markdown);
     this.markdown = this.addUrlSecurity(this.markdown);
     setTimeout(() => this.onMarkdownReady(), 500);

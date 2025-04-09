@@ -1,5 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli":{
+    "analytics": false,
+    "packageManager": "bun"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -15,13 +19,16 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "allowedCommonJsDependencies": ["@notionhq/client"],
-            "outputPath": "dist/nanotrejoweb",
+            "outputPath": {
+              "base": "dist/nanotrejoweb"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -48,8 +55,8 @@
               "./node_modules/prismjs/components/prism-typescript.min.js",
               "./node_modules/prismjs/components/prism-python.min.js"
             ],
-            "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json"
+            "serviceWorker": "ngsw-config.json",
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -68,18 +75,13 @@
               ],
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "optimization": true,
               "aot": true
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -91,10 +93,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "nanotrejoweb:build:production"
+              "buildTarget": "nanotrejoweb:build:production"
             },
             "development": {
-              "browserTarget": "nanotrejoweb:build:development"
+              "buildTarget": "nanotrejoweb:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -102,7 +104,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "nanotrejoweb:build"
+            "buildTarget": "nanotrejoweb:build"
           }
         },
         "test": {
@@ -124,6 +126,5 @@
         }
       }
     }
-  },
-  "defaultProject": "nanotrejoweb"
+  }
 }
