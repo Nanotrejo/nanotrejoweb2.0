@@ -90,10 +90,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "nanotrejoweb:build:production"
+              "buildTarget": "nanotrejoweb:build:production"
             },
             "development": {
-              "browserTarget": "nanotrejoweb:build:development"
+              "buildTarget": "nanotrejoweb:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -101,7 +101,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "nanotrejoweb:build"
+            "buildTarget": "nanotrejoweb:build"
           }
         },
         "test": {
