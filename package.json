@@ -30,7 +30,7 @@
     "marked": "^4.3.0",
     "material-icons": "^1.13.10",
     "netlify-cli": "^6.14.0",
-    "ngx-markdown": "^12.1.0",
+    "ngx-markdown": "^14.0.1",
     "prismjs": "^1.29.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
