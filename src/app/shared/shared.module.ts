@@ -7,8 +7,8 @@ import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "../app-routing.module";
 import { LoadingComponent } from "./loading/loading.component";
 import { KbarComponent } from "./kbar/kbar.component";
-import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
-import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
   declarations: [

@@ -14,8 +14,8 @@ import { RouterModule } from "@angular/router";
 import { MarkdownModule } from "ngx-markdown";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "@env/environment";
-import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
-import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
+import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
 import { FormsModule } from "@angular/forms";
 
 registerLocaleData(localeES, "es");
