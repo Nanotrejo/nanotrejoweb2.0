@@ -9,10 +9,11 @@ import { ThemeService } from "@core/service/theme.service";
 import { Themes } from "@core/interface/theme";
 
 @Component({
-  selector: "app-project",
-  animations: [fadeInFast],
-  templateUrl: "./project.component.html",
-  styleUrls: ["./project.component.css"],
+    selector: "app-project",
+    animations: [fadeInFast],
+    templateUrl: "./project.component.html",
+    styleUrls: ["./project.component.css"],
+    standalone: false
 })
 export class ProjectComponent implements OnInit, OnDestroy {
   projectData: iProject[] = [];

@@ -4,9 +4,10 @@ import { iAction, iSection } from "@core/interface/action";
 import { ActionService } from "@core/service/action.service";
 
 @Component({
-  selector: "app-kbar",
-  templateUrl: "./kbar.component.html",
-  styleUrls: ["./kbar.component.css"],
+    selector: "app-kbar",
+    templateUrl: "./kbar.component.html",
+    styleUrls: ["./kbar.component.css"],
+    standalone: false
 })
 export class KbarComponent implements OnInit {
   section: iSection[] = this.actionService.sectionData;

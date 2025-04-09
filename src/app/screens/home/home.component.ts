@@ -8,10 +8,11 @@ import { Themes } from "@core/interface/theme";
 import { ThemeService } from "@core/service/theme.service";
 
 @Component({
-  selector: "app-home",
-  animations: [fadeInFast, translateLeftIn],
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"],
+    selector: "app-home",
+    animations: [fadeInFast, translateLeftIn],
+    templateUrl: "./home.component.html",
+    styleUrls: ["./home.component.css"],
+    standalone: false
 })
 export class HomeComponent implements OnInit, OnDestroy {
   stackData: iStack[] = [];

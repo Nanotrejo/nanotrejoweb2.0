@@ -12,10 +12,11 @@ import { Storage } from "@core/interface/storage";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: "app-music",
-  animations: [fadeInFast, translateRightIn, translateLeftIn],
-  templateUrl: "./music.component.html",
-  styleUrls: ["./music.component.css"],
+    selector: "app-music",
+    animations: [fadeInFast, translateRightIn, translateLeftIn],
+    templateUrl: "./music.component.html",
+    styleUrls: ["./music.component.css"],
+    standalone: false
 })
 export class MusicComponent implements OnInit {
   videos: Video[] = [];

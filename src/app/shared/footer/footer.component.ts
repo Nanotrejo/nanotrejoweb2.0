@@ -3,9 +3,10 @@ import { Themes } from "@core/interface/theme";
 import { ThemeService } from "@core/service/theme.service";
 
 @Component({
-  selector: "app-footer",
-  templateUrl: "./footer.component.html",
-  styleUrls: ["./footer.component.css"],
+    selector: "app-footer",
+    templateUrl: "./footer.component.html",
+    styleUrls: ["./footer.component.css"],
+    standalone: false
 })
 export class FooterComponent implements OnInit, OnDestroy {
   timeNow = new Date();
