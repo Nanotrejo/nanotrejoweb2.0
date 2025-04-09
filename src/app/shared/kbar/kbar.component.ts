@@ -10,8 +10,8 @@ import { ActionService } from "@core/service/action.service";
     standalone: false
 })
 export class KbarComponent implements OnInit {
-  section: iSection[] = this.actionService.sectionData;
-  blog: iAction[] = this.actionService.blogData;
+  section: iSection[] = [];
+  blog: iAction[] = [];
   isBlogActive: boolean = false;
   isMusicActive: boolean = false;
   activeElement: number = 0;
@@ -23,7 +23,10 @@ export class KbarComponent implements OnInit {
     private actionService: ActionService,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.section = this.actionService.sectionData
+    this.blog = this.actionService.blogData;
+  }
 
   closeDialog(): void {
     this.dialogRef.close();
