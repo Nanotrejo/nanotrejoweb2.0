@@ -38,8 +38,8 @@ export class AppComponent {
     document.body.style.overflow = "hidden";
     if (this.dialog.openDialogs.length > 0) return;
     const dialog = this.dialog.open(KbarComponent);
-
-    dialog.afterClosed().subscribe((result) => {
+    
+    dialog.afterClosed().subscribe(() => {
       document.body.style.overflow = "auto";
     });
   }

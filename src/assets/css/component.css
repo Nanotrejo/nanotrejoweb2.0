@@ -285,3 +285,7 @@ markdown th {
 .copy-button:hover {
   opacity: 0.7;
 }
+
+.mat-mdc-dialog-surface {
+  position: static !important;
+}
