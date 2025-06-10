@@ -1,27 +1,66 @@
-# Nanotrejoweb
+# Nanotrejoweb 🌟
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.4.
+## 📝 Descripción
 
-## Development server
+Bienvenido a mi sitio web personal. Este proyecto representa mi presencia digital en la web, construido con Angular y las últimas tecnologías web modernas.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Visita el sitio en vivo: [nanotrejo.es](https://nanotrejo.es)
 
-## Code scaffolding
+## 🚀 Características
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- 🎨 Diseño moderno y responsivo
+- ⚡ Optimizado para rendimiento
+- 💫 Interfaz de usuario intuitiva
+- 🌐 Compatible con todos los navegadores modernos
+- 📱 Soporte para PWA (Progressive Web App)
+- ✨ Animaciones fluidas
+- 📝 Soporte para Markdown
+- 🌓 Tema claro/oscuro
+- 🔍 Barra de comandos rápida (Ctrl/Cmd + K) para navegación instantánea
 
-## Build
+## 🛠️ Stack Tecnológico
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Frontend Framework**: Angular v19.2.5
+- **UI Framework**: Angular Material v19.2.8
+- **Estilos**:
+  - TailwindCSS v3.3.3
+  - CSS3
+- **Lenguajes**:
+  - TypeScript v5.8.3
+  - HTML5
+- **Herramientas de Desarrollo**:
+  - Angular CLI v19.2.6
+  - Prettier v3.0.0
+  - Karma & Jasmine para testing
+- **Características Adicionales**:
+  - Service Worker para PWA
+  - Markdown support (ngx-markdown)
+  - PrismJS para resaltado de sintaxis
+  - RxJS para programación reactiva
+  - Axios para peticiones HTTP
 
-## Running unit tests
+## 🎯 Instalación
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+# Clonar el repositorio
+git clone https://github.com/Nanotrejo/nanotrejoweb2.0.git
 
-## Running end-to-end tests
+# Navegar al directorio
+cd nanotrejoweb
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Instalar dependencias
+npm install
 
-## Further help
+# Iniciar el servidor de desarrollo
+npm start
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 📦 Scripts Disponibles
+
+- 🚀 `npm start`: Inicia el servidor de desarrollo
+- 🏗️ `npm run build`: Construye la aplicación
+- 🏭 `npm run build-prod`: Construye la versión de producción
+- 🚢 `npm run deploy`: Despliega en Netlify
+- 🧪 `npm test`: Ejecuta las pruebas unitarias
+
+⭐️ Si te gusta este proyecto, ¡no olvides darle una estrella!
