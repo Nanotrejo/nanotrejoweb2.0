@@ -26,5 +26,26 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "notion-api",
+      "urls": [
+        "http://localhost:3000/**",
+        "https://notion-api-oqf0.onrender.com/**"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 100,
+        "maxAge": "3d",
+        "timeout": "10s"
+      }
+    }
+  ],
+  "navigationUrls": [
+    "/**",
+    "!/**/*.*",
+    "!/**/*__*",
+    "!/**/*__*/**"
   ]
 }

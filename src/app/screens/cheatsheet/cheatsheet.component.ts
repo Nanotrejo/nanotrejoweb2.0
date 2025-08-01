@@ -5,6 +5,9 @@ import { StorageService } from "@core/service/storage.service";
 import { Storage } from "@core/interface/storage";
 import { fadeInFast } from "@assets/css/animation";
 import { DomSanitizer } from "@angular/platform-browser";
+import { MetaService } from "@core/service/meta.service";
+import { TransitionService } from "@core/service/transition.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-cheatsheet",
@@ -33,7 +36,14 @@ export class CheatsheetComponent implements OnInit {
     private notionService: NotionService,
     private storageService: StorageService,
     private sanitizer: DomSanitizer,
-  ) {}
+    private metaService: MetaService,
+    private transitionService: TransitionService
+  ) {
+    this.metaService.updateMetaTags({
+      title: 'Trucos y Consejos',
+      description: 'Colección de trucos, consejos y mejores prácticas de programación. Tutoriales y guías técnicas.',
+      image: '/assets/images/tricks-preview.webp'
+    });}
 
   ngOnInit(): void {
     this.cheatsheetData = this.storageService.getItem(Storage.CHEATSHEET) || [];
@@ -133,5 +143,9 @@ export class CheatsheetComponent implements OnInit {
         cheatsheet.title.toLowerCase().includes(val.toLowerCase()) ||
         cheatsheet.description.toLowerCase().includes(val.toLowerCase()),
     );
+  }
+
+  async navigateToTrick(id: string) {
+    await this.transitionService.navigate(['../trucos', id]);
   }
 }
