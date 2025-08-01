@@ -27,7 +27,14 @@ export class NotionService {
   }
 
   async getProject(): Promise<iProject[]> {
-    return await this.http.get<iProject[]>(`${this.url}/project`).toPromise();
+    try {
+      const response = await this.http.get<iProject[]>(`${this.url}/project`).toPromise();
+      if (!response) throw new Error('No data received from API');
+      return response;
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+      return [];
+    }
   }
 
   async getExperience(): Promise<iExperience[]> {

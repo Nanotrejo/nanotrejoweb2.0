@@ -1,24 +1,21 @@
-import { Component, OnInit } from "@angular/core";
-import { YoutubeService } from "@core/service/youtube.service";
-import { Video } from "@core/interface/youtube";
-import {
-  fadeInFast,
-  translateLeftIn,
-  translateRightIn,
-} from "@assets/css/animation";
-import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
-import { StorageService } from "@core/service/storage.service";
-import { Storage } from "@core/interface/storage";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { fadeInFast, translateLeftIn, translateRightIn } from "@assets/css/animation";
+import { Video } from "@core/interface/youtube";
+import { Storage } from "@core/interface/storage";
+import { YoutubeService } from "@core/service/youtube.service";
+import { StorageService } from "@core/service/storage.service";
+import { MetaService } from "@core/service/meta.service";
 
 @Component({
-    selector: "app-music",
-    animations: [fadeInFast, translateRightIn, translateLeftIn],
-    templateUrl: "./music.component.html",
-    styleUrls: ["./music.component.css"],
-    standalone: false
+  selector: "app-music",
+  animations: [fadeInFast, translateRightIn, translateLeftIn],
+  templateUrl: "./music.component.html",
+  styleUrls: ["./music.component.css"],
+  standalone: false
 })
-export class MusicComponent implements OnInit {
+export class MusicComponent implements OnInit, OnDestroy {
   videos: Video[] = [];
   videoSelected!: Video;
   loading = false;
@@ -31,7 +28,14 @@ export class MusicComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private storageService: StorageService,
     private activatedRouter: ActivatedRoute,
-  ) {}
+    private metaService: MetaService
+  ) {
+    this.metaService.updateMetaTags({
+      title: 'Música',
+      description: 'Mis interpretaciones musicales al piano. Covers y composiciones originales.',
+      image: '/assets/images/music-preview.webp'
+    });
+  }
 
   ngOnInit(): void {
     this.getParams();
@@ -84,5 +88,9 @@ export class MusicComponent implements OnInit {
         (this.autoplay ? "1" : "0"),
     );
     window.scrollTo(0, 0);
+  }
+
+  ngOnDestroy(): void {
+    // Cleanup logic if needed
   }
 }

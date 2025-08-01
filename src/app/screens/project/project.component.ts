@@ -4,9 +4,9 @@ import { iProject } from "@core/interface/project";
 import { fadeInFast } from "@assets/css/animation";
 import { StorageService } from "@core/service/storage.service";
 import { Storage } from "@core/interface/storage";
-import { iStack } from "@core/interface/stack";
 import { ThemeService } from "@core/service/theme.service";
 import { Themes } from "@core/interface/theme";
+import { MetaService } from "@core/service/meta.service";
 
 @Component({
     selector: "app-project",
@@ -24,7 +24,14 @@ export class ProjectComponent implements OnInit, OnDestroy {
     private notionService: NotionService,
     private storeService: StorageService,
     private themeService: ThemeService,
-  ) {}
+    private metaService: MetaService
+  ) {
+    this.metaService.updateMetaTags({
+      title: 'Proyectos',
+      description: 'Explora mi portafolio de proyectos de desarrollo web, incluyendo aplicaciones Angular, APIs y más.',
+      image: '/assets/images/projects-preview.webp'
+    });
+  }
 
   ngOnInit(): void {
     this.projectData = this.storeService.getItem(Storage.PROJECT);
@@ -46,6 +53,16 @@ export class ProjectComponent implements OnInit, OnDestroy {
       ])
     ) {
       this.projectData = [...newData];
+      
+      // Actualizar meta tags con información dinámica
+      if (this.projectData.length > 0) {
+        const projectNames = this.projectData.map(p => p.name).join(', ');
+        this.metaService.updateMetaTags({
+          title: 'Proyectos',
+          description: `Explora mis proyectos destacados: ${projectNames}. Desarrollo web con Angular, APIs y más tecnologías modernas.`,
+          image: this.projectData[0].img || '/assets/images/projects-preview.webp'
+        });
+      }
     }
     this.projectData.forEach((project: iProject, index: number) => {
       project.img =

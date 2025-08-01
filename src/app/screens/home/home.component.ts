@@ -6,6 +6,7 @@ import { Storage } from "@core/interface/storage";
 import { fadeInFast, translateLeftIn } from "@assets/css/animation";
 import { Themes } from "@core/interface/theme";
 import { ThemeService } from "@core/service/theme.service";
+import { MetaService } from "@core/service/meta.service";
 
 @Component({
     selector: "app-home",
@@ -23,7 +24,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     private notionService: NotionService,
     private storageService: StorageService,
     private themeService: ThemeService,
-  ) {}
+    private metaService: MetaService
+  ) {
+    this.metaService.updateMetaTags({
+      title: 'Inicio',
+      description: 'Desarrollador web Full Stack especializado en Angular y tecnologías modernas. Explora mi portafolio de proyectos y experiencias.',
+    });
+  }
 
   ngOnInit(): void {
     this.stackData = this.storageService.getItem(Storage.STACK);

@@ -39,7 +39,7 @@
   <div class="gallery-grid mt-3 p-[1.5rem]">
     <div
       *ngFor="let cheats of cheatsheetData"
-      [routerLink]="['../trucos', cheats.id]"
+      (click)="navigateToTrick(cheats.id)"
       class="card span-{{
         cheats?.span
       }} rounded-2xl flex items-center justify-center from-teal-100 via-teal-300 to-teal-500 bg-loading"
@@ -64,6 +64,7 @@
         </div>
         <img
           @fadeInFast
+          [style]="{'view-transition-name': 'cheat-' + cheats.id}"
           alt="Imagen de {{ cheats?.title }}"
           class="object-fill w-full h-full aspect-square group-hover:scale-110 group-hover:blur-sm transition duration-300 ease-in-out"
           [src]="cheats?.img"

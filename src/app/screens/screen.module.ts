@@ -16,7 +16,6 @@ import { AboutComponent } from "./about/about.component";
 
 @NgModule({
   declarations: [
-    HomeComponent,
     ProjectComponent,
     MainComponent,
     ExperienceComponent,
@@ -25,13 +24,13 @@ import { AboutComponent } from "./about/about.component";
     CheatsheetComponent,
     TricksComponent,
     AboutComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
     RouterModule,
     SharedModule,
-    MarkdownModule.forRoot(),
-  ],
+    MarkdownModule.forRoot()  ],
 })
 export class ScreenModule {}
