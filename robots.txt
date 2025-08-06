@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nanotrejo.es/sitemap.xml
