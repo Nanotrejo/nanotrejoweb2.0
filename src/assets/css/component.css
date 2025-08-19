@@ -237,6 +237,11 @@ markdown ul {
   color: var(--color-primary);
 }
 
+markdown ul {
+  padding-left: 1.25rem;
+  list-style-type: disc;
+}
+
 markdown a {
   color: var(--color-denary);
   text-decoration: none;
@@ -261,6 +266,10 @@ markdown th {
   text-align: left;
 }
 
+markdown strong {
+  color: var(--color-twenty-first);
+}
+
 .cdk-overlay-container {
   position: fixed;
   top: 0;
@@ -269,6 +278,7 @@ markdown th {
 
 .code-container {
   position: relative;
+  margin: 1.5rem 0;
 }
 
 .copy-button {

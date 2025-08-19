@@ -7,7 +7,6 @@ import { fadeInFast } from "@assets/css/animation";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MetaService } from "@core/service/meta.service";
 import { TransitionService } from "@core/service/transition.service";
-import { Router } from "@angular/router";
 
 @Component({
     selector: "app-cheatsheet",

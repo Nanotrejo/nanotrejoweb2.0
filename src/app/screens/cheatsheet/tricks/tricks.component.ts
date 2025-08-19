@@ -98,6 +98,11 @@ export class TricksComponent implements OnInit {
     const codeBlocks = document.querySelectorAll("pre code");
 
     codeBlocks?.forEach((block: Element) => {
+      // Evita duplicar el botón si ya existe
+      if (block.parentElement?.parentElement?.classList.contains("code-container")) {
+        return;
+      }
+
       const copyButton = document.createElement("button");
       copyButton.classList.add("copy-button");
       copyButton.innerHTML = '<span class="material-icons">content_copy</span>';
@@ -109,7 +114,6 @@ export class TricksComponent implements OnInit {
             .then(() => {
               copyButton.innerHTML =
                 '<div class="center-content"><span class="material-icons">check</span> Código copiado </div>';
-
               setTimeout(() => {
                 copyButton.innerHTML =
                   '<span class="material-icons">content_copy</span>';
@@ -118,6 +122,7 @@ export class TricksComponent implements OnInit {
             .catch((error) => console.error("Error al copiar", error));
         }
       });
+
       const container = document.createElement("div");
       container.classList.add("code-container");
       block.parentElement?.replaceWith(container);

@@ -26,6 +26,7 @@
     "@angular/platform-browser-dynamic": "^19.2.5",
     "@angular/router": "^19.2.5",
     "@angular/service-worker": "^19.2.5",
+    "@nguniversal/express-engine": "7.0.2",
     "axios": "^1.4.0",
     "marked": "^9.0.0",
     "material-icons": "^1.13.10",
