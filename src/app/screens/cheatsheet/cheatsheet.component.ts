@@ -109,27 +109,47 @@ export class CheatsheetComponent implements OnInit {
     this.filterBackdrop();
   }
 
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    // Recalculate backdrop position while scrolling so it stays on the selected button
+    this.filterBackdrop();
+  }
+
   filterBackdrop() {
     const listItem = document.querySelectorAll("#filter-container button");
     const filterBackdrop = document.querySelector(
       "#filter-backdrop",
     ) as HTMLElement;
+    if (!filterBackdrop || !listItem || listItem.length === 0) return;
 
-    listItem.forEach((item) => {
-      if (
-        String(item.textContent).trim().toLowerCase() ===
-        this.filterSelected.toLowerCase()
-      ) {
-        const { left, top, width, height } = item.getBoundingClientRect();
+    // Use requestAnimationFrame to avoid layout thrashing when called on scroll
+    const container = document.querySelector(
+      "#filter-container",
+    ) as HTMLElement;
+    if (!container) return;
 
-        filterBackdrop.style.setProperty("--left", `${left - 10}px`);
-        filterBackdrop.style.setProperty("--top", `${top - 10}px`);
-        filterBackdrop.style.setProperty("--width", `${width + 20}px`);
-        filterBackdrop.style.setProperty("--height", `${height + 20}px`);
+    window.requestAnimationFrame(() => {
+      const containerRect = container.getBoundingClientRect();
+      listItem.forEach((item) => {
+        if (
+          String(item.textContent).trim().toLowerCase() ===
+          this.filterSelected.toLowerCase()
+        ) {
+          const { left, top, width, height } = item.getBoundingClientRect();
 
-        filterBackdrop.style.opacity = "1";
-        filterBackdrop.style.visibility = "visible";
-      }
+          // Calculate position relative to container so backdrop moves with the container when scrolling
+          const relLeft = left - containerRect.left;
+          const relTop = top - containerRect.top;
+
+          filterBackdrop.style.setProperty("--left", `${relLeft - 10}px`);
+          filterBackdrop.style.setProperty("--top", `${relTop - 10}px`);
+          filterBackdrop.style.setProperty("--width", `${width + 20}px`);
+          filterBackdrop.style.setProperty("--height", `${height + 20}px`);
+
+          filterBackdrop.style.opacity = "1";
+          filterBackdrop.style.visibility = "visible";
+        }
+      });
     });
   }
 

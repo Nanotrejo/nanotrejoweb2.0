@@ -4,10 +4,10 @@
   @fadeInFast
   class="center-content w-screen h-auto flex-col"
 >
-  <div
-    id="filter-container"
-    class="flex items-center justify-center py-4 md:py-8 flex-wrap mt-[7rem]"
-  >
+    <div
+      id="filter-container"
+      class="relative flex items-center justify-center py-4 md:py-8 flex-wrap mt-[7rem]"
+    >
     <button
       (click)="filterItems(f)"
       class="button-filter button-filter-color"
@@ -17,7 +17,7 @@
     </button>
     <div
       id="filter-backdrop"
-      class="fixed button-filter button-filter-color button-filter-selected translate-x-[var(--left)] translate-y-[var(--top)] left-0 top-0 w-[var(--width)] h-[var(--height)] transition-all duration-500 ease-in-out opacity-0"
+      class="absolute button-filter button-filter-color button-filter-selected translate-x-[var(--left)] translate-y-[var(--top)] left-0 top-0 w-[var(--width)] h-[var(--height)] transition-all duration-500 ease-in-out opacity-0 pointer-events-none"
     ></div>
   </div>
   <div class="search-form">
