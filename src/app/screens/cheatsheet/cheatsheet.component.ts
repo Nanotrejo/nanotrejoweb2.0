@@ -137,16 +137,20 @@ export class CheatsheetComponent implements OnInit {
           String(item.textContent).trim().toLowerCase() ===
           this.filterSelected.toLowerCase()
         ) {
+
           const { left, top, width, height } = item.getBoundingClientRect();
 
           // Calculate position relative to container so backdrop moves with the container when scrolling
           const relLeft = left - containerRect.left;
           const relTop = top - containerRect.top;
 
-          filterBackdrop.style.setProperty("--left", `${relLeft - 10}px`);
-          filterBackdrop.style.setProperty("--top", `${relTop - 10}px`);
-          filterBackdrop.style.setProperty("--width", `${width + 20}px`);
-          filterBackdrop.style.setProperty("--height", `${height + 20}px`);
+          const horizontalPadding = 0;
+          const verticalPadding = 0;
+
+          filterBackdrop.style.setProperty("--left", `${relLeft - horizontalPadding / 2}px`);
+          filterBackdrop.style.setProperty("--top", `${relTop - verticalPadding / 2}px`);
+          filterBackdrop.style.setProperty("--width", `${width + horizontalPadding}px`);
+          filterBackdrop.style.setProperty("--height", `${height + verticalPadding}px`);
 
           filterBackdrop.style.opacity = "1";
           filterBackdrop.style.visibility = "visible";
