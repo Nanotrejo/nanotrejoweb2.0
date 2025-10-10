@@ -9,11 +9,11 @@ import { MetaService } from "@core/service/meta.service";
 import { TransitionService } from "@core/service/transition.service";
 
 @Component({
-    selector: "app-cheatsheet",
-    animations: [fadeInFast],
-    templateUrl: "./cheatsheet.component.html",
-    styleUrls: ["./cheatsheet.component.css"],
-    standalone: false
+  selector: "app-cheatsheet",
+  animations: [fadeInFast],
+  templateUrl: "./cheatsheet.component.html",
+  styleUrls: ["./cheatsheet.component.css"],
+  standalone: false,
 })
 export class CheatsheetComponent implements OnInit {
   cheatsheetData: iCheatsheet[] = [];
@@ -36,13 +36,15 @@ export class CheatsheetComponent implements OnInit {
     private storageService: StorageService,
     private sanitizer: DomSanitizer,
     private metaService: MetaService,
-    private transitionService: TransitionService
+    private transitionService: TransitionService,
   ) {
     this.metaService.updateMetaTags({
-      title: 'Trucos y Consejos',
-      description: 'Colección de trucos, consejos y mejores prácticas de programación. Tutoriales y guías técnicas.',
-      image: '/assets/images/tricks-preview.webp'
-    });}
+      title: "Trucos y Consejos",
+      description:
+        "Colección de trucos, consejos y mejores prácticas de programación. Tutoriales y guías técnicas.",
+      image: "/assets/images/tricks-preview.webp",
+    });
+  }
 
   ngOnInit(): void {
     this.cheatsheetData = this.storageService.getItem(Storage.CHEATSHEET) || [];
@@ -165,6 +167,6 @@ export class CheatsheetComponent implements OnInit {
   }
 
   async navigateToTrick(id: string) {
-    await this.transitionService.navigate(['../trucos', id]);
+    await this.transitionService.navigate(["../trucos", id]);
   }
 }
