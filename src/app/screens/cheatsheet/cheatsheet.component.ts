@@ -124,7 +124,6 @@ export class CheatsheetComponent implements OnInit {
     ) as HTMLElement;
     if (!filterBackdrop || !listItem || listItem.length === 0) return;
 
-    // Use requestAnimationFrame to avoid layout thrashing when called on scroll
     const container = document.querySelector(
       "#filter-container",
     ) as HTMLElement;
