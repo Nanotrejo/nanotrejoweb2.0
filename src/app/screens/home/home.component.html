@@ -34,110 +34,98 @@
           <article class="wrapper">
             <div class="marquee">
               <div class="marquee__group">
-                <div
-                  @fadeInFast
-                  class="center-content stack"
-                  *ngFor="let stack of stackData.slice(0, 6)"
-                >
-                  <img
-                    @fadeInFast
-                    class="w-[20px] h-[20px]"
-                    src="{{ stack?.img }}"
-                    alt="{{ stack?.name }}"
-                    onerror="this.style.visibility='hidden'"
-                    onload="this.style.visibility='visible'"
-                  />
-                  <label class="color-primary-color">{{ stack?.name }}</label>
-                </div>
+                @for (stack of stackData.slice(0, 6); track stack?.name) {
+                  <div @fadeInFast class="center-content stack">
+                    <img
+                      @fadeInFast
+                      class="w-[20px] h-[20px]"
+                      [src]="stack?.img"
+                      [alt]="stack?.name"
+                      onerror="this.style.visibility='hidden'"
+                      onload="this.style.visibility='visible'"
+                    />
+                    <label class="color-primary-color">{{stack?.name}}</label>
+                  </div>
+                }
               </div>
               <div aria-hidden="true" class="marquee__group">
-                <div
-                  @fadeInFast
-                  class="center-content stack"
-                  *ngFor="let stack of stackData.slice(0, 6)"
-                >
-                  <img
-                    @fadeInFast
-                    class="w-[20px] h-[20px]"
-                    src="{{ stack?.img }}"
-                    alt="{{ stack?.name }}"
-                    onerror="this.style.visibility='hidden'"
-                    onload="this.style.visibility='visible'"
-                  />
-                  <label class="color-primary-color">{{ stack?.name }}</label>
-                </div>
+                @for (stack of stackData.slice(0, 6); track stack?.name) {
+                  <div @fadeInFast class="center-content stack">
+                    <img
+                      @fadeInFast
+                      class="w-[20px] h-[20px]"
+                      [src]="stack?.img"
+                      [alt]="stack?.name"
+                      onerror="this.style.visibility='hidden'"
+                      onload="this.style.visibility='visible'"
+                    />
+                    <label class="color-primary-color">{{stack?.name}}</label>
+                  </div>
+                }
               </div>
             </div>
             <div class="marquee marquee--reverse">
               <div class="marquee__group">
-                <div
-                  @fadeInFast
-                  class="center-content stack"
-                  *ngFor="let stack of stackData.slice(6, 11)"
-                >
-                  <img
-                    @fadeInFast
-                    class="w-[20px] h-[20px]"
-                    src="{{ stack?.img }}"
-                    alt="{{ stack?.name }}"
-                    onerror="this.style.visibility='hidden'"
-                    onload="this.style.visibility='visible'"
-                  />
-                  <label class="color-primary-color">{{ stack?.name }}</label>
-                </div>
+                @for (stack of stackData.slice(6, 11); track stack?.name) {
+                  <div @fadeInFast class="center-content stack">
+                    <img
+                      @fadeInFast
+                      class="w-[20px] h-[20px]"
+                      [src]="stack?.img"
+                      [alt]="stack?.name"
+                      onerror="this.style.visibility='hidden'"
+                      onload="this.style.visibility='visible'"
+                    />
+                    <label class="color-primary-color">{{stack?.name}}</label>
+                  </div>
+                }
               </div>
               <div aria-hidden="true" class="marquee__group">
-                <div
-                  @fadeInFast
-                  class="center-content stack"
-                  *ngFor="let stack of stackData.slice(6, 11)"
-                >
-                  <img
-                    @fadeInFast
-                    class="w-[20px] h-[20px]"
-                    src="{{ stack?.img }}"
-                    alt="{{ stack?.name }}"
-                    onerror="this.style.visibility='hidden'"
-                    onload="this.style.visibility='visible'"
-                  />
-                  <label class="color-primary-color">{{ stack?.name }}</label>
-                </div>
+                @for (stack of stackData.slice(6, 11); track stack?.name) {
+                  <div @fadeInFast class="center-content stack">
+                    <img
+                      @fadeInFast
+                      class="w-[20px] h-[20px]"
+                      [src]="stack?.img"
+                      [alt]="stack?.name"
+                      onerror="this.style.visibility='hidden'"
+                      onload="this.style.visibility='visible'"
+                    />
+                    <label class="color-primary-color">{{stack?.name}}</label>
+                  </div>
+                }
               </div>
             </div>
             <div class="marquee">
               <div class="marquee__group">
-                <div
-                  @fadeInFast
-                  class="center-content stack"
-                  *ngFor="let stack of stackData.slice(11, 16)"
-                >
-                  <img
-                    @fadeInFast
-                    class="w-[20px] h-[20px]"
-                    src="{{ stack?.img }}"
-                    alt="{{ stack?.name }}"
-                    onerror="this.style.visibility='hidden'"
-                    onload="this.style.visibility='visible'"
-                  />
-                  <label class="color-primary-color">{{ stack?.name }}</label>
-                </div>
+                @for (stack of stackData.slice(11, 16); track stack?.name) {
+                  <div @fadeInFast class="center-content stack">
+                    <img
+                      @fadeInFast
+                      class="w-[20px] h-[20px]"
+                      [src]="stack?.img"
+                      [alt]="stack?.name"
+                      onerror="this.style.visibility='hidden'"
+                      onload="this.style.visibility='visible'"
+                    />
+                    <label class="color-primary-color">{{stack?.name}}</label>
+                  </div>
+                }
               </div>
               <div aria-hidden="true" class="marquee__group">
-                <div
-                  @fadeInFast
-                  class="center-content stack"
-                  *ngFor="let stack of stackData.slice(11, 16)"
-                >
-                  <img
-                    @fadeInFast
-                    class="w-[20px] h-[20px]"
-                    src="{{ stack?.img }}"
-                    alt="{{ stack?.name }}"
-                    onerror="this.style.visibility='hidden'"
-                    onload="this.style.visibility='visible'"
-                  />
-                  <label class="color-primary-color">{{ stack?.name }}</label>
-                </div>
+                @for (stack of stackData.slice(11, 16); track stack?.name) {
+                  <div @fadeInFast class="center-content stack">
+                    <img
+                      @fadeInFast
+                      class="w-[20px] h-[20px]"
+                      [src]="stack?.img"
+                      [alt]="stack?.name"
+                      onerror="this.style.visibility='hidden'"
+                      onload="this.style.visibility='visible'"
+                    />
+                    <label class="color-primary-color">{{stack?.name}}</label>
+                  </div>
+                }
               </div>
             </div>
           </article>

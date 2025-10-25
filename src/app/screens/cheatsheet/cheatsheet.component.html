@@ -1,20 +1,20 @@
-<app-loading @fadeInFast *ngIf="!loading"></app-loading>
-<div
-  *ngIf="loading"
-  @fadeInFast
-  class="center-content w-screen h-auto flex-col"
->
+@if (!loading) {
+  <app-loading @fadeInFast></app-loading>
+}
+@else {
+  <div @fadeInFast class="center-content w-screen h-auto flex-col">
     <div
       id="filter-container"
       class="relative flex items-center justify-center py-4 md:py-8 flex-wrap mt-[7rem]"
     >
-    <button
-      (click)="filterItems(f)"
-      class="button-filter button-filter-color"
-      *ngFor="let f of filter"
-    >
-      {{ f }}
-    </button>
+    @for (f of filter; track f) {
+      <button
+        (click)="filterItems(f)"
+        class="button-filter button-filter-color"
+      >
+        {{ f }}
+      </button>
+    }
     <div
       id="filter-backdrop"
       class="absolute button-filter button-filter-color button-filter-selected translate-x-[var(--left)] translate-y-[var(--top)] left-0 top-0 w-[var(--width)] h-[var(--height)] transition-all duration-500 ease-in-out opacity-0 pointer-events-none"
@@ -37,41 +37,40 @@
   </div>
 
   <div class="gallery-grid mt-3 p-[1.5rem]">
-    <div
-      *ngFor="let cheats of cheatsheetData"
-      (click)="navigateToTrick(cheats.id)"
-      class="card span-{{
-        cheats?.span
-      }} rounded-2xl flex items-center justify-center from-teal-100 via-teal-300 to-teal-500 bg-loading"
-    >
+    @for (cheats of cheatsheetData; track cheats?.title) {
       <div
-        class="overflow-hidden aspect-video cursor-pointer rounded-xl relative group w-full h-full"
+        (click)="navigateToTrick(cheats.id)"
+        class="card span-{{ cheats?.span }} rounded-2xl flex items-center justify-center from-teal-100 via-teal-300 to-teal-500 bg-loading"
       >
         <div
-          class="rounded-xl z-10 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 pt-30 text-white flex items-end"
+          class="overflow-hidden aspect-video cursor-pointer rounded-xl relative group w-full h-full"
         >
-          <div>
-            <div
-              class="transform-gpu p-4 space-y-3 text-xl group-hover:opacity-100 group-hover:translate-y-0 translate-y-4 pb-5 transform transition duration-300 ease-in-out"
-            >
-              <div class="font-bold">{{ cheats?.title }}</div>
-
-              <div class="opacity-60 text-sm">
-                {{ cheats?.description }}
+          <div
+            class="rounded-xl z-10 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 pt-30 text-white flex items-end"
+          >
+            <div>
+              <div
+                class="transform-gpu p-4 space-y-3 text-xl group-hover:opacity-100 group-hover:translate-y-0 translate-y-4 pb-5 transform transition duration-300 ease-in-out"
+              >
+                <div class="font-bold">{{ cheats?.title }}</div>
+                <div class="opacity-60 text-sm">
+                  {{ cheats?.description }}
+                </div>
               </div>
             </div>
           </div>
+          <img
+            @fadeInFast
+            [style]="{'view-transition-name': 'cheat-' + cheats.id}"
+            alt="Imagen de {{ cheats?.title }}"
+            class="object-fill w-full h-full aspect-square group-hover:scale-110 group-hover:blur-sm transition duration-300 ease-in-out"
+            [src]="cheats?.img"
+            onerror="this.style.visibility='hidden'"
+            onload="this.style.visibility='visible'"
+          />
         </div>
-        <img
-          @fadeInFast
-          [style]="{'view-transition-name': 'cheat-' + cheats.id}"
-          alt="Imagen de {{ cheats?.title }}"
-          class="object-fill w-full h-full aspect-square group-hover:scale-110 group-hover:blur-sm transition duration-300 ease-in-out"
-          [src]="cheats?.img"
-          onerror="this.style.visibility='hidden'"
-          onload="this.style.visibility='visible'"
-        />
       </div>
-    </div>
+    }
   </div>
-</div>
+  </div>
+}

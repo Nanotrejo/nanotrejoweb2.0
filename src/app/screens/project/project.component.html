@@ -1,9 +1,9 @@
 <div class="center-content w-screen flex-wrap mt-3 gap-4">
-  <div
-    @fadeInFast
-    class="bg-color-fifteenth relative h-[350px] w-[335px] block rounded center-content p-3"
-    *ngFor="let project of projectData"
-  >
+  @for (project of projectData; track project?.name) {
+    <div
+      @fadeInFast
+      class="bg-color-fifteenth relative h-[350px] w-[335px] block rounded center-content p-3"
+    >
     <a
       [href]="
         project?.web
@@ -29,55 +29,58 @@
     </div>
     <div class="center-content justify-start">
       <ul class="center-content gap-2 mt-2 flex-wrap justify-start">
-        <li
-          class="text-nowrap color-primary-color stack-item"
-          *ngFor="let stack of project.stack"
-        >
-          {{ stack }}
-        </li>
+        @for (stack of project.stack; track stack) {
+          <li class="text-nowrap color-primary-color stack-item">
+            {{ stack }}
+          </li>
+        }
       </ul>
     </div>
     <div
       class="absolute center-content right-2 bottom-2 m-auto justify-end gap-4"
     >
-      <a
-        *ngIf="project?.drive"
-        class="hover:opacity-60"
-        [href]="project?.drive"
-        target="_blank"
-      >
-        <img
-          class="w-[25px] h-[25px]"
-          src="assets/images/google-drive.svg"
-          alt="Drive"
-        />
-      </a>
-      <a
-        *ngIf="project?.github"
-        class="hover:opacity-60"
-        [href]="project?.github"
-        target="_blank"
-      >
-        <img
-          class="w-[25px] h-[25px]"
-          [class.invert]="isThemeDefault"
-          src="assets/images/github.svg"
-          alt="GitHub"
-        />
-      </a>
-      <a
-        *ngIf="project?.web"
-        class="hover:opacity-60"
-        [href]="project?.web"
-        target="_blank"
-      >
-        <img
-          class="w-[25px] h-[25px] filter-primary-color"
-          [class.invert]="isThemeDefault"
-          src="assets/images/web.svg"
-          alt="Website"
-        />
-      </a>
+      @if (project?.drive) {
+        <a
+          class="hover:opacity-60"
+          [href]="project?.drive"
+          target="_blank"
+        >
+          <img
+            class="w-[25px] h-[25px]"
+            src="assets/images/google-drive.svg"
+            alt="Drive"
+          />
+        </a>
+      }
+      @if (project?.github) {
+        <a
+          class="hover:opacity-60"
+          [href]="project?.github"
+          target="_blank"
+        >
+          <img
+            class="w-[25px] h-[25px]"
+            [class.invert]="isThemeDefault"
+            src="assets/images/github.svg"
+            alt="GitHub"
+          />
+        </a>
+      }
+      @if (project?.web) {
+        <a
+          class="hover:opacity-60"
+          [href]="project?.web"
+          target="_blank"
+        >
+          <img
+            class="w-[25px] h-[25px] filter-primary-color"
+            [class.invert]="isThemeDefault"
+            src="assets/images/web.svg"
+            alt="Website"
+          />
+        </a>
+      }
     </div>
-  </div>
+    </div>
+  }
 </div>

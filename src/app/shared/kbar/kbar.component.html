@@ -43,76 +43,83 @@
           class="max-h-[400px] relative overflow-auto min-h-[450px]"
           style="max-height: 400px; position: relative; overflow: auto"
         >
-          <div
-            role="listbox"
-            class="w-full h-auto"
-            *ngFor="let sec of section; let iSection = index"
-            [id]="sec?.id"
-          >
+          @for (sec of section; track sec.id; let iSection = $index) {
             <div
-              id="kbar-listbox-item-0"
-              role="option"
-              aria-selected="false"
-              *ngIf="sec.action.length !== 0"
+              role="listbox"
+              class="w-full h-auto"
+              [id]="sec?.id"
             >
-              <h2
-                class="px-3 pt-4 pb-2 text-xs font-semibold text-gray-500 dark:text-gray-200"
-              >
-                {{ sec?.name }}
-              </h2>
-            </div>
-            <div
-              *ngFor="let action of sec.action; let iAction = index"
-              (click)="action.perform(); closeDialog()"
-              role="option"
-              aria-selected="true"
-              class="relative"
-              [class.bg-gray-800]="
-                iAction === activeElement && iSection === sectionElement
-              "
-            >
-              <div class="text-sm text-gray-700 dark:text-gray-400">
+              @if (sec.action.length !== 0) {
                 <div
-                  [class.bg-gray-800]="false"
-                  class="flex cursor-default select-none items-center rounded-md px-3 py-2 text-sm transition duration-200 hover:bg-gray-800 bg-opacity-5 text-gray-900 dark:bg-opacity-100 dark:text-white"
+                  id="kbar-listbox-item-0"
+                  role="option"
+                  aria-selected="false"
                 >
-                  <span
-                    class="material-icons"
-                    *ngIf="!action?.icon?.includes('assets')"
-                    >{{ action?.icon }}</span
+                  <h2
+                    class="px-3 pt-4 pb-2 text-xs font-semibold text-gray-500 dark:text-gray-200"
                   >
-                  <span *ngIf="action?.icon?.includes('assets')"
-                    ><img
-                      class="invert h-8 w-auto"
-                      [src]="action?.icon"
-                      [alt]="action?.name"
-                  /></span>
-                  <span class="flex-auto truncate ml-3">{{ action?.name }}</span
-                  ><span class="inline-flex items-center space-x-1"
-                    ><kbd
-                      class="inline-flex min-h-[2.2em] min-w-[2.2em] items-center justify-center rounded-md border border-b-2 border-gray-300 bg-gray-50 px-2 text-xs uppercase dark:border-gray-700 dark:bg-gray-900"
-                      >{{ action?.key }}</kbd
-                    ></span
-                  >
+                    {{ sec?.name }}
+                  </h2>
                 </div>
+              }
+              @for (action of sec.action; track action.id; let iAction = $index) {
+                <div
+                  (click)="action.perform(); closeDialog()"
+                  role="option"
+                  aria-selected="true"
+                  class="relative"
+                  [class.bg-gray-800]="
+                    iAction === activeElement && iSection === sectionElement
+                  "
+                >
+                  <div class="text-sm text-gray-700 dark:text-gray-400">
+                    <div
+                      [class.bg-gray-800]="false"
+                      class="flex cursor-default select-none items-center rounded-md px-3 py-2 text-sm transition duration-200 hover:bg-gray-800 bg-opacity-5 text-gray-900 dark:bg-opacity-100 dark:text-white"
+                    >
+                      @if (!action?.icon?.includes('assets')) {
+                        <span
+                          class="material-icons"
+                        >{{ action?.icon }}</span>
+                      }
+                      @if (action?.icon?.includes('assets')) {
+                        <span>
+                          <img
+                            class="invert h-8 w-auto"
+                            [src]="action?.icon"
+                            [alt]="action?.name"
+                          />
+                        </span>
+                      }
+                      <span class="flex-auto truncate ml-3">{{ action?.name }}</span>
+                      <span class="inline-flex items-center space-x-1">
+                        <kbd
+                          class="inline-flex min-h-[2.2em] min-w-[2.2em] items-center justify-center rounded-md border border-b-2 border-gray-300 bg-gray-50 px-2 text-xs uppercase dark:border-gray-700 dark:bg-gray-900"
+                        >{{ action?.key }}</kbd>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+          @if (section.length === 0) {
+            <div class="p-2">
+              <div class="py-14 px-6 text-center text-sm sm:px-14">
+                <span
+                  class="h-auto w-[21px] filter-primary-color contrast-[0.2] material-icons ng-tns-c55-0"
+                  >warning</span
+                >
+                <p class="mt-4 font-semibold text-gray-900 dark:text-gray-200">
+                  No se encontraron resultados
+                </p>
+                <p class="mt-2 text-gray-500">
+                  No pudimos encontrar nada con ese término. Por favor, inténtalo
+                  de nuevo.
+                </p>
               </div>
             </div>
-          </div>
-          <div class="p-2" *ngIf="section.length === 0">
-            <div class="py-14 px-6 text-center text-sm sm:px-14">
-              <span
-                class="h-auto w-[21px] filter-primary-color contrast-[0.2] material-icons ng-tns-c55-0"
-                >warning</span
-              >
-              <p class="mt-4 font-semibold text-gray-900 dark:text-gray-200">
-                No se encontraron resultados
-              </p>
-              <p class="mt-2 text-gray-500">
-                No pudimos encontrar nada con ese término. Por favor, inténtalo
-                de nuevo.
-              </p>
-            </div>
-          </div>
+          }
         </div>
       </div>
       <div

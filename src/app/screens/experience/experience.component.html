@@ -1,45 +1,49 @@
 <div id="cd-timeline" class="cd-container">
-  <div *ngFor="let experience of experienceData" class="cd-timeline-block">
-    <div class="cd-timeline-img cd-picture"></div>
-
-    <div
-      (click)="redirectToExternalPage(experience?.url ?? '')"
-      class="cd-timeline-content hover:opacity-60 cursor-pointer show"
-      [ngStyle]="{
-        background:
-          experience?.type === Type_Experience.CURSO
-            ? 'var(--color-sixteenth)'
-            : experience?.type === Type_Experience.CERTIFICATE
-            ? 'var(--color-seventeenth)'
-            : experience?.type === Type_Experience.JOB
-            ? 'var(--color-eighteenth)'
-            : experience?.type === Type_Experience.STUDY
-            ? 'var(--color-nineteenth)'
-            : 'var(--color-sixteenth)'
-      }"
-    >
-      <h2>{{ experience?.title }}</h2>
+  @for (experience of experienceData; track experience?.title) {
+    <div class="cd-timeline-block">
+      <div class="cd-timeline-img cd-picture"></div>
       <div
-        class="timeline-content-info"
-        *ngIf="experience?.type === Type_Experience.JOB"
+        (click)="redirectToExternalPage(experience?.url ?? '')"
+        class="cd-timeline-content hover:opacity-60 cursor-pointer show"
+        [ngStyle]="{
+          background:
+            experience?.type === Type_Experience.CURSO
+              ? 'var(--color-sixteenth)'
+              : experience?.type === Type_Experience.CERTIFICATE
+              ? 'var(--color-seventeenth)'
+              : experience?.type === Type_Experience.JOB
+              ? 'var(--color-eighteenth)'
+              : experience?.type === Type_Experience.STUDY
+              ? 'var(--color-nineteenth)'
+              : 'var(--color-sixteenth)'
+        }"
       >
-        <span class="timeline-content-info-title">
-          {{ experience?.position }}
-        </span>
-        <span class="timeline-content-info-date">
-          {{ experience?.date | date }}
-          {{
-            experience?.date_end
-              ? " - " + (experience?.date_end | date)
-              : "- Actualidad"
-          }}
-        </span>
+        <h2>{{ experience?.title }}</h2>
+        @if (experience?.type === Type_Experience.JOB) {
+          <div class="timeline-content-info">
+            <span class="timeline-content-info-title">
+              {{ experience?.position }}
+            </span>
+            <span class="timeline-content-info-date">
+              {{ experience?.date | date }}
+              {{
+                experience?.date_end
+                  ? " - " + (experience?.date_end | date)
+                  : "- Actualidad"
+              }}
+            </span>
+          </div>
+        }
+        <p>{{ experience?.subtitle }}</p>
+        <span class="cd-date">{{ experience?.date | date }}</span>
+        @if (experience?.stack?.length !== 0) {
+          <ul class="content-skills">
+            @for (stack of experience.stack; track stack) {
+              <li>{{ stack }}</li>
+            }
+          </ul>
+        }
       </div>
-      <p>{{ experience?.subtitle }}</p>
-      <span class="cd-date">{{ experience?.date | date }}</span>
-      <ul *ngIf="experience?.stack?.length !== 0" class="content-skills">
-        <li *ngFor="let stack of experience.stack">{{ stack }}</li>
-      </ul>
     </div>
-  </div>
+  }
 </div>

@@ -144,87 +144,68 @@
       </button>
     </div>
     <header id="loading-header" class="hidden lg:flex lg:gap-x-12 relative">
-      <a *ngFor="let item of menuItems">
-        <a
-          *ngIf="!item?.more"
-          [routerLink]="item?.url"
-          fragment="{{ item?.fragment }}"
-          class="text-sm font-semibold leading-6 color-primary-color"
-          >{{ item?.name }}</a
-        >
-        <div [class.hidden]="!item?.more" class="relative">
-          <div
-            (click)="isFlyoutMenu = !isFlyoutMenu"
-            type="button"
-            class="flex items-center gap-x-1 text-sm font-semibold leading-6 color-primary-color cursor-pointer"
-            aria-expanded="false"
-          >
-            {{ item?.name }}
-            <span class="material-icons"> expand_more </span>
-          </div>
-          <div
-            @translateIn
-            @translateOut
-            *ngIf="isFlyoutMenu"
-            (mouseleave)="isFlyoutMenu = false"
-            class="absolute right-0 top-full z-20 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
-          >
-            <div class="p-4">
-              <div
-                *ngFor="let it of item?.more"
-                class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-100"
-              >
-                <div
-                  class="flex h-11 w-11 flex-none items-center justify-center rounded-lg"
-                >
-                  <span class="material-icons">{{ it?.icon }}</span>
-                </div>
-                <div class="flex-auto">
-                  <a
-                    *ngIf="it?.url !== '/gastronomia'"
-                    [routerLink]="it?.url"
-                    class="block font-semibold text-gray-900"
-                  >
-                    {{ it?.name }}
-                    <span class="absolute inset-0"></span>
-                  </a>
-                  <a
-                    *ngIf="it?.url === '/gastronomia'"
-                    href="https://nanotrejo.notion.site/29b4e6c900a04bd9aba095e60e9277ef?v=dfe0d94e9194485fabb2a1d2b8a097c8"
-                    target="_blank"
-                    class="block font-semibold text-gray-900"
-                  >
-                    {{ it?.name }}
-                    <span class="absolute inset-0"></span>
-                  </a>
-                  <p class="mt-1 text-gray-600">
-                    {{ it?.description }}
-                  </p>
-                </div>
-              </div>
-              <div
-                class="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50"
-              >
-                <!--                <a-->
-                <!--                  href="#"-->
-                <!--                  class="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"-->
-                <!--                >-->
-                <!--                  <span class="material-icons">play_circle</span>-->
-                <!--                  Watch demo-->
-                <!--                </a>-->
-                <!--                <a-->
-                <!--                  href="#"-->
-                <!--                  class="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"-->
-                <!--                >-->
-                <!--                  <span class="material-icons">call</span>-->
-
-                <!--                  Contact sales-->
-                <!--                </a>-->
-              </div>
+      @for (item of menuItems; track item?.name) {
+          @if (!item?.more) {
+            <a
+              [routerLink]="item?.url"
+              fragment="{{ item?.fragment }}"
+              class="text-sm font-semibold leading-6 color-primary-color"
+            >{{ item?.name }}</a>
+          }
+          <div [class.hidden]="!item?.more" class="relative">
+            <div
+              (click)="isFlyoutMenu = !isFlyoutMenu"
+              type="button"
+              class="flex items-center gap-x-1 text-sm font-semibold leading-6 color-primary-color cursor-pointer"
+              aria-expanded="false"
+            >
+              {{ item?.name }}
+              <span class="material-icons"> expand_more </span>
             </div>
+            @if (isFlyoutMenu) {
+              <div
+                @translateIn
+                @translateOut
+                (mouseleave)="isFlyoutMenu = false"
+                class="absolute right-0 top-full z-20 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
+              >
+                <div class="p-4">
+                  @for (it of item?.more; track it?.name) {
+                    <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-100">
+                      <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg">
+                        <span class="material-icons">{{ it?.icon }}</span>
+                      </div>
+                      <div class="flex-auto">
+                        @if (it?.url !== '/gastronomia') {
+                          <a
+                            [routerLink]="it?.url"
+                            class="block font-semibold text-gray-900"
+                          >
+                            {{ it?.name }}
+                            <span class="absolute inset-0"></span>
+                          </a>
+                        }
+                        @if (it?.url === '/gastronomia') {
+                          <a
+                            href="https://nanotrejo.notion.site/29b4e6c900a04bd9aba095e60e9277ef?v=dfe0d94e9194485fabb2a1d2b8a097c8"
+                            target="_blank"
+                            class="block font-semibold text-gray-900"
+                          >
+                            {{ it?.name }}
+                            <span class="absolute inset-0"></span>
+                          </a>
+                        }
+                        <p class="mt-1 text-gray-600">
+                          {{ it?.description }}
+                        </p>
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+            }
           </div>
-        </div>
-      </a>
+      }
 
       <div
         id="menu-backdrop"
@@ -233,109 +214,116 @@
     </header>
   </nav>
   <!-- Mobile menu, show/hide based on menu open state. -->
-  <div
-    @fadeInFast
-    @fadeOutFast
-    *ngIf="isMenuOpen"
-    x-description="Mobile menu, show/hide based on menu open state"
-    class="lg:hidden"
-    role="dialog"
-    aria-modal="true"
-  >
-    <!-- Background backdrop, show/hide based on slide-over state. -->
+  @if (isMenuOpen) {
     <div
-      @translateIn
-      @translateOut
-      *ngIf="isSlideOver"
-      class="fixed inset-0 z-10"
-    ></div>
-    <div
-      class="fixed inset-y-0 right-0 z-20 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+      @fadeInFast
+      @fadeOutFast
+      x-description="Mobile menu, show/hide based on menu open state"
+      class="lg:hidden"
+      role="dialog"
+      aria-modal="true"
     >
-      <div class="flex items-center justify-between">
-        <a
-          routerLink="/"
-          class="-m-1.5 p-1.5"
-          (click)="isMenuOpen = !isMenuOpen"
-        >
-          <span class="sr-only">Nanotrejo</span>
-          <img
-            class="h-8 w-auto"
-            src="assets/logo/2-removebg.png"
-            alt="Nanotrejo logo"
-          />
-        </a>
-        <button
-          (click)="isMenuOpen = !isMenuOpen"
-          type="button"
-          class="-m-2.5 rounded-md p-2.5 text-gray-700"
-        >
-          <span class="sr-only">Close menu</span>
-          <svg
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
+      <!-- Background backdrop, show/hide based on slide-over state. -->
+      @if (isSlideOver) {
+        <div
+          @translateIn
+          @translateOut
+          class="fixed inset-0 z-10"
+        ></div>
+      }
+      <div
+        class="fixed inset-y-0 right-0 z-20 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+      >
+        <div class="flex items-center justify-between">
+          <a
+            routerLink="/"
+            class="-m-1.5 p-1.5"
+            (click)="isMenuOpen = !isMenuOpen"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
+            <span class="sr-only">Nanotrejo</span>
+            <img
+              class="h-8 w-auto"
+              src="assets/logo/2-removebg.png"
+              alt="Nanotrejo logo"
             />
-          </svg>
-        </button>
-      </div>
-      <div class="mt-6 flow-root">
-        <div class="-my-6 divide-y divide-gray-500/10">
-          <div class="space-y-2 py-6">
-            <div *ngFor="let item of menuItems">
-              <a
-                *ngIf="!item?.more"
-                [routerLink]="item?.url"
-                (click)="isMenuOpen = false"
-                fragment="{{ item?.fragment }}"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
-                >{{ item?.name }}</a
-              >
-              <div [class.hidden]="!item?.more" class="-mx-3">
-                <button
-                  (click)="isMenu = !isMenu"
-                  type="button"
-                  class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
-                  aria-controls="disclosure-1"
-                  aria-expanded="false"
-                >
-                  {{ item?.name }}
-                  <!--
-                                                                                                            Expand/collapse icon, toggle classes based on menu open state.
-
-                                                                                                            Open: "rotate-180", Closed: ""
-                                                                                                          -->
-                  <span class="material-icons">expand_more</span>
-                </button>
-                <!-- 'Product' sub-menu, show/hide based on menu state. -->
-                <div *ngIf="isMenu" class="mt-2 space-y-2" id="disclosure-1">
-                  <div *ngFor="let it of item?.more">
+          </a>
+          <button
+            (click)="isMenuOpen = !isMenuOpen"
+            type="button"
+            class="-m-2.5 rounded-md p-2.5 text-gray-700"
+          >
+            <span class="sr-only">Close menu</span>
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="mt-6 flow-root">
+          <div class="-my-6 divide-y divide-gray-500/10">
+            <div class="space-y-2 py-6">
+              @for (item of menuItems; track item?.name) {
+                <div>
+                  @if (!item?.more) {
                     <a
-                      [routerLink]="it?.url"
+                      [routerLink]="item?.url"
                       (click)="isMenuOpen = false"
-                      *ngIf="it?.url !== '/gastronomia'"
-                      class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"
-                      ><span class="material-icons">{{ it?.icon }}</span
-                      >{{ it?.name }}</a
+                      fragment="{{ item?.fragment }}"
+                      class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
+                    >{{ item?.name }}</a>
+                  }
+                  <div [class.hidden]="!item?.more" class="-mx-3">
+                    <button
+                      (click)="isMenu = !isMenu"
+                      type="button"
+                      class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
+                      aria-controls="disclosure-1"
+                      aria-expanded="false"
                     >
-                    <!--                                                (click)="isMenuOpen = false"-->
-                    <a
-                      *ngIf="it?.url === '/gastronomia'"
-                      href="https://nanotrejo.notion.site/29b4e6c900a04bd9aba095e60e9277ef?v=dfe0d94e9194485fabb2a1d2b8a097c8"
-                      target="_blank"
-                      class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"
-                      ><span class="material-icons">{{ it?.icon }}</span
-                      >{{ it?.name }}</a
-                    >
+                      {{ item?.name }}
+                      <span class="material-icons">expand_more</span>
+                    </button>
+                    @if (isMenu) {
+                      <div class="mt-2 space-y-2" id="disclosure-1">
+                        @for (it of item?.more; track it?.url) {
+                          <div>
+                            @if (it?.url !== '/gastronomia') {
+                              <a
+                                [routerLink]="it?.url"
+                                (click)="isMenuOpen = false"
+                                class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"
+                              ><span class="material-icons">{{ it?.icon }}</span>{{ it?.name }}</a>
+                            }
+                            @if (it?.url === '/gastronomia') {
+                              <a
+                                href="https://nanotrejo.notion.site/29b4e6c900a04bd9aba095e60e9277ef?v=dfe0d94e9194485fabb2a1d2b8a097c8"
+                                target="_blank"
+                                class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"
+                              ><span class="material-icons">{{ it?.icon }}</span>{{ it?.name }}</a>
+                            }
+                          </div>
+                        }
+                      </div>
+                    }
                   </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
                   <!--                                    >-->
                   <!--                  <a-->
                   <!--                    href="#"-->
@@ -350,12 +338,6 @@
                   <!--                  >-->
                   <!--                    <span class="material-icons">call</span> Contact sales</a-->
                   <!--                  >-->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                <!-- cierres de div eliminados para balancear etiquetas -->
+      <!-- cierres de div eliminados para balancear etiquetas -->
 </header>

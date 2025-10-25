@@ -1,6 +1,7 @@
-<app-loading @fadeInFast *ngIf="!loading"></app-loading>
+@if (!loading) {
+<app-loading @fadeInFast></app-loading>
+} @else {
 <div
-  *ngIf="loading"
   class="center-content flex-col w-screen h-auto lg:h-[97vh] lg:items-start lg:flex-row gap-3"
 >
   <!--    <button class="button-filter button-filter-color  mt-[4rem]" (click)="autoplay = !autoplay">Autoplay</button>-->
@@ -27,8 +28,8 @@
     @translateRightIn
     class="flex w-screen h-auto p-3 flex-col gap-5 lg:w-[40vw] lg:h-[70vh] lg:mt-[5rem] lg:overflow-y-scroll card-music"
   >
+    @for (video of videos; track video?.thumbnails?.high?.url) {
     <div
-      *ngFor="let video of videos"
       (click)="selectVideo(video)"
       [class.bg-layout]="
         video?.thumbnails?.high?.url === videoSelected?.thumbnails?.high?.url
@@ -48,5 +49,7 @@
         <!--            <p class="color-secondary-color">{{ video?.publishedAt | date }}</p>-->
       </div>
     </div>
+    }
   </div>
 </div>
+}
