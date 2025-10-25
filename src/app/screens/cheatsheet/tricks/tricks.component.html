@@ -3,7 +3,7 @@
     <div @translateLeftIn class="relative">
       <img
         class="w-screen h-[312px] object-fill sm:object-cover rounded-3xl"
-        [src]="data?.img"
+        [src]="data?.img_sanitized"
         [alt]="data?.title"
       />
       <div class="absolute top-1 flex flex-1 justify-end right-1">
@@ -32,7 +32,25 @@
       @translateRightIn
       class="center-content flex-wrap gap-3 flex-col w-full"
     >
-      <h1 class="font-bold text-3xl color-denary-color">{{ data?.title }}</h1>
+      <div class="center-content gap-3">
+        <a
+          (click)="goToArrow('prev')"
+          [class.opacity-0]="!loadingGoTo || goTo.prev === ''"
+          class="cursor-pointer button-filter button-filter-color filter-color flex bg-layout"
+        >
+          <span class="material-icons">arrow_back</span>
+        </a>
+        
+        <h1 class="font-bold text-3xl color-denary-color">{{ data?.title }}</h1>
+        <a
+          (click)="goToArrow('next')"
+          [class.opacity-0]="!loadingGoTo || goTo.next === ''"
+          class="cursor-pointer button-filter button-filter-color filter-color flex bg-layout"
+        >
+          <span class="material-icons">arrow_forward</span>
+        </a>
+        
+      </div>
       <div class="center-content justify-between w-full">
         <label class="color-eleventh-color w-full text-start text-sm font-bold"
           >Publicado el {{ data?.date | date }}</label

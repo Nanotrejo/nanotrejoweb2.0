@@ -9,20 +9,26 @@ import {
   translateRightIn,
 } from "@assets/css/animation";
 import { DomSanitizer } from "@angular/platform-browser";
+import { TransitionService } from "@core/service/transition.service";
 
 @Component({
-    selector: "app-tricks",
-    animations: [fadeInFast, translateRightIn, translateLeftIn],
-    templateUrl: "./tricks.component.html",
-    styleUrls: ["./tricks.component.css"],
-    standalone: false
+  selector: "app-tricks",
+  animations: [fadeInFast, translateRightIn, translateLeftIn],
+  templateUrl: "./tricks.component.html",
+  styleUrls: ["./tricks.component.css"],
+  standalone: false,
 })
 export class TricksComponent implements OnInit {
   loading: boolean = false;
+  loadingGoTo: boolean = false;
   markdown: string = "";
   linkToCopy: string = "";
   linkCopied: boolean = false;
   data: iCheatsheet = {} as iCheatsheet;
+  goTo = {
+    prev: "",
+    next: "",
+  };
 
   constructor(
     private mdService: MarkdownService,
@@ -30,10 +36,12 @@ export class TricksComponent implements OnInit {
     private renderer: Renderer2,
     private activatedRouter: ActivatedRoute,
     private sanitizer: DomSanitizer,
+    private transitionService: TransitionService,
   ) {}
 
   ngOnInit(): void {
     this.getMarkdown();
+    this.getGoTo();
   }
 
   getMarkdown(): void {
@@ -43,7 +51,7 @@ export class TricksComponent implements OnInit {
         this.notionService.cheatsheet.find(
           (cheatsheet: iCheatsheet) => cheatsheet.id === id,
         ) || ({} as iCheatsheet);
-      this.data.img = this.sanitizer.bypassSecurityTrustResourceUrl(
+      this.data.img_sanitized = this.sanitizer.bypassSecurityTrustResourceUrl(
         this.data.img,
       ) as string;
       this.markdownUpdated();
@@ -55,7 +63,7 @@ export class TricksComponent implements OnInit {
   async getCheatsheetById(id: string): Promise<void> {
     this.data = await this.notionService.getCheatsheetById(id);
     if (this.data) {
-      this.data.img = this.sanitizer.bypassSecurityTrustResourceUrl(
+      this.data.img_sanitized = this.sanitizer.bypassSecurityTrustResourceUrl(
         this.data.img,
       ) as string;
       this.markdownUpdated();
@@ -99,7 +107,9 @@ export class TricksComponent implements OnInit {
 
     codeBlocks?.forEach((block: Element) => {
       // Evita duplicar el botón si ya existe
-      if (block.parentElement?.parentElement?.classList.contains("code-container")) {
+      if (
+        block.parentElement?.parentElement?.classList.contains("code-container")
+      ) {
         return;
       }
 
@@ -129,5 +139,22 @@ export class TricksComponent implements OnInit {
       container.appendChild(copyButton);
       container.appendChild(block.parentElement as HTMLElement);
     });
+  }
+
+  getGoTo() {
+    const ids = this.notionService.cheatsheet.map((c) => c.id);
+    const idx = ids.indexOf(this.data?.id || "");
+    this.goTo.prev = idx > 0 ? ids[idx - 1] : "";
+    this.goTo.next = idx >= 0 && idx < ids.length - 1 ? ids[idx + 1] : "";
+    this.loadingGoTo = true;
+  }
+
+  goToArrow(direction: 'prev' | 'next') {
+    if (!this.loadingGoTo || !this.goTo[direction]) return;
+    this.loadingGoTo = false;
+    this.transitionService.navigate(["/trucos", this.goTo[direction]]);
+    setTimeout(() => {
+      this.getGoTo();
+    }, 250);
   }
 }
