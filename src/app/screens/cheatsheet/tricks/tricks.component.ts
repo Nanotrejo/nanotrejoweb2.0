@@ -89,6 +89,10 @@ export class TricksComponent implements OnInit {
   }
 
   copyCurrentUrlToClipboard() {
+    this.linkCopied = true;
+    setTimeout(() => {
+      this.linkCopied = false;
+    }, 3000);
     const currentUrl = window.location.href;
     const input = this.renderer.createElement("input");
     input.value = currentUrl;
@@ -96,10 +100,6 @@ export class TricksComponent implements OnInit {
     input.select();
     document.execCommand("copy");
     this.renderer.removeChild(document.body, input);
-    this.linkCopied = true;
-    setTimeout(() => {
-      this.linkCopied = false;
-    }, 3000);
   }
 
   onMarkdownReady() {
@@ -149,7 +149,7 @@ export class TricksComponent implements OnInit {
     this.loadingGoTo = true;
   }
 
-  goToArrow(direction: 'prev' | 'next') {
+  goToArrow(direction: "prev" | "next") {
     if (!this.loadingGoTo || !this.goTo[direction]) return;
     this.loadingGoTo = false;
     this.transitionService.navigate(["/trucos", this.goTo[direction]]);
