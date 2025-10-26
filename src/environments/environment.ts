@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  notion_api: "http://localhost:3000",
-  // notion_api: "https://notion-api-oqf0.onrender.com",
+    production: false,
+    // notion_api: "http://localhost:3000",
+    notion_api: "https://notion-api-oqf0.onrender.com",
 };
 
 /*
