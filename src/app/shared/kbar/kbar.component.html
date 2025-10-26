@@ -1,149 +1,131 @@
 <div
-  class="w-screen h-screen absolute bg-white/80 backdrop-blur transition-colors duration-500 dark:bg-gray-900/80 z-30 left-0 top-0"
-  (click)="closeDialog()"
+    class="w-screen h-screen absolute bg-white/80 backdrop-blur transition-colors duration-500 dark:bg-gray-900/80 z-30 left-0 top-0"
+    (click)="closeDialog()"
 ></div>
-<div
-  class="z-30 absolute w-screen center-content lg:translate-y-1/3 left-0 top-0 p-3"
->
-  <div
-    class="mx-auto w-screen max-w-xl overflow-hidden rounded-xl bg-white ring-1 ring-black ring-opacity-5 drop-shadow-2xl transition duration-200 dark:bg-gray-900 dark:ring-white dark:ring-opacity-5"
-    style="transform: scale(0.99); pointer-events: auto"
-  >
-    <div>
-      <div
-        class="relative border-b border-gray-500 border-opacity-10 dark:border-opacity-20"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          aria-hidden="true"
-          class="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-900 text-opacity-40 transition duration-200 dark:text-gray-500 dark:text-opacity-100"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-            clip-rule="evenodd"
-          ></path>
-        </svg>
-        <input
-          class="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-900 placeholder-gray-500 outline-none transition duration-200 focus:ring-0 dark:text-white sm:text-sm"
-          autocomplete="off"
-          role="combobox"
-          spellcheck="false"
-          aria-expanded="true"
-          aria-controls="kbar-listbox"
-          placeholder="Buscar..."
-          [value]="searchValue"
-          (keyup)="search($event)"
-        />
-      </div>
-      <div class="p-2">
-        <div
-          class="max-h-[400px] relative overflow-auto min-h-[450px]"
-          style="max-height: 400px; position: relative; overflow: auto"
-        >
-          @for (sec of section; track sec.id; let iSection = $index) {
-            <div
-              role="listbox"
-              class="w-full h-auto"
-              [id]="sec?.id"
-            >
-              @if (sec.action.length !== 0) {
-                <div
-                  id="kbar-listbox-item-0"
-                  role="option"
-                  aria-selected="false"
+<div class="z-30 absolute w-screen center-content lg:translate-y-1/3 left-0 top-0 p-3">
+    <div
+        class="mx-auto w-screen max-w-xl overflow-hidden rounded-xl bg-white ring-1 ring-black ring-opacity-5 drop-shadow-2xl transition duration-200 dark:bg-gray-900 dark:ring-white dark:ring-opacity-5"
+        style="transform: scale(0.99); pointer-events: auto"
+    >
+        <div>
+            <div class="relative border-b border-gray-500 border-opacity-10 dark:border-opacity-20">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    class="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-900 text-opacity-40 transition duration-200 dark:text-gray-500 dark:text-opacity-100"
                 >
-                  <h2
-                    class="px-3 pt-4 pb-2 text-xs font-semibold text-gray-500 dark:text-gray-200"
-                  >
-                    {{ sec?.name }}
-                  </h2>
-                </div>
-              }
-              @for (action of sec.action; track action.id; let iAction = $index) {
-                <div
-                  (click)="action.perform(); closeDialog()"
-                  role="option"
-                  aria-selected="true"
-                  class="relative"
-                  [class.bg-gray-800]="
-                    iAction === activeElement && iSection === sectionElement
-                  "
-                >
-                  <div class="text-sm text-gray-700 dark:text-gray-400">
-                    <div
-                      [class.bg-gray-800]="false"
-                      class="flex cursor-default select-none items-center rounded-md px-3 py-2 text-sm transition duration-200 hover:bg-gray-800 bg-opacity-5 text-gray-900 dark:bg-opacity-100 dark:text-white"
-                    >
-                      @if (!action?.icon?.includes('assets')) {
-                        <span
-                          class="material-icons"
-                        >{{ action?.icon }}</span>
-                      }
-                      @if (action?.icon?.includes('assets')) {
-                        <span>
-                          <img
-                            class="invert h-8 w-auto"
-                            [src]="action?.icon"
-                            [alt]="action?.name"
-                          />
-                        </span>
-                      }
-                      <span class="flex-auto truncate ml-3">{{ action?.name }}</span>
-                      <span class="inline-flex items-center space-x-1">
-                        <kbd
-                          class="inline-flex min-h-[2.2em] min-w-[2.2em] items-center justify-center rounded-md border border-b-2 border-gray-300 bg-gray-50 px-2 text-xs uppercase dark:border-gray-700 dark:bg-gray-900"
-                        >{{ action?.key }}</kbd>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              }
+                    <path
+                        fill-rule="evenodd"
+                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                        clip-rule="evenodd"
+                    ></path>
+                </svg>
+                <input
+                    class="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-900 placeholder-gray-500 outline-none transition duration-200 focus:ring-0 dark:text-white sm:text-sm"
+                    autocomplete="off"
+                    role="combobox"
+                    spellcheck="false"
+                    aria-expanded="true"
+                    aria-controls="kbar-listbox"
+                    placeholder="Buscar..."
+                    [value]="searchValue"
+                    (keyup)="search($event)"
+                />
             </div>
-          }
-          @if (section.length === 0) {
             <div class="p-2">
-              <div class="py-14 px-6 text-center text-sm sm:px-14">
-                <span
-                  class="h-auto w-[21px] filter-primary-color contrast-[0.2] material-icons ng-tns-c55-0"
-                  >warning</span
+                <div
+                    class="max-h-[400px] relative overflow-auto min-h-[450px]"
+                    style="max-height: 400px; position: relative; overflow: auto"
                 >
-                <p class="mt-4 font-semibold text-gray-900 dark:text-gray-200">
-                  No se encontraron resultados
-                </p>
-                <p class="mt-2 text-gray-500">
-                  No pudimos encontrar nada con ese término. Por favor, inténtalo
-                  de nuevo.
-                </p>
-              </div>
+                    @for (sec of section; track sec.id; let iSection = $index) {
+                        <div role="listbox" class="w-full h-auto" [id]="sec?.id">
+                            @if (sec.action.length !== 0) {
+                                <div id="kbar-listbox-item-0" role="option" aria-selected="false">
+                                    <h2 class="px-3 pt-4 pb-2 text-xs font-semibold text-gray-500 dark:text-gray-200">
+                                        {{ sec?.name }}
+                                    </h2>
+                                </div>
+                            }
+                            @for (action of sec.action; track action.id; let iAction = $index) {
+                                <div
+                                    (click)="action.perform(); closeDialog()"
+                                    role="option"
+                                    aria-selected="true"
+                                    class="relative"
+                                    [class.bg-gray-800]="iAction === activeElement && iSection === sectionElement"
+                                >
+                                    <div class="text-sm text-gray-700 dark:text-gray-400">
+                                        <div
+                                            [class.bg-gray-800]="false"
+                                            class="flex cursor-default select-none items-center rounded-md px-3 py-2 text-sm transition duration-200 hover:bg-gray-800 bg-opacity-5 text-gray-900 dark:bg-opacity-100 dark:text-white"
+                                        >
+                                            @if (!action?.icon?.includes("assets")) {
+                                                <span class="material-icons">{{ action?.icon }}</span>
+                                            }
+                                            @if (action?.icon?.includes("assets")) {
+                                                <span>
+                                                    <img
+                                                        class="invert h-8 w-auto"
+                                                        [src]="action?.icon"
+                                                        [alt]="action?.name"
+                                                    />
+                                                </span>
+                                            }
+                                            <span class="flex-auto truncate ml-3">{{ action?.name }}</span>
+                                            <span class="inline-flex items-center space-x-1">
+                                                <kbd
+                                                    class="inline-flex min-h-[2.2em] min-w-[2.2em] items-center justify-center rounded-md border border-b-2 border-gray-300 bg-gray-50 px-2 text-xs uppercase dark:border-gray-700 dark:bg-gray-900"
+                                                    >{{ action?.key }}</kbd
+                                                >
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    @if (section.length === 0) {
+                        <div class="p-2">
+                            <div class="py-14 px-6 text-center text-sm sm:px-14">
+                                <span
+                                    class="h-auto w-[21px] filter-primary-color contrast-[0.2] material-icons ng-tns-c55-0"
+                                    >warning</span
+                                >
+                                <p class="mt-4 font-semibold text-gray-900 dark:text-gray-200">
+                                    No se encontraron resultados
+                                </p>
+                                <p class="mt-2 text-gray-500">
+                                    No pudimos encontrar nada con ese término. Por favor, inténtalo de nuevo.
+                                </p>
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
-          }
+            <div
+                class="flex flex-wrap items-center border-t border-gray-500 border-opacity-10 bg-gray-50 py-2.5 px-4 text-xs text-gray-700 transition-colors duration-200 dark:border-opacity-20 dark:bg-gray-800/50 dark:text-gray-200"
+            >
+                Escribe
+                <kbd
+                    [class.active-color-twentieth]="isBlogActive"
+                    (click)="search('#')"
+                    class="mx-1 flex h-5 w-5 items-center justify-center rounded border bg-white font-semibold dark:bg-gray-900 sm:mx-2 text-white"
+                    >#</kbd
+                >
+                para blogs,
+                <kbd
+                    (click)="search('&')"
+                    [class.active-color-twentieth]="isMusicActive"
+                    class="mx-1 flex h-5 w-5 items-center justify-center rounded border bg-white font-semibold dark:bg-gray-900 sm:mx-2 text-white"
+                    >&</kbd
+                >
+                para música
+                <!--                <kbd-->
+                <!--                    class="mx-1 flex h-5 w-5 items-center justify-center rounded border bg-white font-semibold dark:bg-gray-900 sm:mx-2 text-white">?</kbd>-->
+                <!--                para ayuda.-->
+            </div>
         </div>
-      </div>
-      <div
-        class="flex flex-wrap items-center border-t border-gray-500 border-opacity-10 bg-gray-50 py-2.5 px-4 text-xs text-gray-700 transition-colors duration-200 dark:border-opacity-20 dark:bg-gray-800/50 dark:text-gray-200"
-      >
-        Escribe
-        <kbd
-          [class.active-color-twentieth]="isBlogActive"
-          (click)="search('#')"
-          class="mx-1 flex h-5 w-5 items-center justify-center rounded border bg-white font-semibold dark:bg-gray-900 sm:mx-2 text-white"
-          >#</kbd
-        >
-        para blogs,
-        <kbd
-          (click)="search('&')"
-          [class.active-color-twentieth]="isMusicActive"
-          class="mx-1 flex h-5 w-5 items-center justify-center rounded border bg-white font-semibold dark:bg-gray-900 sm:mx-2 text-white"
-          >&</kbd
-        >
-        para música
-        <!--                <kbd-->
-        <!--                    class="mx-1 flex h-5 w-5 items-center justify-center rounded border bg-white font-semibold dark:bg-gray-900 sm:mx-2 text-white">?</kbd>-->
-        <!--                para ayuda.-->
-      </div>
     </div>
-  </div>
 </div>

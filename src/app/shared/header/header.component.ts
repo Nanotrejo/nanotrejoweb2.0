@@ -1,16 +1,5 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-} from "@angular/core";
-import {
-  fadeInFast,
-  fadeOutFast,
-  translateIn,
-  translateOut,
-} from "@assets/css/animation";
+import { AfterViewInit, Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { fadeInFast, fadeOutFast, translateIn, translateOut } from "@assets/css/animation";
 import { ThemeService } from "@core/service/theme.service";
 import { Themes } from "@core/interface/theme";
 import { MenuService } from "@core/service/menu.service";
@@ -21,77 +10,73 @@ import { iMenu } from "@core/interface/menu";
     animations: [fadeInFast, fadeOutFast, translateIn, translateOut],
     templateUrl: "./header.component.html",
     styleUrls: ["./header.component.css"],
-    standalone: false
+    standalone: false,
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
-  isFlyoutMenu = false;
-  isMenuOpen = false;
-  isSlideOver = false;
-  isMenu = true;
-  isThemeDefault: boolean = false;
-  menuItems: iMenu[] = [];
-  @Output() kbarEmitter: EventEmitter<void> = new EventEmitter<void>();
-  observableTheme: any;
+    isFlyoutMenu = false;
+    isMenuOpen = false;
+    isSlideOver = false;
+    isMenu = true;
+    isThemeDefault: boolean = false;
+    menuItems: iMenu[] = [];
+    @Output() kbarEmitter: EventEmitter<void> = new EventEmitter<void>();
+    observableTheme: any;
 
-  constructor(
-    private themeService: ThemeService,
-    private menuService: MenuService,
-  ) {}
+    constructor(
+        private themeService: ThemeService,
+        private menuService: MenuService
+    ) {}
 
-  ngOnInit(): void {
-    this.menuItems = this.menuService.getMenu();
-    this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
-    this.getObservableTheme();
-  }
+    ngOnInit(): void {
+        this.menuItems = this.menuService.getMenu();
+        this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
+        this.getObservableTheme();
+    }
 
-  ngAfterViewInit(): void {
-    this.eventMouseBackdrop();
-  }
+    ngAfterViewInit(): void {
+        this.eventMouseBackdrop();
+    }
 
-  eventMouseBackdrop() {
-    const listItem = document.querySelectorAll("#loading-header a");
-    const menuBackDrop = document.querySelector(
-      "#menu-backdrop",
-    ) as HTMLElement;
+    eventMouseBackdrop() {
+        const listItem = document.querySelectorAll("#loading-header a");
+        const menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement;
 
-    listItem.forEach((item) => {
-      item.addEventListener("mouseenter", () => {
-        const { left, top, width, height } = item.getBoundingClientRect();
+        listItem.forEach(item => {
+            item.addEventListener("mouseenter", () => {
+                const { left, top, width, height } = item.getBoundingClientRect();
 
-        menuBackDrop.style.setProperty("--left", `${left - 10}px`);
-        menuBackDrop.style.setProperty("--top", `${top - 10}px`);
-        menuBackDrop.style.setProperty("--width", `${width + 20}px`);
-        menuBackDrop.style.setProperty("--height", `${height + 20}px`);
+                menuBackDrop.style.setProperty("--left", `${left - 10}px`);
+                menuBackDrop.style.setProperty("--top", `${top - 10}px`);
+                menuBackDrop.style.setProperty("--width", `${width + 20}px`);
+                menuBackDrop.style.setProperty("--height", `${height + 20}px`);
 
-        menuBackDrop.style.opacity = "1";
-        menuBackDrop.style.visibility = "visible";
-      });
+                menuBackDrop.style.opacity = "1";
+                menuBackDrop.style.visibility = "visible";
+            });
 
-      item.addEventListener("mouseleave", () => {
-        menuBackDrop.style.opacity = "0";
-        menuBackDrop.style.visibility = "hidden";
-      });
-    });
-  }
+            item.addEventListener("mouseleave", () => {
+                menuBackDrop.style.opacity = "0";
+                menuBackDrop.style.visibility = "hidden";
+            });
+        });
+    }
 
-  changeTheme() {
-    this.themeService.changeTheme();
-  }
+    changeTheme() {
+        this.themeService.changeTheme();
+    }
 
-  openKbarDialog() {
-    this.kbarEmitter.emit();
-  }
+    openKbarDialog() {
+        this.kbarEmitter.emit();
+    }
 
-  getObservableTheme() {
-    this.observableTheme?.unsubscribe();
-    this.observableTheme = this.themeService
-      .getObservableTheme()
-      .subscribe(() => {
-        this.checkTheme();
-      });
-  }
+    getObservableTheme() {
+        this.observableTheme?.unsubscribe();
+        this.observableTheme = this.themeService.getObservableTheme().subscribe(() => {
+            this.checkTheme();
+        });
+    }
 
-  checkTheme() {
-    this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
-  }
+    checkTheme() {
+        this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
+    }
 }

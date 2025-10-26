@@ -5,20 +5,20 @@ import { Youtube } from "@core/interface/youtube";
 import { map } from "rxjs/operators";
 
 @Injectable({
-  providedIn: "root",
+    providedIn: "root",
 })
 export class YoutubeService {
-  nextPageToken = "";
+    nextPageToken = "";
 
-  constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {}
 
-  getVideos() {
-    return this.http.get<Youtube>(`${environment.notion_api}/get-videos`).pipe(
-      map((response) => {
-        this.nextPageToken = response.nextPageToken;
-        return response.items;
-      }),
-      map((items) => items.map((video) => video.snippet)),
-    );
-  }
+    getVideos() {
+        return this.http.get<Youtube>(`${environment.notion_api}/get-videos`).pipe(
+            map(response => {
+                this.nextPageToken = response.nextPageToken;
+                return response.items;
+            }),
+            map(items => items.map(video => video.snippet))
+        );
+    }
 }

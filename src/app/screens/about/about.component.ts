@@ -5,16 +5,17 @@ import { MetaService } from "@core/service/meta.service";
     selector: "app-about",
     templateUrl: "./about.component.html",
     styleUrls: ["./about.component.css"],
-    standalone: false
+    standalone: false,
 })
 export class AboutComponent implements OnInit {
-  constructor(private metaService: MetaService) {
-    this.metaService.updateMetaTags({
-      title: 'Sobre Mí',
-      description: 'Conoce más sobre mi trayectoria profesional, habilidades técnicas y experiencia en desarrollo web.',
-      image: '/assets/images/nano-img-400.webp'
-    });
-  }
+    constructor(private metaService: MetaService) {
+        this.metaService.updateMetaTags({
+            title: "Sobre Mí",
+            description:
+                "Conoce más sobre mi trayectoria profesional, habilidades técnicas y experiencia en desarrollo web.",
+            image: "/assets/images/nano-img-400.webp",
+        });
+    }
 
-  ngOnInit(): void {}
+    ngOnInit(): void {}
 }

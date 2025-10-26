@@ -11,20 +11,8 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    FooterComponent,
-    LoadingComponent,
-    KbarComponent,
-  ],
-  exports: [HeaderComponent, FooterComponent, LoadingComponent, KbarComponent],
-  imports: [
-    CommonModule,
-    BrowserAnimationsModule,
-    RouterModule,
-    AppRoutingModule,
-    MatDialogModule,
-    MatButtonModule,
-  ],
+    declarations: [HeaderComponent, FooterComponent, LoadingComponent, KbarComponent],
+    exports: [HeaderComponent, FooterComponent, LoadingComponent, KbarComponent],
+    imports: [CommonModule, BrowserAnimationsModule, RouterModule, AppRoutingModule, MatDialogModule, MatButtonModule],
 })
 export class SharedModule {}

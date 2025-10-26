@@ -13,51 +13,48 @@ import { MetaService } from "@core/service/meta.service";
     animations: [fadeInFast, translateLeftIn],
     templateUrl: "./home.component.html",
     styleUrls: ["./home.component.css"],
-    standalone: false
+    standalone: false,
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  stackData: iStack[] = [];
-  timeExperience: number = new Date().getFullYear() - 2021;
-  isThemeDefault: boolean = false;
+    stackData: iStack[] = [];
+    timeExperience: number = new Date().getFullYear() - 2021;
+    isThemeDefault: boolean = false;
 
-  constructor(
-    private notionService: NotionService,
-    private storageService: StorageService,
-    private themeService: ThemeService,
-    private metaService: MetaService
-  ) {
-    this.metaService.updateMetaTags({
-      title: 'Inicio',
-      description: 'Desarrollador web Full Stack especializado en Angular y tecnologías modernas. Explora mi portafolio de proyectos y experiencias.',
-    });
-  }
-
-  ngOnInit(): void {
-    this.stackData = this.storageService.getItem(Storage.STACK);
-    this.checkTheme();
-    this.getStackData();
-  }
-
-  ngOnDestroy(): void {}
-
-  async getStackData() {
-    const newData = await this.notionService.getStacks();
-    newData?.sort((a: iStack, b: iStack) => a.name.localeCompare(b.name));
-    if (
-      !this.storageService.checkObjectsAreEqual(this.stackData, newData, [
-        "img",
-      ])
+    constructor(
+        private notionService: NotionService,
+        private storageService: StorageService,
+        private themeService: ThemeService,
+        private metaService: MetaService
     ) {
-      this.stackData = [...newData];
+        this.metaService.updateMetaTags({
+            title: "Inicio",
+            description:
+                "Desarrollador web Full Stack especializado en Angular y tecnologías modernas. Explora mi portafolio de proyectos y experiencias.",
+        });
     }
 
-    this.stackData.forEach((stack: iStack, index: number) => {
-      stack.img = newData[index].img;
-    });
-    this.storageService.setItem(Storage.STACK, this.stackData);
-  }
+    ngOnInit(): void {
+        this.stackData = this.storageService.getItem(Storage.STACK);
+        this.checkTheme();
+        this.getStackData();
+    }
 
-  checkTheme() {
-    this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
-  }
+    ngOnDestroy(): void {}
+
+    async getStackData() {
+        const newData = await this.notionService.getStacks();
+        newData?.sort((a: iStack, b: iStack) => a.name.localeCompare(b.name));
+        if (!this.storageService.checkObjectsAreEqual(this.stackData, newData, ["img"])) {
+            this.stackData = [...newData];
+        }
+
+        this.stackData.forEach((stack: iStack, index: number) => {
+            stack.img = newData[index].img;
+        });
+        this.storageService.setItem(Storage.STACK, this.stackData);
+    }
+
+    checkTheme() {
+        this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
+    }
 }

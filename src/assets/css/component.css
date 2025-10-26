@@ -1,225 +1,207 @@
 .center-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bg-layout {
-  background-color: var(--color-tertiary);
+    background-color: var(--color-tertiary);
 }
 
 .bg-color-fifteenth {
-  background-color: var(--color-fifteenth);
+    background-color: var(--color-fifteenth);
 }
 
 .color-primary-color {
-  color: var(--color-primary);
+    color: var(--color-primary);
 }
 
 .color-secondary-color {
-  color: var(--color-secondary);
+    color: var(--color-secondary);
 }
 
 .color-quinary-color {
-  color: var(--color-quinary);
+    color: var(--color-quinary);
 }
 
 .color-denary-color {
-  color: var(--color-denary);
+    color: var(--color-denary);
 }
 
 .color-eleventh-color {
-  color: var(--color-eleventh);
+    color: var(--color-eleventh);
 }
 
 .filter-primary-color.default {
-  filter: invert(100%) sepia(25%) saturate(0%) hue-rotate(172deg)
-    brightness(110%) contrast(92%);
+    filter: invert(100%) sepia(25%) saturate(0%) hue-rotate(172deg) brightness(110%) contrast(92%);
 }
 
 .filter-primary-color.white {
-  filter: invert(18%) sepia(0%) saturate(44%) hue-rotate(138deg) brightness(88%)
-    contrast(87%);
+    filter: invert(18%) sepia(0%) saturate(44%) hue-rotate(138deg) brightness(88%) contrast(87%);
 }
 
 .active-color-twentieth {
-  color: var(--color-twentieth) !important;
-  border: 1px solid var(--color-twentieth) !important;
+    color: var(--color-twentieth) !important;
+    border: 1px solid var(--color-twentieth) !important;
 }
 
 .gradient {
-  position: absolute;
-  width: 100vw;
-  height: 175px;
-  background: linear-gradient(
-      278deg,
-      var(--gradient-1) 0%,
-      var(--gradient-2) 45.99%,
-      var(--gradient-3) 100%
-    ),
-    radial-gradient(
-      104.42% 95.46% at 42.78% 42.58%,
-      var(--gradient-4) 0%,
-      var(--gradient-5) 100%
-    );
-  background-size: 180% 180%;
-  opacity: 0.84;
-  filter: blur(60px);
-  -webkit-backdrop-filter: blur(60px);
-  animation: gradient-animation-layout 6s ease infinite;
+    position: absolute;
+    width: 100vw;
+    height: 175px;
+    background:
+        linear-gradient(278deg, var(--gradient-1) 0%, var(--gradient-2) 45.99%, var(--gradient-3) 100%),
+        radial-gradient(104.42% 95.46% at 42.78% 42.58%, var(--gradient-4) 0%, var(--gradient-5) 100%);
+    background-size: 180% 180%;
+    opacity: 0.84;
+    filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
+    animation: gradient-animation-layout 6s ease infinite;
 }
 
 @keyframes gradient-animation-layout {
-  0% {
-    background-position: 0 50%;
-  }
-  50% {
-    background-position: 200% 50%;
-  }
-  100% {
-    background-position: 0 50%;
-  }
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 200% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
 }
 
 .text-header {
-  color: var(--color-nonary);
-  text-align: center;
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-style: normal;
-  font-weight: 900;
-  line-height: 110%; /* 58.29px */
-  letter-spacing: 5px;
-  mix-blend-mode: overlay;
-  -webkit-mix-blend-mode: overlay; /* Para Safari y antiguos navegadores webkit */
-  -moz-mix-blend-mode: overlay; /* Para navegadores basados en Gecko (Firefox) */
-  -o-mix-blend-mode: overlay; /* Para Opera */
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
-  background: transparent;
+    color: var(--color-nonary);
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 110%; /* 58.29px */
+    letter-spacing: 5px;
+    mix-blend-mode: overlay;
+    -webkit-mix-blend-mode: overlay; /* Para Safari y antiguos navegadores webkit */
+    -moz-mix-blend-mode: overlay; /* Para navegadores basados en Gecko (Firefox) */
+    -o-mix-blend-mode: overlay; /* Para Opera */
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+    background: transparent;
 }
 
 .text-header-animation {
-  background: linear-gradient(
-      278deg,
-      var(--gradient-1) 0%,
-      var(--gradient-2) 45.99%,
-      var(--gradient-3) 100%
-    ),
-    radial-gradient(
-      104.42% 95.46% at 42.78% 42.58%,
-      var(--gradient-4) 0%,
-      var(--gradient-5) 100%
-    );
-  filter: blur(100px);
-  animation: gradient-animation 6s ease infinite;
+    background:
+        linear-gradient(278deg, var(--gradient-1) 0%, var(--gradient-2) 45.99%, var(--gradient-3) 100%),
+        radial-gradient(104.42% 95.46% at 42.78% 42.58%, var(--gradient-4) 0%, var(--gradient-5) 100%);
+    filter: blur(100px);
+    animation: gradient-animation 6s ease infinite;
 }
 
 .rectangle {
-  border-radius: 9px;
-  background: var(--color-quinary);
-  backdrop-filter: blur(20px);
-  width: 267px;
-  height: 38px;
+    border-radius: 9px;
+    background: var(--color-quinary);
+    backdrop-filter: blur(20px);
+    width: 267px;
+    height: 38px;
 }
 
 .m-0-auto {
-  margin: 0 auto;
+    margin: 0 auto;
 }
 
 .m-left {
-  margin: 0 auto 0 0;
+    margin: 0 auto 0 0;
 }
 
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 1rem;
-  grid-auto-rows: auto;
-  grid-auto-flow: dense;
-  width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 1rem;
+    grid-auto-rows: auto;
+    grid-auto-flow: dense;
+    width: 100vw;
 }
 
 .card {
-  min-height: 150px;
-  background-size: cover;
-  background-position: 50% 50%;
+    min-height: 150px;
+    background-size: cover;
+    background-position: 50% 50%;
 }
 
 .span-2 {
-  grid-column-end: span 2;
-  grid-row-end: span 2;
-  min-height: 250px;
+    grid-column-end: span 2;
+    grid-row-end: span 2;
+    min-height: 250px;
 }
 
 .span-3 {
-  grid-column-end: span 3;
-  grid-row-end: span 3;
-  min-height: 500px;
+    grid-column-end: span 3;
+    grid-row-end: span 3;
+    min-height: 500px;
 }
 
 @media (max-width: 768px) {
-  .span-2,
-  .span-3 {
-    grid-column-end: auto;
-  }
+    .span-2,
+    .span-3 {
+        grid-column-end: auto;
+    }
 
-  .gallery-grid {
-    grid-auto-rows: auto;
-  }
+    .gallery-grid {
+        grid-auto-rows: auto;
+    }
 
-  .card {
-    min-height: 100px;
-  }
+    .card {
+        min-height: 100px;
+    }
 }
 
 .button-filter {
-  width: auto;
-  height: 40px;
-  flex-shrink: 0;
-  padding: 0 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
-  font-size: 0.875rem;
-  min-width: 48px;
+    width: auto;
+    height: 40px;
+    flex-shrink: 0;
+    padding: 0 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+    min-width: 48px;
 }
 
 .button-filter-color {
-  border-radius: 30px;
-  color: var(--color-primary);
-  border: 1px solid transparent;
+    border-radius: 30px;
+    color: var(--color-primary);
+    border: 1px solid transparent;
 }
 
 .button-filter-color:hover {
-  border: 1px solid var(--color-primary);
+    border: 1px solid var(--color-primary);
 }
 
 .button-filter-selected {
-  border: 1px solid var(--color-quaternary);
+    border: 1px solid var(--color-quaternary);
 }
 
 .bg-loading {
-  background: linear-gradient(
-    110deg,
-    var(--color-secondary) 8%,
-    var(--color-octonary) 18%,
-    var(--color-secondary) 33%
-  );
-  border-radius: 5px;
-  background-size: 200% 100%;
-  animation: 1s gradient-animation linear infinite;
+    background: linear-gradient(
+        110deg,
+        var(--color-secondary) 8%,
+        var(--color-octonary) 18%,
+        var(--color-secondary) 33%
+    );
+    border-radius: 5px;
+    background-size: 200% 100%;
+    animation: 1s gradient-animation linear infinite;
 }
 
 @keyframes gradient-animation {
-  to {
-    background-position-x: -200%;
-  }
+    to {
+        background-position-x: -200%;
+    }
 }
 
 markdown {
-  font-size: 16px;
-  line-height: 1.6;
-  padding: 0 1.25rem 1.25rem;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 0 1.25rem 1.25rem;
 }
 
 markdown h1,
@@ -227,76 +209,76 @@ markdown h2,
 markdown h3,
 markdown h4,
 markdown h5 {
-  margin: 2rem 1rem 0 1rem;
-  font-weight: bold;
-  color: var(--color-eleventh);
+    margin: 2rem 1rem 0 1rem;
+    font-weight: bold;
+    color: var(--color-eleventh);
 }
 
 markdown p,
 markdown ul {
-  margin: 0.5rem 0;
-  color: var(--color-primary);
+    margin: 0.5rem 0;
+    color: var(--color-primary);
 }
 
 markdown ul {
-  padding-left: 1.25rem;
-  list-style-type: disc;
+    padding-left: 1.25rem;
+    list-style-type: disc;
 }
 
 markdown a {
-  color: var(--color-denary);
-  text-decoration: none;
-  font-weight: bold;
+    color: var(--color-denary);
+    text-decoration: none;
+    font-weight: bold;
 }
 
 markdown pre {
-  background: var(--color-sixteenth) !important;
+    background: var(--color-sixteenth) !important;
 }
 
 markdown img {
-  width: clamp(150px, 350px, 100%);
-  height: auto;
+    width: clamp(150px, 350px, 100%);
+    height: auto;
 }
 
 markdown table {
-  width: 100%;
-  color: var(--color-primary);
+    width: 100%;
+    color: var(--color-primary);
 }
 
 markdown th {
-  text-align: left;
+    text-align: left;
 }
 
 markdown strong {
-  color: var(--color-twenty-first);
+    color: var(--color-twenty-first);
 }
 
 .cdk-overlay-container {
-  position: fixed;
-  top: 0;
-  z-index: 50;
+    position: fixed;
+    top: 0;
+    z-index: 50;
 }
 
 .code-container {
-  position: relative;
-  margin: 1.5rem 0;
+    position: relative;
+    margin: 1.5rem 0;
 }
 
 .copy-button {
-  cursor: pointer;
-  padding: 2px 5px;
-  position: absolute;
-  border-radius: 0 0 0 8px;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  color: var(--color-primary);
-  background: var(--color-tertiary);
+    cursor: pointer;
+    padding: 2px 5px;
+    position: absolute;
+    border-radius: 0 0 0 8px;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    color: var(--color-primary);
+    background: var(--color-tertiary);
 }
 .copy-button:hover {
-  opacity: 0.7;
+    opacity: 0.7;
 }
 
 .mat-mdc-dialog-surface {
-  position: static !important;
+    position: static !important;
 }

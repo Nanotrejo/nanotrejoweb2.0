@@ -1,343 +1,298 @@
 <header class="bg-layout fixed w-screen z-20">
-  <nav
-    class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
-    aria-label="Global"
-  >
-    <div class="center-content relative">
-      <div class="flex gap-3 lg:gap-4 lg:flex-1">
-        <a routerLink="/" class="-m-1.5 p-1.5">
-          <span class="sr-only">Nanotrejo</span>
-          <img
-            class="h-8 w-auto"
-            [src]="
-              isThemeDefault
-                ? 'assets/logo/1-removebg.png'
-                : 'assets/logo/2-removebg.png'
-            "
-            alt="Nanotrejo logo"
-          />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/david-trejo-fern%C3%A1ndez-191b95182/"
-          target="_blank"
-          title="Linkedin"
-          class="-m-1.5 p-1.5 hover:opacity-75"
-        >
-          <span class="sr-only">Linkedin</span>
-          <img
-            class="h-8 w-auto contrast-[0.2]"
-            src="assets/images/social-linkedin.svg"
-            alt="Linkedin logo"
-          />
-        </a>
-        <a
-          href="https://github.com/Nanotrejo"
-          target="_blank"
-          title="GitHub"
-          class="-m-1.5 p-1.5 hover:opacity-75"
-        >
-          <span class="sr-only">Github</span>
-          <img
-            class="h-8 w-auto contrast-[0.2]"
-            src="assets/images/github.svg"
-            alt="Github logo"
-          />
-        </a>
-        <a
-          href="https://www.youtube.com/channel/UC9FeUeG4QLI99Ius1gsyKQg"
-          target="_blank"
-          title="Youtube"
-          class="-m-1.5 p-1.5 hover:opacity-75"
-        >
-          <span class="sr-only">Youtube</span>
-          <img
-            class="h-8 w-auto contrast-[0.2]"
-            src="assets/images/youtube.svg"
-            alt="Youtube logo"
-          />
-        </a>
-        <a
-          href="https://open.spotify.com/intl-es/album/4iVXz4Iojxhl6SRdB7tNfU?si=ZipmAaT3TmyjNHbl8MwcmA"
-          target="_blank"
-          title="Spotify"
-          class="-m-1.5 p-1.5 hover:opacity-75"
-        >
-          <span class="sr-only">Spotify</span>
-          <img
-            class="h-8 w-auto contrast-[0.2]"
-            src="assets/images/spotify.svg"
-            alt="Spotify logo"
-          />
-        </a>
-        <a
-          href="https://music.youtube.com/playlist?list=OLAK5uy_k1pHVGElYlpAlunq68rPk5B8fr6v0adj0&si=PfAqdTwsNlktBqsP"
-          target="_blank"
-          title="Youtube Music"
-          class="-m-1.5 p-1.5 hover:opacity-75"
-        >
-          <span class="sr-only">Youtube Music</span>
-          <img
-            class="h-8 w-auto contrast-[0.2]"
-            src="assets/images/youtube-music.svg"
-            alt="Youtube Music logo"
-          />
-        </a>
-        <a
-          href="https://music.apple.com/es/album/nanotrejo-piano-instrumental-versions/1720856839"
-          target="_blank"
-          title="Apple Music"
-          class="-m-1.5 p-1.5 hover:opacity-75"
-        >
-          <span class="sr-only">Apple Music</span>
-          <img
-            class="h-8 w-auto contrast-[0.2]"
-            src="assets/images/apple-music.svg"
-            alt="Apple Music logo"
-          />
-        </a>
-      </div>
-      <div
-        class="center-content flex-col gap-3 absolute lg:static lg:flex-row lg:ml-3 left-0 top-10"
-      >
-        <button
-          class="center-content bg-layout rounded-full"
-          (click)="changeTheme()"
-        >
-          <img
-            class="h-auto w-[21px] filter-primary-color contrast-[0.2]"
-            src="assets/icons/moon.svg"
-            alt="Moon icon"
-          />
-        </button>
-        <button
-          class="center-content bg-layout rounded-full"
-          (click)="openKbarDialog()"
-        >
-          <span
-            class="h-auto w-[21px] filter-primary-color contrast-[0.2] material-icons"
-            >search</span
-          >
-        </button>
-      </div>
-    </div>
-    <div class="flex lg:hidden">
-      <button
-        (click)="isMenuOpen = !isMenuOpen"
-        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-      >
-        <span class="sr-only">Open main menu</span>
-        <svg
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          aria-hidden="true"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            color="var(--color-primary)"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-          />
-        </svg>
-      </button>
-    </div>
-    <header id="loading-header" class="hidden lg:flex lg:gap-x-12 relative">
-      @for (item of menuItems; track item?.name) {
-          @if (!item?.more) {
-            <a
-              [routerLink]="item?.url"
-              fragment="{{ item?.fragment }}"
-              class="text-sm font-semibold leading-6 color-primary-color"
-            >{{ item?.name }}</a>
-          }
-          <div [class.hidden]="!item?.more" class="relative">
-            <div
-              (click)="isFlyoutMenu = !isFlyoutMenu"
-              type="button"
-              class="flex items-center gap-x-1 text-sm font-semibold leading-6 color-primary-color cursor-pointer"
-              aria-expanded="false"
-            >
-              {{ item?.name }}
-              <span class="material-icons"> expand_more </span>
+    <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <div class="center-content relative">
+            <div class="flex gap-3 lg:gap-4 lg:flex-1">
+                <a routerLink="/" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Nanotrejo</span>
+                    <img
+                        class="h-8 w-auto"
+                        [src]="isThemeDefault ? 'assets/logo/1-removebg.png' : 'assets/logo/2-removebg.png'"
+                        alt="Nanotrejo logo"
+                    />
+                </a>
+                <a
+                    href="https://www.linkedin.com/in/david-trejo-fern%C3%A1ndez-191b95182/"
+                    target="_blank"
+                    title="Linkedin"
+                    class="-m-1.5 p-1.5 hover:opacity-75"
+                >
+                    <span class="sr-only">Linkedin</span>
+                    <img
+                        class="h-8 w-auto contrast-[0.2]"
+                        src="assets/images/social-linkedin.svg"
+                        alt="Linkedin logo"
+                    />
+                </a>
+                <a
+                    href="https://github.com/Nanotrejo"
+                    target="_blank"
+                    title="GitHub"
+                    class="-m-1.5 p-1.5 hover:opacity-75"
+                >
+                    <span class="sr-only">Github</span>
+                    <img class="h-8 w-auto contrast-[0.2]" src="assets/images/github.svg" alt="Github logo" />
+                </a>
+                <a
+                    href="https://www.youtube.com/channel/UC9FeUeG4QLI99Ius1gsyKQg"
+                    target="_blank"
+                    title="Youtube"
+                    class="-m-1.5 p-1.5 hover:opacity-75"
+                >
+                    <span class="sr-only">Youtube</span>
+                    <img class="h-8 w-auto contrast-[0.2]" src="assets/images/youtube.svg" alt="Youtube logo" />
+                </a>
+                <a
+                    href="https://open.spotify.com/intl-es/album/4iVXz4Iojxhl6SRdB7tNfU?si=ZipmAaT3TmyjNHbl8MwcmA"
+                    target="_blank"
+                    title="Spotify"
+                    class="-m-1.5 p-1.5 hover:opacity-75"
+                >
+                    <span class="sr-only">Spotify</span>
+                    <img class="h-8 w-auto contrast-[0.2]" src="assets/images/spotify.svg" alt="Spotify logo" />
+                </a>
+                <a
+                    href="https://music.youtube.com/playlist?list=OLAK5uy_k1pHVGElYlpAlunq68rPk5B8fr6v0adj0&si=PfAqdTwsNlktBqsP"
+                    target="_blank"
+                    title="Youtube Music"
+                    class="-m-1.5 p-1.5 hover:opacity-75"
+                >
+                    <span class="sr-only">Youtube Music</span>
+                    <img
+                        class="h-8 w-auto contrast-[0.2]"
+                        src="assets/images/youtube-music.svg"
+                        alt="Youtube Music logo"
+                    />
+                </a>
+                <a
+                    href="https://music.apple.com/es/album/nanotrejo-piano-instrumental-versions/1720856839"
+                    target="_blank"
+                    title="Apple Music"
+                    class="-m-1.5 p-1.5 hover:opacity-75"
+                >
+                    <span class="sr-only">Apple Music</span>
+                    <img class="h-8 w-auto contrast-[0.2]" src="assets/images/apple-music.svg" alt="Apple Music logo" />
+                </a>
             </div>
-            @if (isFlyoutMenu) {
-              <div
-                @translateIn
-                @translateOut
-                (mouseleave)="isFlyoutMenu = false"
-                class="absolute right-0 top-full z-20 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
-              >
-                <div class="p-4">
-                  @for (it of item?.more; track it?.name) {
-                    <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-100">
-                      <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg">
-                        <span class="material-icons">{{ it?.icon }}</span>
-                      </div>
-                      <div class="flex-auto">
-                        @if (it?.url !== '/gastronomia') {
-                          <a
-                            [routerLink]="it?.url"
-                            class="block font-semibold text-gray-900"
-                          >
-                            {{ it?.name }}
-                            <span class="absolute inset-0"></span>
-                          </a>
-                        }
-                        @if (it?.url === '/gastronomia') {
-                          <a
-                            href="https://nanotrejo.notion.site/29b4e6c900a04bd9aba095e60e9277ef?v=dfe0d94e9194485fabb2a1d2b8a097c8"
-                            target="_blank"
-                            class="block font-semibold text-gray-900"
-                          >
-                            {{ it?.name }}
-                            <span class="absolute inset-0"></span>
-                          </a>
-                        }
-                        <p class="mt-1 text-gray-600">
-                          {{ it?.description }}
-                        </p>
-                      </div>
-                    </div>
-                  }
-                </div>
-              </div>
-            }
-          </div>
-      }
-
-      <div
-        id="menu-backdrop"
-        class="fixed bg-white/5 backdrop-blur-lg rounded translate-x-[var(--left)] translate-y-[var(--top)] left-0 top-0 w-[var(--width)] h-[var(--height)] transition-all duration-500 ease-in-out opacity-0 -z-10"
-      ></div>
-    </header>
-  </nav>
-  <!-- Mobile menu, show/hide based on menu open state. -->
-  @if (isMenuOpen) {
-    <div
-      @fadeInFast
-      @fadeOutFast
-      x-description="Mobile menu, show/hide based on menu open state"
-      class="lg:hidden"
-      role="dialog"
-      aria-modal="true"
-    >
-      <!-- Background backdrop, show/hide based on slide-over state. -->
-      @if (isSlideOver) {
-        <div
-          @translateIn
-          @translateOut
-          class="fixed inset-0 z-10"
-        ></div>
-      }
-      <div
-        class="fixed inset-y-0 right-0 z-20 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-      >
-        <div class="flex items-center justify-between">
-          <a
-            routerLink="/"
-            class="-m-1.5 p-1.5"
-            (click)="isMenuOpen = !isMenuOpen"
-          >
-            <span class="sr-only">Nanotrejo</span>
-            <img
-              class="h-8 w-auto"
-              src="assets/logo/2-removebg.png"
-              alt="Nanotrejo logo"
-            />
-          </a>
-          <button
-            (click)="isMenuOpen = !isMenuOpen"
-            type="button"
-            class="-m-2.5 rounded-md p-2.5 text-gray-700"
-          >
-            <span class="sr-only">Close menu</span>
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+            <div class="center-content flex-col gap-3 absolute lg:static lg:flex-row lg:ml-3 left-0 top-10">
+                <button class="center-content bg-layout rounded-full" (click)="changeTheme()">
+                    <img
+                        class="h-auto w-[21px] filter-primary-color contrast-[0.2]"
+                        src="assets/icons/moon.svg"
+                        alt="Moon icon"
+                    />
+                </button>
+                <button class="center-content bg-layout rounded-full" (click)="openKbarDialog()">
+                    <span class="h-auto w-[21px] filter-primary-color contrast-[0.2] material-icons">search</span>
+                </button>
+            </div>
         </div>
-        <div class="mt-6 flow-root">
-          <div class="-my-6 divide-y divide-gray-500/10">
-            <div class="space-y-2 py-6">
-              @for (item of menuItems; track item?.name) {
-                <div>
-                  @if (!item?.more) {
+        <div class="flex lg:hidden">
+            <button
+                (click)="isMenuOpen = !isMenuOpen"
+                class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            >
+                <span class="sr-only">Open main menu</span>
+                <svg
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        color="var(--color-primary)"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                    />
+                </svg>
+            </button>
+        </div>
+        <header id="loading-header" class="hidden lg:flex lg:gap-x-12 relative">
+            @for (item of menuItems; track item?.name) {
+                @if (!item?.more) {
                     <a
-                      [routerLink]="item?.url"
-                      (click)="isMenuOpen = false"
-                      fragment="{{ item?.fragment }}"
-                      class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
-                    >{{ item?.name }}</a>
-                  }
-                  <div [class.hidden]="!item?.more" class="-mx-3">
-                    <button
-                      (click)="isMenu = !isMenu"
-                      type="button"
-                      class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
-                      aria-controls="disclosure-1"
-                      aria-expanded="false"
+                        [routerLink]="item?.url"
+                        fragment="{{ item?.fragment }}"
+                        class="text-sm font-semibold leading-6 color-primary-color"
+                        >{{ item?.name }}</a
                     >
-                      {{ item?.name }}
-                      <span class="material-icons">expand_more</span>
-                    </button>
-                    @if (isMenu) {
-                      <div class="mt-2 space-y-2" id="disclosure-1">
-                        @for (it of item?.more; track it?.url) {
-                          <div>
-                            @if (it?.url !== '/gastronomia') {
-                              <a
-                                [routerLink]="it?.url"
-                                (click)="isMenuOpen = false"
-                                class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"
-                              ><span class="material-icons">{{ it?.icon }}</span>{{ it?.name }}</a>
-                            }
-                            @if (it?.url === '/gastronomia') {
-                              <a
-                                href="https://nanotrejo.notion.site/29b4e6c900a04bd9aba095e60e9277ef?v=dfe0d94e9194485fabb2a1d2b8a097c8"
-                                target="_blank"
-                                class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"
-                              ><span class="material-icons">{{ it?.icon }}</span>{{ it?.name }}</a>
-                            }
-                          </div>
-                        }
-                      </div>
+                }
+                <div [class.hidden]="!item?.more" class="relative">
+                    <div
+                        (click)="isFlyoutMenu = !isFlyoutMenu"
+                        type="button"
+                        class="flex items-center gap-x-1 text-sm font-semibold leading-6 color-primary-color cursor-pointer"
+                        aria-expanded="false"
+                    >
+                        {{ item?.name }}
+                        <span class="material-icons"> expand_more </span>
+                    </div>
+                    @if (isFlyoutMenu) {
+                        <div
+                            @translateIn
+                            @translateOut
+                            (mouseleave)="isFlyoutMenu = false"
+                            class="absolute right-0 top-full z-20 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
+                        >
+                            <div class="p-4">
+                                @for (it of item?.more; track it?.name) {
+                                    <div
+                                        class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-100"
+                                    >
+                                        <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg">
+                                            <span class="material-icons">{{ it?.icon }}</span>
+                                        </div>
+                                        <div class="flex-auto">
+                                            @if (it?.url !== "/gastronomia") {
+                                                <a [routerLink]="it?.url" class="block font-semibold text-gray-900">
+                                                    {{ it?.name }}
+                                                    <span class="absolute inset-0"></span>
+                                                </a>
+                                            }
+                                            @if (it?.url === "/gastronomia") {
+                                                <a
+                                                    href="https://nanotrejo.notion.site/29b4e6c900a04bd9aba095e60e9277ef?v=dfe0d94e9194485fabb2a1d2b8a097c8"
+                                                    target="_blank"
+                                                    class="block font-semibold text-gray-900"
+                                                >
+                                                    {{ it?.name }}
+                                                    <span class="absolute inset-0"></span>
+                                                </a>
+                                            }
+                                            <p class="mt-1 text-gray-600">
+                                                {{ it?.description }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
                     }
-                  </div>
                 </div>
-              }
+            }
+
+            <div
+                id="menu-backdrop"
+                class="fixed bg-white/5 backdrop-blur-lg rounded translate-x-[var(--left)] translate-y-[var(--top)] left-0 top-0 w-[var(--width)] h-[var(--height)] transition-all duration-500 ease-in-out opacity-0 -z-10"
+            ></div>
+        </header>
+    </nav>
+    <!-- Mobile menu, show/hide based on menu open state. -->
+    @if (isMenuOpen) {
+        <div
+            @fadeInFast
+            @fadeOutFast
+            x-description="Mobile menu, show/hide based on menu open state"
+            class="lg:hidden"
+            role="dialog"
+            aria-modal="true"
+        >
+            <!-- Background backdrop, show/hide based on slide-over state. -->
+            @if (isSlideOver) {
+                <div @translateIn @translateOut class="fixed inset-0 z-10"></div>
+            }
+            <div
+                class="fixed inset-y-0 right-0 z-20 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+            >
+                <div class="flex items-center justify-between">
+                    <a routerLink="/" class="-m-1.5 p-1.5" (click)="isMenuOpen = !isMenuOpen">
+                        <span class="sr-only">Nanotrejo</span>
+                        <img class="h-8 w-auto" src="assets/logo/2-removebg.png" alt="Nanotrejo logo" />
+                    </a>
+                    <button
+                        (click)="isMenuOpen = !isMenuOpen"
+                        type="button"
+                        class="-m-2.5 rounded-md p-2.5 text-gray-700"
+                    >
+                        <span class="sr-only">Close menu</span>
+                        <svg
+                            class="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="mt-6 flow-root">
+                    <div class="-my-6 divide-y divide-gray-500/10">
+                        <div class="space-y-2 py-6">
+                            @for (item of menuItems; track item?.name) {
+                                <div>
+                                    @if (!item?.more) {
+                                        <a
+                                            [routerLink]="item?.url"
+                                            (click)="isMenuOpen = false"
+                                            fragment="{{ item?.fragment }}"
+                                            class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
+                                            >{{ item?.name }}</a
+                                        >
+                                    }
+                                    <div [class.hidden]="!item?.more" class="-mx-3">
+                                        <button
+                                            (click)="isMenu = !isMenu"
+                                            type="button"
+                                            class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
+                                            aria-controls="disclosure-1"
+                                            aria-expanded="false"
+                                        >
+                                            {{ item?.name }}
+                                            <span class="material-icons">expand_more</span>
+                                        </button>
+                                        @if (isMenu) {
+                                            <div class="mt-2 space-y-2" id="disclosure-1">
+                                                @for (it of item?.more; track it?.url) {
+                                                    <div>
+                                                        @if (it?.url !== "/gastronomia") {
+                                                            <a
+                                                                [routerLink]="it?.url"
+                                                                (click)="isMenuOpen = false"
+                                                                class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"
+                                                                ><span class="material-icons">{{ it?.icon }}</span
+                                                                >{{ it?.name }}</a
+                                                            >
+                                                        }
+                                                        @if (it?.url === "/gastronomia") {
+                                                            <a
+                                                                href="https://nanotrejo.notion.site/29b4e6c900a04bd9aba095e60e9277ef?v=dfe0d94e9194485fabb2a1d2b8a097c8"
+                                                                target="_blank"
+                                                                class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"
+                                                                ><span class="material-icons">{{ it?.icon }}</span
+                                                                >{{ it?.name }}</a
+                                                            >
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  }
-                  <!--                                    >-->
-                  <!--                  <a-->
-                  <!--                    href="#"-->
-                  <!--                    class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"-->
-                  <!--                  >-->
-                  <!--                    <span class="material-icons">play_circle</span> Watch-->
-                  <!--                    demo</a-->
-                  <!--                  >-->
-                  <!--                  <a-->
-                  <!--                    href="#"-->
-                  <!--                    class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"-->
-                  <!--                  >-->
-                  <!--                    <span class="material-icons">call</span> Contact sales</a-->
-                  <!--                  >-->
-                <!-- cierres de div eliminados para balancear etiquetas -->
-      <!-- cierres de div eliminados para balancear etiquetas -->
+    }
+    <!--                                    >-->
+    <!--                  <a-->
+    <!--                    href="#"-->
+    <!--                    class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"-->
+    <!--                  >-->
+    <!--                    <span class="material-icons">play_circle</span> Watch-->
+    <!--                    demo</a-->
+    <!--                  >-->
+    <!--                  <a-->
+    <!--                    href="#"-->
+    <!--                    class="center-content justify-start rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 gap-4 hover:bg-gray-100"-->
+    <!--                  >-->
+    <!--                    <span class="material-icons">call</span> Contact sales</a-->
+    <!--                  >-->
+    <!-- cierres de div eliminados para balancear etiquetas -->
+    <!-- cierres de div eliminados para balancear etiquetas -->
 </header>

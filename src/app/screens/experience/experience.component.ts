@@ -8,56 +8,56 @@ import { Storage } from "@core/interface/storage";
     selector: "app-experience",
     templateUrl: "./experience.component.html",
     styleUrls: ["./experience.component.css"],
-    standalone: false
+    standalone: false,
 })
 export class ExperienceComponent implements OnInit, OnDestroy {
-  experienceData: iExperience[] = [];
-  Type_Experience = Type_Experience;
-  private scrollListener!: EventListener;
+    experienceData: iExperience[] = [];
+    Type_Experience = Type_Experience;
+    private scrollListener!: EventListener;
 
-  constructor(
-    private notionService: NotionService,
-    private storageService: StorageService,
-  ) {}
+    constructor(
+        private notionService: NotionService,
+        private storageService: StorageService
+    ) {}
 
-  ngOnInit(): void {
-    this.experienceData = this.storageService.getItem(Storage.EXPERIENCE);
-    this.scrollListener = this.animationCard.bind(this);
-    this.getExperience();
-    setTimeout(() => {
-      window.addEventListener("scroll", this.scrollListener);
-    }, 1000);
-  }
+    ngOnInit(): void {
+        this.experienceData = this.storageService.getItem(Storage.EXPERIENCE);
+        this.scrollListener = this.animationCard.bind(this);
+        this.getExperience();
+        setTimeout(() => {
+            window.addEventListener("scroll", this.scrollListener);
+        }, 1000);
+    }
 
-  ngOnDestroy(): void {
-    window.removeEventListener("scroll", this.scrollListener);
-  }
+    ngOnDestroy(): void {
+        window.removeEventListener("scroll", this.scrollListener);
+    }
 
-  async getExperience() {
-    this.experienceData = await this.notionService.getExperience();
-    this.experienceData
-      .sort((a: iExperience, b: iExperience) => {
-        return new Date(a.date).getTime() - new Date(b.date).getTime();
-      })
-      .reverse();
-    this.storageService.setItem(Storage.EXPERIENCE, this.experienceData);
-  }
+    async getExperience() {
+        this.experienceData = await this.notionService.getExperience();
+        this.experienceData
+            .sort((a: iExperience, b: iExperience) => {
+                return new Date(a.date).getTime() - new Date(b.date).getTime();
+            })
+            .reverse();
+        this.storageService.setItem(Storage.EXPERIENCE, this.experienceData);
+    }
 
-  redirectToExternalPage(url: string) {
-    if (!url) return;
-    window.open(url, "_blank");
-  }
+    redirectToExternalPage(url: string) {
+        if (!url) return;
+        window.open(url, "_blank");
+    }
 
-  animationCard(event: Event) {
-    const cards = document.querySelectorAll(".cd-timeline-content");
-    cards?.forEach((card) => {
-      const cardTop = card.getBoundingClientRect().top;
-      const cardBottom = card.getBoundingClientRect().bottom;
-      if (cardTop < window.innerHeight && cardBottom > 0) {
-        // card.classList.add("show");
-      } else {
-        // card.classList.remove('show')
-      }
-    });
-  }
+    animationCard(event: Event) {
+        const cards = document.querySelectorAll(".cd-timeline-content");
+        cards?.forEach(card => {
+            const cardTop = card.getBoundingClientRect().top;
+            const cardBottom = card.getBoundingClientRect().bottom;
+            if (cardTop < window.innerHeight && cardBottom > 0) {
+                // card.classList.add("show");
+            } else {
+                // card.classList.remove('show')
+            }
+        });
+    }
 }

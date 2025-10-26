@@ -20,9 +20,12 @@ import { FormsModule } from "@angular/forms";
 
 registerLocaleData(localeES, "es");
 
-@NgModule({ bootstrap: [AppComponent],
+@NgModule({
+    bootstrap: [AppComponent],
     declarations: [AppComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA], imports: [BrowserModule,
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    imports: [
+        BrowserModule,
         AppRoutingModule,
         RouterModule,
         BrowserAnimationsModule,
@@ -37,9 +40,12 @@ registerLocaleData(localeES, "es");
             // Register the ServiceWorker as soon as the app is stable
             // or after 30 seconds (whichever comes first).
             registrationStrategy: "registerWhenStable:30000",
-        })], providers: [
+        }),
+    ],
+    providers: [
         { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
         { provide: LOCALE_ID, useValue: "es" },
         provideHttpClient(withInterceptorsFromDi()),
-    ] })
+    ],
+})
 export class AppModule {}

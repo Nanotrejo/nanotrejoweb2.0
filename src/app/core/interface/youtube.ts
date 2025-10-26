@@ -1,52 +1,52 @@
 export interface Youtube {
-  kind: string;
-  etag: string;
-  nextPageToken: string;
-  items: Item[];
-  pageInfo: PageInfo;
+    kind: string;
+    etag: string;
+    nextPageToken: string;
+    items: Item[];
+    pageInfo: PageInfo;
 }
 
 export interface Item {
-  kind: string;
-  etag: string;
-  id: string;
-  snippet: Video;
+    kind: string;
+    etag: string;
+    id: string;
+    snippet: Video;
 }
 
 export interface Video {
-  publishedAt: Date;
-  channelId: string;
-  title: string;
-  description: string;
-  thumbnails: Thumbnails;
-  channelTitle: string;
-  playlistId: string;
-  position: number;
-  resourceId: ResourceID;
-  videoOwnerChannelTitle: string;
-  videoOwnerChannelId: string;
+    publishedAt: Date;
+    channelId: string;
+    title: string;
+    description: string;
+    thumbnails: Thumbnails;
+    channelTitle: string;
+    playlistId: string;
+    position: number;
+    resourceId: ResourceID;
+    videoOwnerChannelTitle: string;
+    videoOwnerChannelId: string;
 }
 
 export interface ResourceID {
-  kind: string;
-  videoId: string;
+    kind: string;
+    videoId: string;
 }
 
 export interface Thumbnails {
-  default: Default;
-  medium: Default;
-  high: Default;
-  standard: Default;
-  maxres: Default;
+    default: Default;
+    medium: Default;
+    high: Default;
+    standard: Default;
+    maxres: Default;
 }
 
 export interface Default {
-  url: string;
-  width: number;
-  height: number;
+    url: string;
+    width: number;
+    height: number;
 }
 
 export interface PageInfo {
-  totalResults: number;
-  resultsPerPage: number;
+    totalResults: number;
+    resultsPerPage: number;
 }

@@ -9,58 +9,72 @@ import { StorageService } from "@core/service/storage.service";
 import { Storage } from "@core/interface/storage";
 
 @Injectable({
-  providedIn: "root",
+    providedIn: "root",
 })
 export class NotionService {
-  private readonly url = environment.notion_api || "";
-  cheatsheet: iCheatsheet[] = [];
+    private readonly url = environment.notion_api || "";
+    cheatsheet: iCheatsheet[] = [];
 
-  constructor(
-    private http: HttpClient,
-    private storageService: StorageService,
-  ) {
-    this.cheatsheet = this.storageService.getItem(Storage.CHEATSHEET) || [];
-  }
-
-  async getStacks(): Promise<iStack[]> {
-    return await this.http.get<iStack[]>(`${this.url}/stack`).toPromise();
-  }
-
-  async getProject(): Promise<iProject[]> {
-    try {
-      const response = await this.http.get<iProject[]>(`${this.url}/project`).toPromise();
-      if (!response) throw new Error('No data received from API');
-      return response;
-    } catch (error) {
-      console.error('Error fetching projects:', error);
-      return [];
+    constructor(
+        private http: HttpClient,
+        private storageService: StorageService
+    ) {
+        this.cheatsheet = this.storageService.getItem(Storage.CHEATSHEET) || [];
     }
-  }
 
-  async getExperience(): Promise<iExperience[]> {
-    return await this.http
-      .get<iExperience[]>(`${this.url}/experience`)
-      .toPromise();
-  }
+    /**
+     * Get the user's tech stacks
+     * @returns {Promise<iStack[]>} tech stack items
+     */
+    async getStacks(): Promise<iStack[]> {
+        return await this.http.get<iStack[]>(`${this.url}/stack`).toPromise();
+    }
 
-  async getCheatsheet(): Promise<iCheatsheet[]> {
-    return await this.http
-      .get<iCheatsheet[]>(`${this.url}/cheatsheet`)
-      .toPromise();
-  }
+    /**
+     * Get the user's projects
+     * @returns {Promise<iProject[]>} project items
+     */
+    async getProject(): Promise<iProject[]> {
+        try {
+            const response = await this.http.get<iProject[]>(`${this.url}/project`).toPromise();
+            if (!response) throw new Error("No data received from API");
+            return response;
+        } catch (error) {
+            console.error("Error fetching projects:", error);
+            return [];
+        }
+    }
 
-  async getCheatsheetById(id: string): Promise<iCheatsheet> {
-    const headers = new HttpHeaders({
-      "Content-Type": "application/json",
-      id: id,
-    });
-    return await this.http
-      .get<iCheatsheet>(
-        `${this.url}/cheatsheet-by-id?timestamp=${new Date().getTime()}`,
-        {
-          headers: headers,
-        },
-      )
-      .toPromise();
-  }
+    /**
+     * Get the user's experience
+     * @returns {Promise<iExperience[]>} experience items
+     */
+    async getExperience(): Promise<iExperience[]> {
+        return await this.http.get<iExperience[]>(`${this.url}/experience`).toPromise();
+    }
+
+    /**
+     * Get the cheatsheet
+     * @returns {Promise<iCheatsheet[]>} cheatsheet items
+     */
+    async getCheatsheet(): Promise<iCheatsheet[]> {
+        return await this.http.get<iCheatsheet[]>(`${this.url}/cheatsheet`).toPromise();
+    }
+
+    /**
+     * Get a cheatsheet by its ID
+     * @param id
+     * @returns {iCheatsheet} cheatsheet item
+     */
+    async getCheatsheetById(id: string): Promise<iCheatsheet> {
+        const headers = new HttpHeaders({
+            "Content-Type": "application/json",
+            id: id,
+        });
+        return await this.http
+            .get<iCheatsheet>(`${this.url}/cheatsheet-by-id?timestamp=${new Date().getTime()}`, {
+                headers: headers,
+            })
+            .toPromise();
+    }
 }

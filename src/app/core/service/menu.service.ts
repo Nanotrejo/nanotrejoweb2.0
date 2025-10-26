@@ -2,18 +2,18 @@ import { Injectable } from "@angular/core";
 import { iMenu, menuData } from "@core/interface/menu";
 
 @Injectable({
-  providedIn: "root",
+    providedIn: "root",
 })
 export class MenuService {
-  menu: iMenu[] = menuData;
+    menu: iMenu[] = menuData;
 
-  constructor() {}
+    constructor() {}
 
-  /**
-   * @description Get menu items
-   * @return {iMenu[]}
-   */
-  getMenu(): iMenu[] {
-    return this.menu;
-  }
+    /**
+     * @description Get menu items
+     * @return {iMenu[]}
+     */
+    getMenu(): iMenu[] {
+        return this.menu;
+    }
 }

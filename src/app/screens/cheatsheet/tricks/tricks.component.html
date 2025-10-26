@@ -1,78 +1,65 @@
 <div class="center-content flex-col h-full max-w-7xl mx-auto">
-  <div class="h-full p-5 center-content flex-wrap mt-[6rem] gap-5">
-    <div @translateLeftIn class="relative">
-      <img
-        class="w-screen h-[312px] object-fill sm:object-cover rounded-3xl"
-        [src]="data?.img_sanitized"
-        [alt]="data?.title"
-      />
-      <div class="absolute top-1 flex flex-1 justify-end right-1">
-        <a
-          [routerLink]="'/trucos'"
-          class="cursor-pointer button-filter button-filter-color filter-color flex bg-layout"
-        >
-          <span class="material-icons">close</span>
-        </a>
-      </div>
-      <div class="absolute bottom-1 flex flex-1 justify-start right-1 left-1">
-        <button
-          (click)="copyCurrentUrlToClipboard()"
-          class="cursor-pointer button-filter button-filter-color filter-color flex bg-layout"
-        >
-          @if (!linkCopied) {
-          <label class="center-content gap-3">
-            Comparte este post <span class="material-icons">share</span>
-          </label>
-          } @else{
-          <label class="center-content gap-3">
-            Link copiado <span class="material-icons">inventory</span>
-          </label>
-          }
-        </button>
-      </div>
-    </div>
-    <div
-      @translateRightIn
-      class="center-content flex-wrap gap-3 flex-col w-full"
-    >
-      <div class="center-content gap-3">
-        <a
-          (click)="goToArrow('prev')"
-          [class.opacity-0]="!loadingGoTo || goTo.prev === ''"
-          class="cursor-pointer button-filter button-filter-color filter-color flex bg-layout"
-        >
-          <span class="material-icons">arrow_back</span>
-        </a>
+    <div class="h-full p-5 center-content flex-wrap mt-[6rem] gap-5">
+        <div @translateLeftIn class="relative">
+            <img
+                class="w-screen h-[312px] object-fill sm:object-cover rounded-3xl"
+                [src]="data?.img_sanitized"
+                [alt]="data?.title"
+            />
+            <div class="absolute top-1 flex flex-1 justify-end right-1">
+                <a
+                    [routerLink]="'/trucos'"
+                    class="cursor-pointer button-filter button-filter-color filter-color flex bg-layout"
+                >
+                    <span class="material-icons">close</span>
+                </a>
+            </div>
+            <div class="absolute bottom-1 flex flex-1 justify-start right-1 left-1">
+                <button
+                    (click)="copyCurrentUrlToClipboard()"
+                    class="cursor-pointer button-filter button-filter-color filter-color flex bg-layout"
+                >
+                    @if (!linkCopied) {
+                        <label class="center-content gap-3">
+                            Comparte este post <span class="material-icons">share</span>
+                        </label>
+                    } @else {
+                        <label class="center-content gap-3">
+                            Link copiado <span class="material-icons">inventory</span>
+                        </label>
+                    }
+                </button>
+            </div>
+        </div>
+        <div @translateRightIn class="center-content flex-wrap gap-3 flex-col w-full">
+            <div class="center-content gap-3">
+                <a
+                    (click)="goToArrow('prev')"
+                    [class.opacity-0]="!loadingGoTo || goTo.prev === ''"
+                    class="cursor-pointer button-filter button-filter-color filter-color flex bg-layout"
+                >
+                    <span class="material-icons">arrow_back</span>
+                </a>
 
-        <h1 class="font-bold text-3xl color-denary-color text-center">
-          {{ data?.title }}
-        </h1>
-        <a
-          (click)="goToArrow('next')"
-          [class.opacity-0]="!loadingGoTo || goTo.next === ''"
-          class="cursor-pointer button-filter button-filter-color filter-color flex bg-layout"
-        >
-          <span class="material-icons">arrow_forward</span>
-        </a>
-      </div>
-      <div class="center-content justify-between w-full">
-        <label class="color-eleventh-color w-full text-start text-sm font-bold"
-          >Publicado el {{ data?.date | date }}</label
-        >
-        <label class="color-eleventh-color w-full text-end text-sm font-bold">{{
-          data?.author
-        }}</label>
-      </div>
-      <small class="w-full text-start color-secondary-color">{{
-        data?.description
-      }}</small>
+                <h1 class="font-bold text-3xl color-denary-color text-center">
+                    {{ data?.title }}
+                </h1>
+                <a
+                    (click)="goToArrow('next')"
+                    [class.opacity-0]="!loadingGoTo || goTo.next === ''"
+                    class="cursor-pointer button-filter button-filter-color filter-color flex bg-layout"
+                >
+                    <span class="material-icons">arrow_forward</span>
+                </a>
+            </div>
+            <div class="center-content justify-between w-full">
+                <label class="color-eleventh-color w-full text-start text-sm font-bold"
+                    >Publicado el {{ data?.date | date }}</label
+                >
+                <label class="color-eleventh-color w-full text-end text-sm font-bold">{{ data?.author }}</label>
+            </div>
+            <small class="w-full text-start color-secondary-color">{{ data?.description }}</small>
+        </div>
     </div>
-  </div>
-  <markdown
-    @fadeInFast
-    class="w-full h-full"
-    [data]="markdown"
-    lineNumbers
-    ngPreserveWhitespaces
-  ></markdown>
+    <markdown @fadeInFast class="w-full h-full" [data]="markdown" lineNumbers ngPreserveWhitespaces></markdown>
 </div>

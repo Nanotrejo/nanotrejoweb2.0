@@ -6,10 +6,10 @@ import { fadeInSlow } from "@assets/css/animation";
     animations: [fadeInSlow],
     templateUrl: "./main.component.html",
     styleUrls: ["./main.component.css"],
-    standalone: false
+    standalone: false,
 })
 export class MainComponent implements OnInit {
-  constructor() {}
+    constructor() {}
 
-  ngOnInit(): void {}
+    ngOnInit(): void {}
 }

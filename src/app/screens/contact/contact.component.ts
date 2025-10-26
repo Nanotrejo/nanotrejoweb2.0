@@ -4,10 +4,10 @@ import { Component, OnInit } from "@angular/core";
     selector: "app-contact",
     templateUrl: "./contact.component.html",
     styleUrls: ["./contact.component.css"],
-    standalone: false
+    standalone: false,
 })
 export class ContactComponent implements OnInit {
-  constructor() {}
+    constructor() {}
 
-  ngOnInit(): void {}
+    ngOnInit(): void {}
 }

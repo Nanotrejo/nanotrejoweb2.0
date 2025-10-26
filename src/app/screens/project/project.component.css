@@ -1,6 +1,6 @@
 .stack-item {
-  border: 1px solid var(--color-primary);
-  border-radius: 5px;
-  padding: 2px 6px;
-  cursor: default;
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+    padding: 2px 6px;
+    cursor: default;
 }

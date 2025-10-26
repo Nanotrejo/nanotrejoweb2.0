@@ -15,22 +15,17 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AboutComponent } from "./about/about.component";
 
 @NgModule({
-  declarations: [
-    ProjectComponent,
-    MainComponent,
-    ExperienceComponent,
-    ContactComponent,
-    MusicComponent,
-    CheatsheetComponent,
-    TricksComponent,
-    AboutComponent,
-    HomeComponent,
-  ],
-  imports: [
-    CommonModule,
-    BrowserAnimationsModule,
-    RouterModule,
-    SharedModule,
-    MarkdownModule.forRoot()  ],
+    declarations: [
+        ProjectComponent,
+        MainComponent,
+        ExperienceComponent,
+        ContactComponent,
+        MusicComponent,
+        CheatsheetComponent,
+        TricksComponent,
+        AboutComponent,
+        HomeComponent,
+    ],
+    imports: [CommonModule, BrowserAnimationsModule, RouterModule, SharedModule, MarkdownModule.forRoot()],
 })
 export class ScreenModule {}

@@ -3,20 +3,17 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/c
 import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: "root",
+    providedIn: "root",
 })
 export class InterceptorService implements HttpInterceptor {
-  constructor() {}
+    constructor() {}
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler,
-  ): Observable<HttpEvent<any>> {
-    let newHeaders = req.headers;
-    newHeaders = newHeaders.set("Access-Control-Allow-Origin", "*");
-    const xhr = req.clone({
-      headers: newHeaders,
-    });
-    return next.handle(xhr);
-  }
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        let newHeaders = req.headers;
+        newHeaders = newHeaders.set("Access-Control-Allow-Origin", "*");
+        const xhr = req.clone({
+            headers: newHeaders,
+        });
+        return next.handle(xhr);
+    }
 }

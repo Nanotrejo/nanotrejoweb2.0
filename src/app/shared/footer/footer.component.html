@@ -8,18 +8,14 @@
 <!--</div>-->
 
 <section id="footer">
-  <div class="center-content w-screen gap-4 bg-layout flex-col mb-4">
-    <img
-      class="w-[100px] h-[100px]"
-      [src]="
-        isThemeDefault
-          ? 'assets/logo/1-removebg.png'
-          : 'assets/logo/2-removebg.png'
-      "
-      alt="Nanotrejo Logo"
-    />
-    <div class="rectangle center-content">
-      <label class="color-primary-color">{{'@'}}nanotrejo {{ yearPresent }}</label>
+    <div class="center-content w-screen gap-4 bg-layout flex-col mb-4">
+        <img
+            class="w-[100px] h-[100px]"
+            [src]="isThemeDefault ? 'assets/logo/1-removebg.png' : 'assets/logo/2-removebg.png'"
+            alt="Nanotrejo Logo"
+        />
+        <div class="rectangle center-content">
+            <label class="color-primary-color">{{ "@" }}nanotrejo {{ yearPresent }}</label>
+        </div>
     </div>
-  </div>
 </section>

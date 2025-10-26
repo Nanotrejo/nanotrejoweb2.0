@@ -8,26 +8,26 @@
 @tailwind utilities;
 
 :root {
-  --font-family: system-ui, sans-serif;
+    --font-family: system-ui, sans-serif;
 }
 
 * {
-  scroll-behavior: smooth;
-  transition: all 0.5s ease-in-out;
+    scroll-behavior: smooth;
+    transition: all 0.5s ease-in-out;
 }
 
 html,
 body {
-  background-color: var(--color-tertiary);
-  overflow-x: hidden;
+    background-color: var(--color-tertiary);
+    overflow-x: hidden;
 }
 
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 0px;
+    width: 0px;
 }
 
 section > div,
 section body {
-  overflow: hidden;
+    overflow: hidden;
 }
