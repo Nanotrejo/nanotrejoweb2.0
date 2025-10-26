@@ -1,25 +1,28 @@
 <div class="center-content w-screen flex-wrap mt-3 gap-4">
     @for (project of projectData; track project?.name) {
-        <div @fadeInFast class="bg-color-fifteenth relative h-[350px] w-[335px] block rounded center-content p-3">
+        <div
+            @fadeInFast
+            class="bg-color-fifteenth relative w-full h-[450px] sm:w-[400px] rounded center-content flex-col gap-2 p-3 justify-between"
+        >
             <a
                 [href]="project?.web ? project?.web : project?.github ? project?.github : project?.drive"
                 target="_blank"
-                class="w-[300px] h-[200px] rounded m-auto cursor-pointer hover:opacity-60"
+                class="w-full sm:w-[390px] h-[240px] rounded-2xl cursor-pointer hover:opacity-60"
             >
                 <img
-                    class="w-[300px] h-[200px] rounded m-auto cursor-pointer hover:opacity-60"
+                    class="w-full px-3 sm:px-0 sm:w-[390px] h-[240px] rounded-2xl cursor-pointer hover:opacity-60"
                     [src]="project?.img"
                     [alt]="project?.name"
                     onerror="this.style.visibility='hidden'"
                     onload="this.style.visibility='visible'"
                 />
             </a>
-            <div class="flex-col center-content items-start w-[300px] m-auto mt-2">
+            <div class="flex-col center-content items-start w-full py-1.5 px-3 sm:px-1.5">
                 <h3 class="color-primary-color font-bold">{{ project?.name }}</h3>
                 <h4 class="color-secondary-color">{{ project?.subtitle }}</h4>
             </div>
-            <div class="center-content justify-start">
-                <ul class="center-content gap-2 mt-2 flex-wrap justify-start">
+            <div class="center-content justify-start w-full px-3 sm:px-1.5">
+                <ul class="center-content gap-2 flex-wrap justify-start">
                     @for (stack of project.stack; track stack) {
                         <li class="text-nowrap color-primary-color stack-item">
                             {{ stack }}
@@ -27,14 +30,24 @@
                     }
                 </ul>
             </div>
-            <div class="absolute center-content right-2 bottom-2 m-auto justify-end gap-4">
+            <div class="w-full center-content justify-end gap-4 px-6 sm:px-0">
                 @if (project?.drive) {
-                    <a class="hover:opacity-60" [href]="project?.drive" target="_blank">
+                    <a
+                        class="hover:opacity-60 center-content gap-2 p-1 border rounded"
+                        [href]="project?.drive"
+                        target="_blank"
+                    >
+                        <h3 class="color-primary-color">Drive</h3>
                         <img class="w-[25px] h-[25px]" src="assets/images/google-drive.svg" alt="Drive" />
                     </a>
                 }
                 @if (project?.github) {
-                    <a class="hover:opacity-60" [href]="project?.github" target="_blank">
+                    <a
+                        class="hover:opacity-60 center-content gap-2 p-1 border rounded"
+                        [href]="project?.github"
+                        target="_blank"
+                    >
+                        <h3 class="color-primary-color">GitHub</h3>
                         <img
                             class="w-[25px] h-[25px]"
                             [class.invert]="isThemeDefault"
@@ -44,7 +57,12 @@
                     </a>
                 }
                 @if (project?.web) {
-                    <a class="hover:opacity-60" [href]="project?.web" target="_blank">
+                    <a
+                        class="hover:opacity-60 center-content gap-2 p-1 border rounded"
+                        [href]="project?.web"
+                        target="_blank"
+                    >
+                        <h3 class="color-primary-color">Web</h3>
                         <img
                             class="w-[25px] h-[25px] filter-primary-color"
                             [class.invert]="isThemeDefault"
