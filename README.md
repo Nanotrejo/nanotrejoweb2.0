@@ -55,12 +55,16 @@ npm install
 npm start
 ```
 
+
 ## 📦 Scripts Disponibles
 
-- 🚀 `npm start`: Inicia el servidor de desarrollo
-- 🏗️ `npm run build`: Construye la aplicación
-- 🏭 `npm run build-prod`: Construye la versión de producción
-- 🚢 `npm run deploy`: Despliega en Netlify
-- 🧪 `npm test`: Ejecuta las pruebas unitarias
+- 🚀 `npm start` / `bun run start`: Inicia el servidor de desarrollo
+- 🏗️ `npm run build` / `bun run build`: Construye la aplicación
+- 🏭 `npm run build-prod` / `bun run build-prod`: Construye la versión de producción
+- 🚢 `npm run deploy` / `bun run deploy`: Despliega en Netlify
+- 🧪 `npm test` / `bun run test`: Ejecuta las pruebas unitarias en modo interactivo
+- 🧪 `npm run test -- --watch=false --browsers=ChromeHeadless` / `bun run test --watch=false --browsers=ChromeHeadless`: Ejecuta los tests en modo headless (sin abrir navegador)
+- 📖 `npm run build:compodoc` / `bun run build:compodoc`: Genera la documentación con Compodoc
+- 📖 `npm run serve:compodoc` / `bun run serve:compodoc`: Sirve la documentación generada en local
 
 ⭐️ Si te gusta este proyecto, ¡no olvides darle una estrella!
