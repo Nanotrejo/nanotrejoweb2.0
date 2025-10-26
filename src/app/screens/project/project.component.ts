@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, effect, OnDestroy, OnInit } from "@angular/core";
 import { NotionService } from "@core/service/notion.service";
 import { iProject } from "@core/interface/project";
 import { fadeInFast } from "@assets/css/animation";
@@ -32,13 +32,16 @@ export class ProjectComponent implements OnInit, OnDestroy {
                 "Explora mi portafolio de proyectos de desarrollo web, incluyendo aplicaciones Angular, APIs y más.",
             image: "/assets/images/projects-preview.webp",
         });
+
+        effect(() => {
+            this.isThemeDefault = this.themeService.observableTheme() === Themes.DEFAULT;
+        });
     }
 
     ngOnInit(): void {
         this.projectData = this.storeService.getItem(Storage.PROJECT);
         this.getProject();
         this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
-        this.getObservableTheme();
     }
 
     ngOnDestroy(): void {
@@ -66,12 +69,5 @@ export class ProjectComponent implements OnInit, OnDestroy {
         });
 
         this.storeService.setItem(Storage.PROJECT, this.projectData);
-    }
-
-    getObservableTheme() {
-        this.observableTheme?.unsubscribe();
-        this.observableTheme = this.themeService.getObservableTheme().subscribe(() => {
-            this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
-        });
     }
 }

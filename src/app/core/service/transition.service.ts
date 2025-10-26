@@ -18,7 +18,7 @@ export class TransitionService {
         });
     }
 
-    async navigate(commands: any[]) {
+    async navigate(commands: string[]) {
         if (!document.startViewTransition) {
             return this.router.navigate(commands);
         }

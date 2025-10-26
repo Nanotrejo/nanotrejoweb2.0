@@ -1,6 +1,7 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable, signal } from "@angular/core";
 import { Themes } from "@core/interface/theme";
 import { Storage } from "@core/interface/storage";
+import { StorageService } from "./storage.service";
 
 /**
  * Server to manage the theme of the application
@@ -13,23 +14,25 @@ import { Storage } from "@core/interface/storage";
  */
 export class ThemeService {
     /**
-     * Observerble to emit theme changes
+     * Signal to emit theme changes
      */
-    observableTheme: EventEmitter<void> = new EventEmitter<void>();
+    observableTheme = signal<Themes>(Themes.DEFAULT);
 
     /**
      * Constructor de ThemeService.
      */
-    constructor() {}
+    constructor(private storageService: StorageService) {
+        this.observableTheme.set(this.getTheme());
+    }
 
     /**
      * Set the theme of the application
      * @param theme
      */
-    setTheme(theme: string) {
+    setTheme(theme: Themes) {
         document.documentElement.className = theme;
-        localStorage.setItem(Storage.THEME, theme);
-        this.observableTheme.emit();
+        this.storageService.setItem(Storage.THEME, theme);
+        this.observableTheme.set(theme);
     }
 
     /**
@@ -37,16 +40,12 @@ export class ThemeService {
      * @returns theme of the application (default, white)
      */
     getTheme() {
-        return JSON.parse(JSON.stringify(localStorage.getItem(Storage.THEME))) ?? Themes.DEFAULT;
+        try {
+            return this.storageService.getItem(Storage.THEME) ?? Themes.DEFAULT;
+        } catch {
+            return Themes.DEFAULT;
+        }
     }
-
-    /**
-     * Observable theme
-     */
-    getObservableTheme() {
-        return this.observableTheme;
-    }
-
     /**
      * Change the theme of the application
      */

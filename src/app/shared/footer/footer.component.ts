@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, effect, OnDestroy, OnInit } from "@angular/core";
 import { Themes } from "@core/interface/theme";
 import { ThemeService } from "@core/service/theme.service";
 
@@ -16,11 +16,14 @@ export class FooterComponent implements OnInit, OnDestroy {
     observableTheme: any;
     isThemeDefault: boolean = false;
 
-    constructor(private themeService: ThemeService) {}
+    constructor(private themeService: ThemeService) {
+        effect(() => {
+            this.isThemeDefault = this.themeService.observableTheme() === Themes.DEFAULT;
+        });
+    }
 
     ngOnInit(): void {
         this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
-        this.getObservableTheme();
 
         // this.updateInterval();
         // this.scrollListener = this.removeFooter.bind(this);
@@ -58,16 +61,5 @@ export class FooterComponent implements OnInit, OnDestroy {
         if (scrollPosition === maxScroll) {
             footer?.classList.remove("fixed");
         }
-    }
-
-    getObservableTheme() {
-        this.observableTheme?.unsubscribe();
-        this.observableTheme = this.themeService.getObservableTheme().subscribe(() => {
-            this.checkTheme();
-        });
-    }
-
-    checkTheme() {
-        this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
     }
 }

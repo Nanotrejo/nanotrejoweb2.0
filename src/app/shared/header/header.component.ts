@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { AfterViewInit, Component, effect, EventEmitter, OnInit, Output } from "@angular/core";
 import { fadeInFast, fadeOutFast, translateIn, translateOut } from "@assets/css/animation";
 import { ThemeService } from "@core/service/theme.service";
 import { Themes } from "@core/interface/theme";
@@ -25,12 +25,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     constructor(
         private themeService: ThemeService,
         private menuService: MenuService
-    ) {}
+    ) {
+        effect(() => {
+            this.isThemeDefault = this.themeService.observableTheme() === Themes.DEFAULT;
+        });
+    }
 
     ngOnInit(): void {
         this.menuItems = this.menuService.getMenu();
         this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
-        this.getObservableTheme();
     }
 
     ngAfterViewInit(): void {
@@ -67,16 +70,5 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
     openKbarDialog() {
         this.kbarEmitter.emit();
-    }
-
-    getObservableTheme() {
-        this.observableTheme?.unsubscribe();
-        this.observableTheme = this.themeService.getObservableTheme().subscribe(() => {
-            this.checkTheme();
-        });
-    }
-
-    checkTheme() {
-        this.isThemeDefault = this.themeService.getTheme() === Themes.DEFAULT;
     }
 }
