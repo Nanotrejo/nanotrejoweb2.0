@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from "@angular/core";
+import { Component, OnInit, Renderer2, signal } from "@angular/core";
 import { MarkdownService } from "ngx-markdown";
 import { ActivatedRoute } from "@angular/router";
 import { NotionService } from "@core/service/notion.service";
@@ -16,7 +16,7 @@ import { TransitionService } from "@core/service/transition.service";
 })
 export class TricksComponent implements OnInit {
     loading: boolean = false;
-    loadingGoTo: boolean = false;
+    loadingGoTo = signal<boolean>(false);
     markdown: string = "";
     linkToCopy: string = "";
     linkCopied: boolean = false;
@@ -131,12 +131,12 @@ export class TricksComponent implements OnInit {
         const idx = ids.indexOf(this.data?.id || "");
         this.goTo.prev = idx > 0 ? ids[idx - 1] : "";
         this.goTo.next = idx >= 0 && idx < ids.length - 1 ? ids[idx + 1] : "";
-        this.loadingGoTo = true;
+        this.loadingGoTo.set(true);
     }
 
     goToArrow(direction: "prev" | "next") {
-        if (!this.loadingGoTo || !this.goTo[direction]) return;
-        this.loadingGoTo = false;
+        if (!this.loadingGoTo() || !this.goTo[direction]) return;
+        this.loadingGoTo.set(false);
         this.transitionService.navigate(["/trucos", this.goTo[direction]]);
         setTimeout(() => {
             this.getGoTo();

@@ -35,7 +35,7 @@
             <div class="center-content gap-3">
                 <a
                     (click)="goToArrow('prev')"
-                    [class.opacity-0]="!loadingGoTo || goTo.prev === ''"
+                    [class.opacity-0]="!loadingGoTo() || goTo.prev === ''"
                     class="cursor-pointer button-filter button-filter-color filter-color flex bg-layout"
                 >
                     <span class="material-icons">arrow_back</span>
