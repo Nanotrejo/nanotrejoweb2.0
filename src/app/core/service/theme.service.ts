@@ -42,7 +42,7 @@ export class ThemeService {
     getTheme() {
         try {
             const theme = this.storageService.getItem(Storage.THEME);
-            if (!(theme in Themes)) return Themes.DEFAULT;
+            if(!theme || !Object.values(Themes).includes(theme)) return Themes.DEFAULT;
             return theme ? theme : Themes.DEFAULT;
         } catch {
             return Themes.DEFAULT;
